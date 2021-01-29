@@ -27,12 +27,19 @@ MainWindow::MainWindow(QWidget *parent)
 {
     setWindowIcon(QIcon(QStringLiteral(":/icons/apps/512/lotrio.svg")));
 
-    setApplicationState();
-    setApplicationGeometry();
+    readSettings();
 }
 
 MainWindow::~MainWindow()
 {
+}
+
+
+void MainWindow::readSettings()
+{
+    // Set application properties
+    setApplicationState();
+    setApplicationGeometry();
 }
 
 
