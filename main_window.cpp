@@ -23,6 +23,7 @@
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
 {
+    setWindowIcon(QIcon(QStringLiteral(":/icons/apps/512/lotrio.svg")));
 }
 
 MainWindow::~MainWindow()
