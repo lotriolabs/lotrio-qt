@@ -20,6 +20,7 @@
 #ifndef MAIN_WINDOW_H
 #define MAIN_WINDOW_H
 
+#include <QByteArray>
 #include <QMainWindow>
 
 
@@ -30,6 +31,9 @@ class MainWindow : public QMainWindow
 public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
+
+    void setApplicationState(const QByteArray &state = QByteArray());
+    QByteArray applicationState() const;
 };
 
 #endif // MAIN_WINDOW_H

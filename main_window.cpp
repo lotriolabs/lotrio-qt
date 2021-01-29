@@ -24,8 +24,24 @@ MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
 {
     setWindowIcon(QIcon(QStringLiteral(":/icons/apps/512/lotrio.svg")));
+
+    setApplicationState();
 }
 
 MainWindow::~MainWindow()
 {
+}
+
+
+void MainWindow::setApplicationState(const QByteArray &state)
+{
+    if (!state.isEmpty()) {
+        restoreState(state);
+    }
+}
+
+
+QByteArray MainWindow::applicationState() const
+{
+    return saveState();
 }
