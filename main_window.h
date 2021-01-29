@@ -21,6 +21,7 @@
 #define MAIN_WINDOW_H
 
 #include <QByteArray>
+#include <QCloseEvent>
 #include <QMainWindow>
 
 
@@ -38,8 +39,12 @@ public:
     void setApplicationGeometry(const QByteArray &geometry = QByteArray());
     QByteArray applicationGeometry() const;
 
+protected:
+    void closeEvent(QCloseEvent *event) override;
+
 private:
     void readSettings();
+    void writeSettings();
 };
 
 #endif // MAIN_WINDOW_H

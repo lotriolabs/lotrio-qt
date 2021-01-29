@@ -35,11 +35,29 @@ MainWindow::~MainWindow()
 }
 
 
+void MainWindow::closeEvent(QCloseEvent *event)
+{
+    if (true) {
+        writeSettings();
+        event->accept();
+    }
+    else {
+        event->ignore();
+    }
+}
+
+
 void MainWindow::readSettings()
 {
     // Set application properties
     setApplicationState();
     setApplicationGeometry();
+}
+
+
+void MainWindow::writeSettings()
+{
+
 }
 
 
