@@ -35,39 +35,6 @@ MainWindow::~MainWindow()
 }
 
 
-void MainWindow::closeEvent(QCloseEvent *event)
-{
-    if (true) {
-        writeSettings();
-        event->accept();
-    }
-    else {
-        event->ignore();
-    }
-}
-
-
-void MainWindow::readSettings()
-{
-    QSettings settings;
-
-    m_settings.load(settings);
-
-
-    // Set application properties
-    setApplicationState();
-    setApplicationGeometry();
-}
-
-
-void MainWindow::writeSettings()
-{
-    QSettings settings;
-
-    m_settings.save(settings);
-}
-
-
 void MainWindow::setApplicationState(const QByteArray &state)
 {
     if (!state.isEmpty()) {
@@ -88,7 +55,7 @@ void MainWindow::setApplicationGeometry(const QByteArray &geometry)
         restoreGeometry(geometry);
     }
     else {
-        const QRect availableGeometry = screen()->availableGeometry();
+        const auto availableGeometry = screen()->availableGeometry();
         resize(availableGeometry.width() * 2/3, availableGeometry.height() * 2/3);
         move((availableGeometry.width() - width()) / 2, (availableGeometry.height() - height()) / 2);
     }
@@ -98,4 +65,42 @@ void MainWindow::setApplicationGeometry(const QByteArray &geometry)
 QByteArray MainWindow::applicationGeometry() const
 {
     return saveGeometry();
+}
+
+
+void MainWindow::closeEvent(QCloseEvent *event)
+{
+    if (true) {
+        writeSettings();
+        event->accept();
+    }
+    else {
+        event->ignore();
+    }
+}
+
+
+void MainWindow::readSettings()
+{
+    QSettings settings;
+
+    m_settings.load(settings);
+
+    const auto applicationState = settings.value(QStringLiteral("application/state"), QByteArray()).toByteArray();
+    const auto applicationGeometry = settings.value(QStringLiteral("application/geometry"), QByteArray()).toByteArray();
+
+    // Set application properties
+    setApplicationState(applicationState);
+    setApplicationGeometry(applicationGeometry);
+}
+
+
+void MainWindow::writeSettings()
+{
+    QSettings settings;
+
+    m_settings.save(settings);
+
+    settings.setValue(QStringLiteral("application/state"), applicationState());
+    settings.setValue(QStringLiteral("application/geometry"), applicationGeometry());
 }
