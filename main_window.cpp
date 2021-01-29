@@ -19,6 +19,8 @@
 
 #include "main_window.h"
 
+#include <QScreen>
+
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -26,6 +28,7 @@ MainWindow::MainWindow(QWidget *parent)
     setWindowIcon(QIcon(QStringLiteral(":/icons/apps/512/lotrio.svg")));
 
     setApplicationState();
+    setApplicationGeometry();
 }
 
 MainWindow::~MainWindow()
@@ -44,4 +47,23 @@ void MainWindow::setApplicationState(const QByteArray &state)
 QByteArray MainWindow::applicationState() const
 {
     return saveState();
+}
+
+
+void MainWindow::setApplicationGeometry(const QByteArray &geometry)
+{
+    if (!geometry.isEmpty()) {
+        restoreGeometry(geometry);
+    }
+    else {
+        const QRect availableGeometry = screen()->availableGeometry();
+        resize(availableGeometry.width() * 2/3, availableGeometry.height() * 2/3);
+        move((availableGeometry.width() - width()) / 2, (availableGeometry.height() - height()) / 2);
+    }
+}
+
+
+QByteArray MainWindow::applicationGeometry() const
+{
+    return saveGeometry();
 }

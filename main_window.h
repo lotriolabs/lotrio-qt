@@ -34,6 +34,9 @@ public:
 
     void setApplicationState(const QByteArray &state = QByteArray());
     QByteArray applicationState() const;
+
+    void setApplicationGeometry(const QByteArray &geometry = QByteArray());
+    QByteArray applicationGeometry() const;
 };
 
 #endif // MAIN_WINDOW_H
