@@ -25,6 +25,11 @@
 int main(int argc, char *argv[])
 {
     QApplication app(argc, argv);
+    app.setOrganizationName(QStringLiteral("LotrioLabs"));
+    app.setOrganizationDomain(QStringLiteral("https://lotriolabs.github.io"));
+    app.setApplicationName(QStringLiteral("Lotrio-Qt"));
+    app.setApplicationDisplayName(QStringLiteral("Lotrio-Qt"));
+    app.setApplicationVersion(QStringLiteral("0.1.0"));
 
     MainWindow window;
     window.show();
