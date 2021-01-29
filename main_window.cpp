@@ -86,8 +86,8 @@ void MainWindow::readSettings()
 
     m_settings.load(settings);
 
-    const auto applicationState = settings.value(QStringLiteral("application/state"), QByteArray()).toByteArray();
-    const auto applicationGeometry = settings.value(QStringLiteral("application/geometry"), QByteArray()).toByteArray();
+    const auto applicationState = settings.value(QStringLiteral("Application/State"), QByteArray()).toByteArray();
+    const auto applicationGeometry = settings.value(QStringLiteral("Application/Geometry"), QByteArray()).toByteArray();
 
     // Set application properties
     setApplicationState(applicationState);
@@ -101,6 +101,6 @@ void MainWindow::writeSettings()
 
     m_settings.save(settings);
 
-    settings.setValue(QStringLiteral("application/state"), applicationState());
-    settings.setValue(QStringLiteral("application/geometry"), applicationGeometry());
+    settings.setValue(QStringLiteral("Application/State"), applicationState());
+    settings.setValue(QStringLiteral("Application/Geometry"), applicationGeometry());
 }

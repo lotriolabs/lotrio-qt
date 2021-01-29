@@ -28,7 +28,7 @@ Settings::Settings()
 
 void Settings::load(QSettings &settings)
 {
-    settings.beginGroup(QStringLiteral("settings"));
+    settings.beginGroup(QStringLiteral("Settings"));
 
 
     settings.endGroup();
@@ -37,8 +37,9 @@ void Settings::load(QSettings &settings)
 
 void Settings::save(QSettings &settings)
 {
-    settings.beginGroup(QStringLiteral("settings"));
+    settings.beginGroup(QStringLiteral("Settings"));
     settings.remove("");
+
 
     settings.endGroup();
 }
