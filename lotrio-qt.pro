@@ -29,10 +29,12 @@ CONFIG += c++17
 
 SOURCES += \
     main.cpp \
-    main_window.cpp
+    main_window.cpp \
+    settings.cpp
 
 HEADERS += \
-    main_window.h
+    main_window.h \
+    settings.h
 
 TRANSLATIONS += \
     translations/lotrio-qt_en.ts

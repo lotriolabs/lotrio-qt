@@ -17,37 +17,19 @@
  * along with Lotrio-Qt.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-#ifndef MAIN_WINDOW_H
-#define MAIN_WINDOW_H
+#ifndef SETTINGS_H
+#define SETTINGS_H
 
-#include <QByteArray>
-#include <QCloseEvent>
-#include <QMainWindow>
-
-#include "settings.h"
+#include <QSettings>
 
 
-class MainWindow : public QMainWindow
+class Settings
 {
-    Q_OBJECT
-
 public:
-    MainWindow(QWidget *parent = nullptr);
-    ~MainWindow();
+    Settings();
 
-    void setApplicationState(const QByteArray &state = QByteArray());
-    QByteArray applicationState() const;
-
-    void setApplicationGeometry(const QByteArray &geometry = QByteArray());
-    QByteArray applicationGeometry() const;
-
-protected:
-    void closeEvent(QCloseEvent *event) override;
-
-private:
-    Settings m_settings;
-    void readSettings();
-    void writeSettings();
+    void load(QSettings &settings);
+    void save(QSettings &settings);
 };
 
-#endif // MAIN_WINDOW_H
+#endif // SETTINGS_H

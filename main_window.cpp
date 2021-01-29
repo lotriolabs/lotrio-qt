@@ -49,6 +49,11 @@ void MainWindow::closeEvent(QCloseEvent *event)
 
 void MainWindow::readSettings()
 {
+    QSettings settings;
+
+    m_settings.load(settings);
+
+
     // Set application properties
     setApplicationState();
     setApplicationGeometry();
@@ -57,7 +62,9 @@ void MainWindow::readSettings()
 
 void MainWindow::writeSettings()
 {
+    QSettings settings;
 
+    m_settings.save(settings);
 }
 
 
