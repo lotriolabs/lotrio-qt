@@ -20,6 +20,7 @@
 #include "main_window.h"
 
 #include <QApplication>
+#include <QCommandLineParser>
 
 
 int main(int argc, char *argv[])
@@ -30,6 +31,12 @@ int main(int argc, char *argv[])
     app.setApplicationName(QStringLiteral("Lotrio-Qt"));
     app.setApplicationDisplayName(QStringLiteral("Lotrio-Qt"));
     app.setApplicationVersion(QStringLiteral("0.1.0"));
+
+    QCommandLineParser parser;
+    parser.setApplicationDescription(QCoreApplication::translate("main", "%1 - A visualization tool for lottery data").arg(app.applicationName()));
+    parser.addHelpOption();
+    parser.addVersionOption();
+    parser.process(app);
 
     MainWindow window;
     window.show();
