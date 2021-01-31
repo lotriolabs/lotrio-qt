@@ -28,6 +28,7 @@ MainWindow::MainWindow(QWidget *parent)
 {
     setWindowIcon(QIcon(QStringLiteral(":/icons/apps/512/lotrio.svg")));
 
+    createActions();
     createMenus();
 
     readSettings();
@@ -38,11 +39,25 @@ MainWindow::~MainWindow()
 }
 
 
+void MainWindow::createActions()
+{
+    // Actions: Application
+    m_actionQuit = new QAction(tr("Quit"), this);
+    m_actionQuit->setObjectName(QStringLiteral("actionQuit"));
+    m_actionQuit->setIcon(QIcon::fromTheme(QStringLiteral("application-exit"), QIcon(QStringLiteral(":/icons/actions/16/application-exit.svg"))));
+    m_actionQuit->setIconText(tr("Quit"));
+    m_actionQuit->setShortcut(QKeySequence::Quit);
+    m_actionQuit->setToolTip(tr("Quit the application [%1]").arg(m_actionQuit->shortcut().toString(QKeySequence::NativeText)));
+    connect(m_actionQuit, &QAction::triggered, this, &MainWindow::close);
+}
+
+
 void MainWindow::createMenus()
 {
     // Menu: Application
     auto *menuApplication = menuBar()->addMenu(tr("Application"));
     menuApplication->setObjectName(QStringLiteral("menuApplication"));
+    menuApplication->addAction(m_actionQuit);
 }
 
 

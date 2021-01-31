@@ -4,7 +4,18 @@
 <context>
     <name>MainWindow</name>
     <message>
-        <location filename="../main_window.cpp" line="44"/>
+        <location filename="../main_window.cpp" line="45"/>
+        <location filename="../main_window.cpp" line="48"/>
+        <source>Quit</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../main_window.cpp" line="50"/>
+        <source>Quit the application [%1]</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../main_window.cpp" line="58"/>
         <source>Application</source>
         <translation type="unfinished"></translation>
     </message>

@@ -20,6 +20,7 @@
 #ifndef MAIN_WINDOW_H
 #define MAIN_WINDOW_H
 
+#include <QAction>
 #include <QByteArray>
 #include <QCloseEvent>
 #include <QMainWindow>
@@ -49,7 +50,10 @@ private:
     void readSettings();
     void writeSettings();
 
+    void createActions();
     void createMenus();
+
+    QAction *m_actionQuit;
 };
 
 #endif // MAIN_WINDOW_H
