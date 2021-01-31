@@ -19,6 +19,7 @@
 
 #include "main_window.h"
 
+#include <QApplication>
 #include <QMenuBar>
 #include <QScreen>
 
@@ -42,6 +43,13 @@ MainWindow::~MainWindow()
 void MainWindow::createActions()
 {
     // Actions: Application
+    m_actionAbout = new QAction(tr("About %1").arg(QApplication::applicationName()), this);
+    m_actionAbout->setObjectName(QStringLiteral("actionAbout"));
+    m_actionAbout->setIcon(QIcon(QStringLiteral(":/icons/apps/512/lotrio.svg")));
+    m_actionAbout->setIconText(tr("About"));
+    m_actionAbout->setToolTip(tr("Brief description of the application"));
+    connect(m_actionAbout, &QAction::triggered, this, &MainWindow::onActionAboutTriggered);
+
     m_actionQuit = new QAction(tr("Quit"), this);
     m_actionQuit->setObjectName(QStringLiteral("actionQuit"));
     m_actionQuit->setIcon(QIcon::fromTheme(QStringLiteral("application-exit"), QIcon(QStringLiteral(":/icons/actions/16/application-exit.svg"))));
@@ -57,6 +65,8 @@ void MainWindow::createMenus()
     // Menu: Application
     auto *menuApplication = menuBar()->addMenu(tr("Application"));
     menuApplication->setObjectName(QStringLiteral("menuApplication"));
+    menuApplication->addAction(m_actionAbout);
+    menuApplication->addSeparator();
     menuApplication->addAction(m_actionQuit);
 }
 
@@ -129,4 +139,10 @@ void MainWindow::writeSettings()
 
     settings.setValue(QStringLiteral("Application/State"), applicationState());
     settings.setValue(QStringLiteral("Application/Geometry"), applicationGeometry());
+}
+
+
+void MainWindow::onActionAboutTriggered()
+{
+
 }

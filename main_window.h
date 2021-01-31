@@ -45,6 +45,9 @@ public:
 protected:
     void closeEvent(QCloseEvent *event) override;
 
+private slots:
+    void onActionAboutTriggered();
+
 private:
     Settings m_settings;
     void readSettings();
@@ -53,6 +56,7 @@ private:
     void createActions();
     void createMenus();
 
+    QAction *m_actionAbout;
     QAction *m_actionQuit;
 };
 
