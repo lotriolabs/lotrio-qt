@@ -24,6 +24,7 @@
 #include <QScreen>
 
 #include "about_dialog.h"
+#include "colophon_dialog.h"
 
 
 MainWindow::MainWindow(QWidget *parent)
@@ -133,6 +134,7 @@ void MainWindow::readSettings()
     const auto applicationState = settings.value(QStringLiteral("Application/State"), QByteArray()).toByteArray();
     const auto applicationGeometry = settings.value(QStringLiteral("Application/Geometry"), QByteArray()).toByteArray();
     m_aboutDialogGeometry = settings.value(QStringLiteral("AboutDialog/Geometry"), QByteArray()).toByteArray();
+    m_colophonDialogGeometry = settings.value(QStringLiteral("ColophonDialog/Geometry"), QByteArray()).toByteArray();
 
     // Set application properties
     setApplicationState(applicationState);
@@ -149,6 +151,7 @@ void MainWindow::writeSettings()
     settings.setValue(QStringLiteral("Application/State"), applicationState());
     settings.setValue(QStringLiteral("Application/Geometry"), applicationGeometry());
     settings.setValue(QStringLiteral("AboutDialog/Geometry"), m_aboutDialogGeometry);
+    settings.setValue(QStringLiteral("ColophonDialog/Geometry"), m_colophonDialogGeometry);
 }
 
 
@@ -164,5 +167,9 @@ void MainWindow::onActionAboutTriggered()
 
 void MainWindow::onActionColophonTriggered()
 {
+    ColophonDialog dialog(this);
+    dialog.setDialogGeometry(m_colophonDialogGeometry);
+    dialog.exec();
 
+    m_colophonDialogGeometry = dialog.dialogGeometry();
 }

@@ -62,6 +62,7 @@ private:
     QAction *m_actionQuit;
 
     QByteArray m_aboutDialogGeometry;
+    QByteArray m_colophonDialogGeometry;
 };
 
 #endif // MAIN_WINDOW_H
