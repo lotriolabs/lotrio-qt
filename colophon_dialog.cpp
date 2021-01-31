@@ -19,9 +19,10 @@
 
 #include "colophon_dialog.h"
 
-#include <QApplication>
 #include <QDialogButtonBox>
 #include <QVBoxLayout>
+
+#include "dialog_title_box.h"
 
 
 ColophonDialog::ColophonDialog(QWidget *parent)
@@ -30,6 +31,9 @@ ColophonDialog::ColophonDialog(QWidget *parent)
     setWindowFlags(windowFlags() & ~Qt::WindowContextHelpButtonHint);
     setWindowTitle(tr("Colophon"));
 
+    // Title box
+    auto *titleBox = new DialogTitleBox;
+
 
     // Button box
     auto *buttonBox = new QDialogButtonBox(QDialogButtonBox::Close);
@@ -37,6 +41,7 @@ ColophonDialog::ColophonDialog(QWidget *parent)
 
     // Main layout
     auto *layout = new QVBoxLayout(this);
+    layout->addWidget(titleBox);
     layout->addStretch(1);
     layout->addWidget(buttonBox);
 }

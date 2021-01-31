@@ -4,7 +4,7 @@
 <context>
     <name>AboutDialog</name>
     <message>
-        <location filename="../about_dialog.cpp" line="31"/>
+        <location filename="../about_dialog.cpp" line="33"/>
         <source>About %1</source>
         <translation type="unfinished"></translation>
     </message>
@@ -12,8 +12,21 @@
 <context>
     <name>ColophonDialog</name>
     <message>
-        <location filename="../colophon_dialog.cpp" line="31"/>
+        <location filename="../colophon_dialog.cpp" line="32"/>
         <source>Colophon</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>DialogTitleBox</name>
+    <message>
+        <location filename="../dialog_title_box.cpp" line="34"/>
+        <source>&lt;strong style=&quot;font-size:large;&quot;&gt;%1&lt;/strong&gt; v%2</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../dialog_title_box.cpp" line="35"/>
+        <source>A visualization tool for lottery data</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

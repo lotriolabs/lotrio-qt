@@ -17,7 +17,7 @@
 # along with Lotrio-Qt.  If not, see <https://www.gnu.org/licenses/>.
 #
 
-QT += core gui
+QT += core gui svg
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -30,6 +30,7 @@ CONFIG += c++17
 SOURCES += \
     about_dialog.cpp \
     colophon_dialog.cpp \
+    dialog_title_box.cpp \
     main.cpp \
     main_window.cpp \
     settings.cpp
@@ -37,6 +38,7 @@ SOURCES += \
 HEADERS += \
     about_dialog.h \
     colophon_dialog.h \
+    dialog_title_box.h \
     main_window.h \
     settings.h
 

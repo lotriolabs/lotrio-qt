@@ -23,12 +23,17 @@
 #include <QDialogButtonBox>
 #include <QVBoxLayout>
 
+#include "dialog_title_box.h"
+
 
 AboutDialog::AboutDialog(QWidget *parent)
     : QDialog(parent)
 {
     setWindowFlags(windowFlags() & ~Qt::WindowContextHelpButtonHint);
     setWindowTitle(tr("About %1").arg(QApplication::applicationName()));
+
+    // Title box
+    auto *titleBox = new DialogTitleBox;
 
 
     // Button box
@@ -37,6 +42,7 @@ AboutDialog::AboutDialog(QWidget *parent)
 
     // Main layout
     auto *layout = new QVBoxLayout(this);
+    layout->addWidget(titleBox);
     layout->addStretch(1);
     layout->addWidget(buttonBox);
 }
