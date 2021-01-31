@@ -4,15 +4,28 @@
 <context>
     <name>AboutDialog</name>
     <message>
-        <location filename="../about_dialog.cpp" line="33"/>
+        <location filename="../about_dialog.cpp" line="34"/>
         <source>About %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>ColophonAboutPage</name>
+    <message>
+        <location filename="../colophon_about_page.cpp" line="33"/>
+        <source>&lt;html&gt;&lt;body&gt;&lt;p&gt;%1 is an open source visualization tool written in Qt for C++ and designed for easy creation and graphical representation of lottery data.&lt;/p&gt;&lt;p&gt;Copyright &amp;copy; 2021 &lt;a href=&quot;%2&quot;&gt;%3&lt;/a&gt;.&lt;/p&gt;&lt;p&gt;This application is licensed under the terms of the &lt;a href=&quot;https://www.gnu.org/licenses/gpl-3.0.en.html&quot;&gt;GNU General Public License, version 3&lt;/a&gt;.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../colophon_about_page.cpp" line="53"/>
+        <source>About</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
     <name>ColophonDialog</name>
     <message>
-        <location filename="../colophon_dialog.cpp" line="32"/>
+        <location filename="../colophon_dialog.cpp" line="34"/>
         <source>Colophon</source>
         <translation type="unfinished"></translation>
     </message>

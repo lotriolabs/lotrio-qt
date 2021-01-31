@@ -23,6 +23,7 @@
 #include <QDialogButtonBox>
 #include <QVBoxLayout>
 
+#include "colophon_about_page.h"
 #include "dialog_title_box.h"
 
 
@@ -35,6 +36,9 @@ AboutDialog::AboutDialog(QWidget *parent)
     // Title box
     auto *titleBox = new DialogTitleBox;
 
+    // Content
+    auto *aboutPage = new ColophonAboutPage;
+    aboutPage->setZeroMargins();
 
     // Button box
     auto *buttonBox = new QDialogButtonBox(QDialogButtonBox::Close);
@@ -43,7 +47,7 @@ AboutDialog::AboutDialog(QWidget *parent)
     // Main layout
     auto *layout = new QVBoxLayout(this);
     layout->addWidget(titleBox);
-    layout->addStretch(1);
+    layout->addWidget(aboutPage);
     layout->addWidget(buttonBox);
 }
 

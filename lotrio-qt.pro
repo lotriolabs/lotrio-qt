@@ -29,6 +29,7 @@ CONFIG += c++17
 
 SOURCES += \
     about_dialog.cpp \
+    colophon_about_page.cpp \
     colophon_dialog.cpp \
     dialog_title_box.cpp \
     main.cpp \
@@ -37,6 +38,7 @@ SOURCES += \
 
 HEADERS += \
     about_dialog.h \
+    colophon_about_page.h \
     colophon_dialog.h \
     dialog_title_box.h \
     main_window.h \
