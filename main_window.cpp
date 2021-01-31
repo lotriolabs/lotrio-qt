@@ -23,6 +23,8 @@
 #include <QMenuBar>
 #include <QScreen>
 
+#include "about_dialog.h"
+
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -124,6 +126,7 @@ void MainWindow::readSettings()
 
     const auto applicationState = settings.value(QStringLiteral("Application/State"), QByteArray()).toByteArray();
     const auto applicationGeometry = settings.value(QStringLiteral("Application/Geometry"), QByteArray()).toByteArray();
+    m_aboutDialogGeometry = settings.value(QStringLiteral("AboutDialog/Geometry"), QByteArray()).toByteArray();
 
     // Set application properties
     setApplicationState(applicationState);
@@ -139,10 +142,15 @@ void MainWindow::writeSettings()
 
     settings.setValue(QStringLiteral("Application/State"), applicationState());
     settings.setValue(QStringLiteral("Application/Geometry"), applicationGeometry());
+    settings.setValue(QStringLiteral("AboutDialog/Geometry"), m_aboutDialogGeometry);
 }
 
 
 void MainWindow::onActionAboutTriggered()
 {
+    AboutDialog dialog(this);
+    dialog.setDialogGeometry(m_aboutDialogGeometry);
+    dialog.exec();
 
+    m_aboutDialogGeometry = dialog.dialogGeometry();
 }

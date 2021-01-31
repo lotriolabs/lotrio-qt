@@ -58,6 +58,8 @@ private:
 
     QAction *m_actionAbout;
     QAction *m_actionQuit;
+
+    QByteArray m_aboutDialogGeometry;
 };
 
 #endif // MAIN_WINDOW_H

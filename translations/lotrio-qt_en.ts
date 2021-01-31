@@ -2,35 +2,43 @@
 <!DOCTYPE TS>
 <TS version="2.1" language="lotrio-qt_en">
 <context>
+    <name>AboutDialog</name>
+    <message>
+        <location filename="../about_dialog.cpp" line="31"/>
+        <source>About %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>MainWindow</name>
     <message>
-        <location filename="../main_window.cpp" line="46"/>
+        <location filename="../main_window.cpp" line="48"/>
         <source>About %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../main_window.cpp" line="49"/>
+        <location filename="../main_window.cpp" line="51"/>
         <source>About</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../main_window.cpp" line="50"/>
+        <location filename="../main_window.cpp" line="52"/>
         <source>Brief description of the application</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../main_window.cpp" line="53"/>
-        <location filename="../main_window.cpp" line="56"/>
+        <location filename="../main_window.cpp" line="55"/>
+        <location filename="../main_window.cpp" line="58"/>
         <source>Quit</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../main_window.cpp" line="58"/>
+        <location filename="../main_window.cpp" line="60"/>
         <source>Quit the application [%1]</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../main_window.cpp" line="66"/>
+        <location filename="../main_window.cpp" line="68"/>
         <source>Application</source>
         <translation type="unfinished"></translation>
     </message>
