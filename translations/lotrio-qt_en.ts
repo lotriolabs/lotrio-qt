@@ -28,17 +28,27 @@
     </message>
     <message>
         <location filename="../main_window.cpp" line="55"/>
-        <location filename="../main_window.cpp" line="58"/>
-        <source>Quit</source>
+        <source>Colophon</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../main_window.cpp" line="57"/>
+        <source>Lengthy description of the application</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../main_window.cpp" line="60"/>
+        <location filename="../main_window.cpp" line="63"/>
+        <source>Quit</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../main_window.cpp" line="65"/>
         <source>Quit the application [%1]</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../main_window.cpp" line="68"/>
+        <location filename="../main_window.cpp" line="73"/>
         <source>Application</source>
         <translation type="unfinished"></translation>
     </message>

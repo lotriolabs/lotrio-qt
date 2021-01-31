@@ -47,6 +47,7 @@ protected:
 
 private slots:
     void onActionAboutTriggered();
+    void onActionColophonTriggered();
 
 private:
     Settings m_settings;
@@ -57,6 +58,7 @@ private:
     void createMenus();
 
     QAction *m_actionAbout;
+    QAction *m_actionColophon;
     QAction *m_actionQuit;
 
     QByteArray m_aboutDialogGeometry;
