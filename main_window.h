@@ -48,6 +48,8 @@ private:
     Settings m_settings;
     void readSettings();
     void writeSettings();
+
+    void createMenus();
 };
 
 #endif // MAIN_WINDOW_H

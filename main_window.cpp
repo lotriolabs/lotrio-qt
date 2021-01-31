@@ -19,6 +19,7 @@
 
 #include "main_window.h"
 
+#include <QMenuBar>
 #include <QScreen>
 
 
@@ -27,11 +28,21 @@ MainWindow::MainWindow(QWidget *parent)
 {
     setWindowIcon(QIcon(QStringLiteral(":/icons/apps/512/lotrio.svg")));
 
+    createMenus();
+
     readSettings();
 }
 
 MainWindow::~MainWindow()
 {
+}
+
+
+void MainWindow::createMenus()
+{
+    // Menu: Application
+    auto *menuApplication = menuBar()->addMenu(tr("Application"));
+    menuApplication->setObjectName(QStringLiteral("menuApplication"));
 }
 
 
