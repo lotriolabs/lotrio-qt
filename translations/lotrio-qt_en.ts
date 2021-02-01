@@ -25,7 +25,7 @@
 <context>
     <name>ColophonDialog</name>
     <message>
-        <location filename="../colophon_dialog.cpp" line="35"/>
+        <location filename="../colophon_dialog.cpp" line="36"/>
         <source>Colophon</source>
         <translation type="unfinished"></translation>
     </message>
@@ -40,6 +40,19 @@
     <message>
         <location filename="../colophon_environment_page.cpp" line="62"/>
         <source>Environment</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>ColophonLicensePage</name>
+    <message>
+        <location filename="../colophon_license_page.cpp" line="33"/>
+        <source>&lt;html&gt;&lt;body&gt;&lt;p&gt;%1 is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.&lt;/p&gt;&lt;p&gt;%1 is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.&lt;/p&gt;&lt;p&gt;You should have received a copy of the GNU General Public License along with %1. If not, see &lt;a href=&quot;https://www.gnu.org/licenses/&quot;&gt;https://www.gnu.org/licenses/&lt;/a&gt;.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../colophon_license_page.cpp" line="53"/>
+        <source>License</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
