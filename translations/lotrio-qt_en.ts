@@ -23,9 +23,22 @@
     </message>
 </context>
 <context>
+    <name>ColophonAuthorsPage</name>
+    <message>
+        <location filename="../colophon_authors_page.cpp" line="31"/>
+        <source>&lt;html&gt;&lt;body&gt;&lt;dl&gt;&lt;dt&gt;&lt;strong&gt;NotNypical&lt;/strong&gt;&lt;/dt&gt;&lt;dd&gt;Created and developed by &lt;a href=&quot;https://notnypical.github.io&quot; title=&quot;Visit author&apos;s homepage&quot;&gt;NotNypical&lt;/a&gt;.&lt;/dd&gt;&lt;/dl&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../colophon_authors_page.cpp" line="50"/>
+        <source>Authors</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>ColophonDialog</name>
     <message>
-        <location filename="../colophon_dialog.cpp" line="36"/>
+        <location filename="../colophon_dialog.cpp" line="37"/>
         <source>Colophon</source>
         <translation type="unfinished"></translation>
     </message>
