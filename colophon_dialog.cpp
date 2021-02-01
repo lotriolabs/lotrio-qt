@@ -24,6 +24,7 @@
 #include <QVBoxLayout>
 
 #include "colophon_about_page.h"
+#include "colophon_environment_page.h"
 #include "dialog_title_box.h"
 
 
@@ -38,9 +39,11 @@ ColophonDialog::ColophonDialog(QWidget *parent)
 
     // Content
     auto *aboutPage = new ColophonAboutPage;
+    auto *environmentPage = new ColophonEnvironmentPage;
 
     auto *tabBox = new QTabWidget;
     tabBox->addTab(aboutPage, aboutPage->title());
+    tabBox->addTab(environmentPage, environmentPage->title());
 
     // Button box
     auto *buttonBox = new QDialogButtonBox(QDialogButtonBox::Close);

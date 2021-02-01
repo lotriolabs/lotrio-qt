@@ -25,8 +25,21 @@
 <context>
     <name>ColophonDialog</name>
     <message>
-        <location filename="../colophon_dialog.cpp" line="34"/>
+        <location filename="../colophon_dialog.cpp" line="35"/>
         <source>Colophon</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>ColophonEnvironmentPage</name>
+    <message>
+        <location filename="../colophon_environment_page.cpp" line="39"/>
+        <source>&lt;html&gt;&lt;body&gt;&lt;dl&gt;&lt;dt&gt;&lt;strong&gt;Application version&lt;/strong&gt;&lt;/dt&gt;&lt;dd&gt;%1&lt;/dd&gt;&lt;dt&gt;&lt;strong&gt;Qt for C++ version&lt;/strong&gt;&lt;/dt&gt;&lt;dd&gt;Qt %2 (Built against %3)&lt;/dd&gt;&lt;dt&gt;&lt;strong&gt;Operation System&lt;/strong&gt;&lt;/dt&gt;&lt;dd&gt;%4 (Kernel %5 on %6)&lt;/dd&gt;&lt;/dl&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../colophon_environment_page.cpp" line="62"/>
+        <source>Environment</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
