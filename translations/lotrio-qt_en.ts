@@ -25,20 +25,33 @@
 <context>
     <name>ColophonAuthorsPage</name>
     <message>
-        <location filename="../colophon_authors_page.cpp" line="31"/>
+        <location filename="../colophon_authors_page.cpp" line="32"/>
         <source>&lt;html&gt;&lt;body&gt;&lt;dl&gt;&lt;dt&gt;&lt;strong&gt;NotNypical&lt;/strong&gt;&lt;/dt&gt;&lt;dd&gt;Created and developed by &lt;a href=&quot;https://notnypical.github.io&quot; title=&quot;Visit author&apos;s homepage&quot;&gt;NotNypical&lt;/a&gt;.&lt;/dd&gt;&lt;/dl&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../colophon_authors_page.cpp" line="50"/>
+        <location filename="../colophon_authors_page.cpp" line="51"/>
         <source>Authors</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>ColophonCreditsPage</name>
+    <message>
+        <location filename="../colophon_credits_page.cpp" line="32"/>
+        <source>&lt;html&gt;&lt;body&gt;&lt;dl&gt;&lt;dt&gt;&lt;strong&gt;Freepik&lt;/strong&gt;&lt;/dt&gt;&lt;dd&gt;Application logo made by &lt;a href=&quot;https://www.flaticon.com/authors/freepik/&quot; title=&quot;Visit author&apos;s homepage&quot;&gt;Freepik&lt;/a&gt; from &lt;a href=&quot;https://www.flaticon.com&quot; title=&quot;Visit organization&apos;s homepage&quot;&gt;www.flaticon.com&lt;/a&gt; is licensed under &lt;a href=&quot;https://file000.flaticon.com/downloads/license/license.pdf&quot; title=&quot;Free License (with attribution)&quot;&gt;Free License (with attribution)&lt;/a&gt;.&lt;/dd&gt;&lt;dt&gt;&lt;strong&gt;BreezeIcons project&lt;/strong&gt;&lt;/dt&gt;&lt;dd&gt;Application icons made by &lt;a href=&quot;https://api.kde.org/frameworks/breeze-icons/html/&quot; title=&quot;Visit project&apos;s homepage&quot;&gt;BreezeIcons project&lt;/a&gt; from &lt;a href=&quot;https://kde.org&quot; title=&quot;Visit organization&apos;s homepage&quot;&gt;KDE&lt;/a&gt; are licensed under &lt;a href=&quot;https://www.gnu.org/licenses/lgpl-3.0.en.html&quot; title=&quot;GNU Lesser General Public License Version 3&quot;&gt;LGPLv3&lt;/a&gt;.&lt;/dd&gt;&lt;/dl&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../colophon_credits_page.cpp" line="57"/>
+        <source>Credits</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
     <name>ColophonDialog</name>
     <message>
-        <location filename="../colophon_dialog.cpp" line="37"/>
+        <location filename="../colophon_dialog.cpp" line="38"/>
         <source>Colophon</source>
         <translation type="unfinished"></translation>
     </message>
