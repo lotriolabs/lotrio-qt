@@ -191,7 +191,9 @@ void MainWindow::onActionPreferencesTriggered()
 {
     PreferencesDialog dialog(this);
     dialog.setDialogGeometry(m_preferencesDialogGeometry);
+    dialog.setSettings(m_settings);
     dialog.exec();
 
+    m_settings = dialog.settings();
     m_preferencesDialogGeometry = dialog.dialogGeometry();
 }
