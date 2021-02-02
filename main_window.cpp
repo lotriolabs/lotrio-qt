@@ -58,6 +58,13 @@ void MainWindow::createActions()
     m_actionColophon->setToolTip(tr("Lengthy description of the application"));
     connect(m_actionColophon, &QAction::triggered, this, &MainWindow::onActionColophonTriggered);
 
+    m_actionPreferences = new QAction(tr("Preferences…"), this);
+    m_actionPreferences->setObjectName(QStringLiteral("actionPreferences"));
+    m_actionPreferences->setIcon(QIcon::fromTheme(QStringLiteral("configure"), QIcon(QStringLiteral(":/icons/actions/16/application-configure.svg"))));
+    m_actionPreferences->setIconText(tr("Preferences"));
+    m_actionPreferences->setToolTip(tr("Customize the appearance and behavior of the application"));
+    connect(m_actionPreferences, &QAction::triggered, this, &MainWindow::onActionPreferencesTriggered);
+
     m_actionQuit = new QAction(tr("Quit"), this);
     m_actionQuit->setObjectName(QStringLiteral("actionQuit"));
     m_actionQuit->setIcon(QIcon::fromTheme(QStringLiteral("application-exit"), QIcon(QStringLiteral(":/icons/actions/16/application-exit.svg"))));
@@ -75,6 +82,8 @@ void MainWindow::createMenus()
     menuApplication->setObjectName(QStringLiteral("menuApplication"));
     menuApplication->addAction(m_actionAbout);
     menuApplication->addAction(m_actionColophon);
+    menuApplication->addSeparator();
+    menuApplication->addAction(m_actionPreferences);
     menuApplication->addSeparator();
     menuApplication->addAction(m_actionQuit);
 }
@@ -172,4 +181,10 @@ void MainWindow::onActionColophonTriggered()
     dialog.exec();
 
     m_colophonDialogGeometry = dialog.dialogGeometry();
+}
+
+
+void MainWindow::onActionPreferencesTriggered()
+{
+
 }

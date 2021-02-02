@@ -48,6 +48,7 @@ protected:
 private slots:
     void onActionAboutTriggered();
     void onActionColophonTriggered();
+    void onActionPreferencesTriggered();
 
 private:
     Settings m_settings;
@@ -59,6 +60,7 @@ private:
 
     QAction *m_actionAbout;
     QAction *m_actionColophon;
+    QAction *m_actionPreferences;
     QAction *m_actionQuit;
 
     QByteArray m_aboutDialogGeometry;
