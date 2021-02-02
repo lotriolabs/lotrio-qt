@@ -17,45 +17,32 @@
  * along with Lotrio-Qt.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-#ifndef PREFERENCES_DIALOG_H
-#define PREFERENCES_DIALOG_H
+#ifndef PREFERENCES_GENERAL_PAGE_H
+#define PREFERENCES_GENERAL_PAGE_H
 
-#include <QDialog>
-#include <QPushButton>
-
-#include "preferences_general_page.h"
-#include "settings.h"
+#include <QVBoxLayout>
+#include <QWidget>
 
 
-class PreferencesDialog : public QDialog
+class PreferencesGeneralPage : public QWidget
 {
     Q_OBJECT
 
 public:
-    explicit PreferencesDialog(QWidget *parent = nullptr);
+    explicit PreferencesGeneralPage(QWidget *parent = nullptr);
 
-    void setDialogGeometry(const QByteArray &geometry = QByteArray());
-    QByteArray dialogGeometry() const;
+    void setZeroMargins();
 
-    void setSettings(const Settings &settings);
-    Settings settings() const;
+    QString title() const;
+
+signals:
+    void settingsChanged();
 
 private slots:
     void onSettingsChanged();
 
-    void onButtonDefaultsClicked();
-    void onButtonOkClicked();
-    void onButtonApplyClicked();
-
 private:
-    Settings m_settings;
-
-    void updateSettings(bool isDefault = false);
-    void saveSettings();
-
-    QPushButton *m_buttonApply;
-
-    PreferencesGeneralPage *m_generalPage;
+    QVBoxLayout *m_layout;
 };
 
-#endif // PREFERENCES_DIALOG_H
+#endif // PREFERENCES_GENERAL_PAGE_H

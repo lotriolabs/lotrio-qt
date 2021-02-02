@@ -17,45 +17,38 @@
  * along with Lotrio-Qt.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-#ifndef PREFERENCES_DIALOG_H
-#define PREFERENCES_DIALOG_H
-
-#include <QDialog>
-#include <QPushButton>
-
 #include "preferences_general_page.h"
-#include "settings.h"
+
+#include <QLabel>
 
 
-class PreferencesDialog : public QDialog
+PreferencesGeneralPage::PreferencesGeneralPage(QWidget *parent)
+    : QWidget(parent)
 {
-    Q_OBJECT
+    // Title
+    auto *title = new QLabel(tr("<strong style=\"font-size:large;\">General</strong>"));
 
-public:
-    explicit PreferencesDialog(QWidget *parent = nullptr);
 
-    void setDialogGeometry(const QByteArray &geometry = QByteArray());
-    QByteArray dialogGeometry() const;
+    // Main layout
+    m_layout = new QVBoxLayout(this);
+    m_layout->addWidget(title);
+    m_layout->addStretch(1);
+}
 
-    void setSettings(const Settings &settings);
-    Settings settings() const;
 
-private slots:
-    void onSettingsChanged();
+void PreferencesGeneralPage::setZeroMargins()
+{
+    m_layout->setContentsMargins(0, 0, 0, 0);
+}
 
-    void onButtonDefaultsClicked();
-    void onButtonOkClicked();
-    void onButtonApplyClicked();
 
-private:
-    Settings m_settings;
+QString PreferencesGeneralPage::title() const
+{
+    return tr("General");
+}
 
-    void updateSettings(bool isDefault = false);
-    void saveSettings();
 
-    QPushButton *m_buttonApply;
-
-    PreferencesGeneralPage *m_generalPage;
-};
-
-#endif // PREFERENCES_DIALOG_H
+void PreferencesGeneralPage::onSettingsChanged()
+{
+    emit settingsChanged();
+}

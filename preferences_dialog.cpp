@@ -20,6 +20,8 @@
 #include "preferences_dialog.h"
 
 #include <QDialogButtonBox>
+#include <QListWidget>
+#include <QStackedWidget>
 #include <QVBoxLayout>
 
 
@@ -28,6 +30,23 @@ PreferencesDialog::PreferencesDialog(QWidget *parent)
 {
     setWindowTitle(tr("Preferences"));
 
+    // Settings box
+    m_generalPage = new PreferencesGeneralPage(this);
+    m_generalPage->setZeroMargins();
+    connect(m_generalPage, &PreferencesGeneralPage::settingsChanged, this, &PreferencesDialog::onSettingsChanged);
+
+    auto *stackedBox = new QStackedWidget;
+    stackedBox->addWidget(m_generalPage);
+    stackedBox->setCurrentIndex(0);
+
+    auto *listBox = new QListWidget;
+    listBox->addItem(m_generalPage->title());
+    listBox->setCurrentRow(stackedBox->currentIndex());
+    connect(listBox, &QListWidget::currentRowChanged, stackedBox, &QStackedWidget::setCurrentIndex);
+
+    auto *settingsBox = new QHBoxLayout;
+    settingsBox->addWidget(listBox, 1);
+    settingsBox->addWidget(stackedBox, 3);
 
     // Button box
     auto *buttonBox = new QDialogButtonBox(QDialogButtonBox::RestoreDefaults | QDialogButtonBox::Ok | QDialogButtonBox::Apply | QDialogButtonBox::Cancel);
@@ -39,7 +58,7 @@ PreferencesDialog::PreferencesDialog(QWidget *parent)
 
     // Main layout
     auto *layout = new QVBoxLayout(this);
-    layout->addStretch(1);
+    layout->addLayout(settingsBox);
     layout->addWidget(buttonBox);
 
     updateSettings();

@@ -39,6 +39,7 @@ SOURCES += \
     main.cpp \
     main_window.cpp \
     preferences_dialog.cpp \
+    preferences_general_page.cpp \
     settings.cpp
 
 HEADERS += \
@@ -52,6 +53,7 @@ HEADERS += \
     dialog_title_box.h \
     main_window.h \
     preferences_dialog.h \
+    preferences_general_page.h \
     settings.h
 
 TRANSLATIONS += \
