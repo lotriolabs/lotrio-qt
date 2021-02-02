@@ -25,6 +25,7 @@
 
 #include "about_dialog.h"
 #include "colophon_dialog.h"
+#include "preferences_dialog.h"
 
 
 MainWindow::MainWindow(QWidget *parent)
@@ -144,6 +145,7 @@ void MainWindow::readSettings()
     const auto applicationGeometry = settings.value(QStringLiteral("Application/Geometry"), QByteArray()).toByteArray();
     m_aboutDialogGeometry = settings.value(QStringLiteral("AboutDialog/Geometry"), QByteArray()).toByteArray();
     m_colophonDialogGeometry = settings.value(QStringLiteral("ColophonDialog/Geometry"), QByteArray()).toByteArray();
+    m_preferencesDialogGeometry = settings.value(QStringLiteral("PreferencesDialog/Geometry"), QByteArray()).toByteArray();
 
     // Set application properties
     setApplicationState(applicationState);
@@ -161,6 +163,7 @@ void MainWindow::writeSettings()
     settings.setValue(QStringLiteral("Application/Geometry"), applicationGeometry());
     settings.setValue(QStringLiteral("AboutDialog/Geometry"), m_aboutDialogGeometry);
     settings.setValue(QStringLiteral("ColophonDialog/Geometry"), m_colophonDialogGeometry);
+    settings.setValue(QStringLiteral("PreferencesDialog/Geometry"), m_preferencesDialogGeometry);
 }
 
 
@@ -186,5 +189,9 @@ void MainWindow::onActionColophonTriggered()
 
 void MainWindow::onActionPreferencesTriggered()
 {
+    PreferencesDialog dialog(this);
+    dialog.setDialogGeometry(m_preferencesDialogGeometry);
+    dialog.exec();
 
+    m_preferencesDialogGeometry = dialog.dialogGeometry();
 }

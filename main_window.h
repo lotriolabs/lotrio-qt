@@ -65,6 +65,7 @@ private:
 
     QByteArray m_aboutDialogGeometry;
     QByteArray m_colophonDialogGeometry;
+    QByteArray m_preferencesDialogGeometry;
 };
 
 #endif // MAIN_WINDOW_H
