@@ -173,31 +173,37 @@ void MainWindow::writeSettings()
 
 void MainWindow::onActionAboutTriggered()
 {
+    const auto geometry = m_settings.restoreDialogGeometry() ? m_aboutDialogGeometry : QByteArray();
+
     AboutDialog dialog(this);
-    dialog.setDialogGeometry(m_aboutDialogGeometry);
+    dialog.setDialogGeometry(geometry);
     dialog.exec();
 
-    m_aboutDialogGeometry = dialog.dialogGeometry();
+    m_aboutDialogGeometry = m_settings.restoreDialogGeometry() ? dialog.dialogGeometry() : QByteArray();
 }
 
 
 void MainWindow::onActionColophonTriggered()
 {
+    const auto geometry = m_settings.restoreDialogGeometry() ? m_colophonDialogGeometry : QByteArray();
+
     ColophonDialog dialog(this);
-    dialog.setDialogGeometry(m_colophonDialogGeometry);
+    dialog.setDialogGeometry(geometry);
     dialog.exec();
 
-    m_colophonDialogGeometry = dialog.dialogGeometry();
+    m_colophonDialogGeometry = m_settings.restoreDialogGeometry() ? dialog.dialogGeometry() : QByteArray();
 }
 
 
 void MainWindow::onActionPreferencesTriggered()
 {
+    const auto geometry = m_settings.restoreDialogGeometry() ? m_preferencesDialogGeometry : QByteArray();
+
     PreferencesDialog dialog(this);
-    dialog.setDialogGeometry(m_preferencesDialogGeometry);
+    dialog.setDialogGeometry(geometry);
     dialog.setSettings(m_settings);
     dialog.exec();
 
     m_settings = dialog.settings();
-    m_preferencesDialogGeometry = dialog.dialogGeometry();
+    m_preferencesDialogGeometry = m_settings.restoreDialogGeometry() ? dialog.dialogGeometry() : QByteArray();
 }

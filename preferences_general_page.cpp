@@ -29,24 +29,28 @@ PreferencesGeneralPage::PreferencesGeneralPage(QWidget *parent)
     // Title
     auto *title = new QLabel(tr("<strong style=\"font-size:large;\">General</strong>"));
 
-    // State & Geometry
+    // State & Geometries
     m_chkRestoreApplicationState = new QCheckBox(tr("Save and restore the application state"));
     connect(m_chkRestoreApplicationState, &QCheckBox::stateChanged, this, &PreferencesGeneralPage::onSettingsChanged);
 
     m_chkRestoreApplicationGeometry = new QCheckBox(tr("Save and restore the application geometry"));
     connect(m_chkRestoreApplicationGeometry, &QCheckBox::stateChanged, this, &PreferencesGeneralPage::onSettingsChanged);
 
-    auto *stateLayout = new QVBoxLayout;
-    stateLayout->addWidget(m_chkRestoreApplicationState);
-    stateLayout->addWidget(m_chkRestoreApplicationGeometry);
+    m_chkRestoreDialogGeometry = new QCheckBox(tr("Save and restore dialog geometries"));
+    connect(m_chkRestoreDialogGeometry, &QCheckBox::stateChanged, this, &PreferencesGeneralPage::onSettingsChanged);
 
-    auto *stateGroup = new QGroupBox(tr("State"));
-    stateGroup->setLayout(stateLayout);
+    auto *stateGeometriesLayout = new QVBoxLayout;
+    stateGeometriesLayout->addWidget(m_chkRestoreApplicationState);
+    stateGeometriesLayout->addWidget(m_chkRestoreApplicationGeometry);
+    stateGeometriesLayout->addWidget(m_chkRestoreDialogGeometry);
+
+    auto *stateGeometriesGroup = new QGroupBox(tr("State && Geometries"));
+    stateGeometriesGroup->setLayout(stateGeometriesLayout);
 
     // Main layout
     m_layout = new QVBoxLayout(this);
     m_layout->addWidget(title);
-    m_layout->addWidget(stateGroup);
+    m_layout->addWidget(stateGeometriesGroup);
     m_layout->addStretch();
 }
 
@@ -90,4 +94,16 @@ void PreferencesGeneralPage::setRestoreApplicationGeometry(const bool checked)
 bool PreferencesGeneralPage::restoreApplicationGeometry() const
 {
     return m_chkRestoreApplicationGeometry->isChecked();
+}
+
+
+void PreferencesGeneralPage::setRestoreDialogGeometry(const bool checked)
+{
+    m_chkRestoreDialogGeometry->setChecked(checked);
+}
+
+
+bool PreferencesGeneralPage::restoreDialogGeometry() const
+{
+    return m_chkRestoreDialogGeometry->isChecked();
 }

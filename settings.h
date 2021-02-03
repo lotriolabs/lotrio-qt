@@ -37,9 +37,13 @@ public:
     void setRestoreApplicationGeometry(bool value);
     bool restoreApplicationGeometry(bool isDefault = false);
 
+    void setRestoreDialogGeometry(bool value);
+    bool restoreDialogGeometry(bool isDefault = false);
+
 private:
     bool m_restoreApplicationState;
     bool m_restoreApplicationGeometry;
+    bool m_restoreDialogGeometry;
 };
 
 #endif // SETTINGS_H

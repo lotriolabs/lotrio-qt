@@ -42,6 +42,9 @@ public:
     void setRestoreApplicationGeometry(const bool checked);
     bool restoreApplicationGeometry() const;
 
+    void setRestoreDialogGeometry(const bool checked);
+    bool restoreDialogGeometry() const;
+
 signals:
     void settingsChanged();
 
@@ -53,6 +56,7 @@ private:
 
     QCheckBox *m_chkRestoreApplicationState;
     QCheckBox *m_chkRestoreApplicationGeometry;
+    QCheckBox *m_chkRestoreDialogGeometry;
 };
 
 #endif // PREFERENCES_GENERAL_PAGE_H

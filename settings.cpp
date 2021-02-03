@@ -22,9 +22,10 @@
 
 Settings::Settings()
 {
-    // General: State & Geometry
+    // General: State & Geometries
     m_restoreApplicationState = true;
     m_restoreApplicationGeometry = true;
+    m_restoreDialogGeometry = true;
 }
 
 
@@ -32,9 +33,10 @@ void Settings::load(QSettings &settings)
 {
     settings.beginGroup(QStringLiteral("Settings"));
 
-    // General: State & Geometry
+    // General: State & Geometries
     setRestoreApplicationState(settings.value(QStringLiteral("RestoreApplicationState"), true).toBool());
     setRestoreApplicationGeometry(settings.value(QStringLiteral("RestoreApplicationGeometry"), true).toBool());
+    setRestoreDialogGeometry(settings.value(QStringLiteral("RestoreDialogGeometry"), true).toBool());
 
     settings.endGroup();
 }
@@ -45,9 +47,10 @@ void Settings::save(QSettings &settings)
     settings.beginGroup(QStringLiteral("Settings"));
     settings.remove("");
 
-    // General: State & Geometry
+    // General: State & Geometries
     settings.setValue(QStringLiteral("RestoreApplicationState"), m_restoreApplicationState);
     settings.setValue(QStringLiteral("RestoreApplicationGeometry"), m_restoreApplicationGeometry);
+    settings.setValue(QStringLiteral("RestoreDialogGeometry"), m_restoreDialogGeometry);
 
     settings.endGroup();
 }
@@ -80,4 +83,19 @@ bool Settings::restoreApplicationGeometry(bool isDefault)
         return true;
 
     return m_restoreApplicationGeometry;
+}
+
+
+void Settings::setRestoreDialogGeometry(bool value)
+{
+    m_restoreDialogGeometry = value;
+}
+
+
+bool Settings::restoreDialogGeometry(bool isDefault)
+{
+    if (isDefault)
+        return true;
+
+    return m_restoreDialogGeometry;
 }
