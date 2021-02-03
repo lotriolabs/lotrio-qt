@@ -20,6 +20,7 @@
 #ifndef PREFERENCES_GENERAL_PAGE_H
 #define PREFERENCES_GENERAL_PAGE_H
 
+#include <QCheckBox>
 #include <QVBoxLayout>
 #include <QWidget>
 
@@ -35,6 +36,9 @@ public:
 
     QString title() const;
 
+    void setRestoreApplicationState(const bool checked);
+    bool restoreApplicationState() const;
+
 signals:
     void settingsChanged();
 
@@ -43,6 +47,8 @@ private slots:
 
 private:
     QVBoxLayout *m_layout;
+
+    QCheckBox *m_chkRestoreApplicationState;
 };
 
 #endif // PREFERENCES_GENERAL_PAGE_H

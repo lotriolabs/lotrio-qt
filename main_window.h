@@ -37,7 +37,7 @@ public:
     ~MainWindow();
 
     void setApplicationState(const QByteArray &state = QByteArray());
-    QByteArray applicationState() const;
+    QByteArray applicationState(bool isDefault = false) const;
 
     void setApplicationGeometry(const QByteArray &geometry = QByteArray());
     QByteArray applicationGeometry() const;

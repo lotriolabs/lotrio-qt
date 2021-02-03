@@ -30,6 +30,12 @@ public:
 
     void load(QSettings &settings);
     void save(QSettings &settings);
+
+    void setRestoreApplicationState(bool value);
+    bool restoreApplicationState(bool isDefault = false);
+
+private:
+    bool m_restoreApplicationState;
 };
 
 #endif // SETTINGS_H

@@ -19,6 +19,7 @@
 
 #include "preferences_general_page.h"
 
+#include <QGroupBox>
 #include <QLabel>
 
 
@@ -28,11 +29,21 @@ PreferencesGeneralPage::PreferencesGeneralPage(QWidget *parent)
     // Title
     auto *title = new QLabel(tr("<strong style=\"font-size:large;\">General</strong>"));
 
+    // State
+    m_chkRestoreApplicationState = new QCheckBox(tr("Save and restore the application state"));
+    connect(m_chkRestoreApplicationState, &QCheckBox::stateChanged, this, &PreferencesGeneralPage::onSettingsChanged);
+
+    auto *stateLayout = new QVBoxLayout;
+    stateLayout->addWidget(m_chkRestoreApplicationState);
+
+    auto *stateGroup = new QGroupBox(tr("State"));
+    stateGroup->setLayout(stateLayout);
 
     // Main layout
     m_layout = new QVBoxLayout(this);
     m_layout->addWidget(title);
-    m_layout->addStretch(1);
+    m_layout->addWidget(stateGroup);
+    m_layout->addStretch();
 }
 
 
@@ -51,4 +62,16 @@ QString PreferencesGeneralPage::title() const
 void PreferencesGeneralPage::onSettingsChanged()
 {
     emit settingsChanged();
+}
+
+
+void PreferencesGeneralPage::setRestoreApplicationState(const bool checked)
+{
+    m_chkRestoreApplicationState->setChecked(checked);
+}
+
+
+bool PreferencesGeneralPage::restoreApplicationState() const
+{
+    return m_chkRestoreApplicationState->isChecked();
 }

@@ -124,11 +124,13 @@ void PreferencesDialog::onButtonApplyClicked()
 
 void PreferencesDialog::updateSettings(bool isDefault)
 {
-
+    // General: State
+    m_generalPage->setRestoreApplicationState(m_settings.restoreApplicationState(isDefault));
 }
 
 
 void PreferencesDialog::saveSettings()
 {
-
+    // General: State
+    m_settings.setRestoreApplicationState(m_generalPage->restoreApplicationState());
 }
