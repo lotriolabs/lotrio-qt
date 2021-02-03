@@ -40,7 +40,7 @@ public:
     QByteArray applicationState(bool isDefault = false) const;
 
     void setApplicationGeometry(const QByteArray &geometry = QByteArray());
-    QByteArray applicationGeometry() const;
+    QByteArray applicationGeometry(bool isDefault = false) const;
 
 protected:
     void closeEvent(QCloseEvent *event) override;

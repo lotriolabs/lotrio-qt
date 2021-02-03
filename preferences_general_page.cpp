@@ -29,12 +29,16 @@ PreferencesGeneralPage::PreferencesGeneralPage(QWidget *parent)
     // Title
     auto *title = new QLabel(tr("<strong style=\"font-size:large;\">General</strong>"));
 
-    // State
+    // State & Geometry
     m_chkRestoreApplicationState = new QCheckBox(tr("Save and restore the application state"));
     connect(m_chkRestoreApplicationState, &QCheckBox::stateChanged, this, &PreferencesGeneralPage::onSettingsChanged);
 
+    m_chkRestoreApplicationGeometry = new QCheckBox(tr("Save and restore the application geometry"));
+    connect(m_chkRestoreApplicationGeometry, &QCheckBox::stateChanged, this, &PreferencesGeneralPage::onSettingsChanged);
+
     auto *stateLayout = new QVBoxLayout;
     stateLayout->addWidget(m_chkRestoreApplicationState);
+    stateLayout->addWidget(m_chkRestoreApplicationGeometry);
 
     auto *stateGroup = new QGroupBox(tr("State"));
     stateGroup->setLayout(stateLayout);
@@ -74,4 +78,16 @@ void PreferencesGeneralPage::setRestoreApplicationState(const bool checked)
 bool PreferencesGeneralPage::restoreApplicationState() const
 {
     return m_chkRestoreApplicationState->isChecked();
+}
+
+
+void PreferencesGeneralPage::setRestoreApplicationGeometry(const bool checked)
+{
+    m_chkRestoreApplicationGeometry->setChecked(checked);
+}
+
+
+bool PreferencesGeneralPage::restoreApplicationGeometry() const
+{
+    return m_chkRestoreApplicationGeometry->isChecked();
 }

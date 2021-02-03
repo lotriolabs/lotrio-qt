@@ -22,8 +22,9 @@
 
 Settings::Settings()
 {
-    // General: State
+    // General: State & Geometry
     m_restoreApplicationState = true;
+    m_restoreApplicationGeometry = true;
 }
 
 
@@ -31,8 +32,9 @@ void Settings::load(QSettings &settings)
 {
     settings.beginGroup(QStringLiteral("Settings"));
 
-    // General: State
+    // General: State & Geometry
     setRestoreApplicationState(settings.value(QStringLiteral("RestoreApplicationState"), true).toBool());
+    setRestoreApplicationGeometry(settings.value(QStringLiteral("RestoreApplicationGeometry"), true).toBool());
 
     settings.endGroup();
 }
@@ -43,8 +45,9 @@ void Settings::save(QSettings &settings)
     settings.beginGroup(QStringLiteral("Settings"));
     settings.remove("");
 
-    // General: State
+    // General: State & Geometry
     settings.setValue(QStringLiteral("RestoreApplicationState"), m_restoreApplicationState);
+    settings.setValue(QStringLiteral("RestoreApplicationGeometry"), m_restoreApplicationGeometry);
 
     settings.endGroup();
 }
@@ -62,4 +65,19 @@ bool Settings::restoreApplicationState(bool isDefault)
         return true;
 
     return m_restoreApplicationState;
+}
+
+
+void Settings::setRestoreApplicationGeometry(bool value)
+{
+    m_restoreApplicationGeometry = value;
+}
+
+
+bool Settings::restoreApplicationGeometry(bool isDefault)
+{
+    if (isDefault)
+        return true;
+
+    return m_restoreApplicationGeometry;
 }

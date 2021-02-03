@@ -34,8 +34,12 @@ public:
     void setRestoreApplicationState(bool value);
     bool restoreApplicationState(bool isDefault = false);
 
+    void setRestoreApplicationGeometry(bool value);
+    bool restoreApplicationGeometry(bool isDefault = false);
+
 private:
     bool m_restoreApplicationState;
+    bool m_restoreApplicationGeometry;
 };
 
 #endif // SETTINGS_H
