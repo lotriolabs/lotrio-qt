@@ -37,10 +37,10 @@ public:
     ~MainWindow();
 
     void setApplicationState(const QByteArray &state = QByteArray());
-    QByteArray applicationState(bool isDefault = false) const;
+    QByteArray applicationState() const;
 
     void setApplicationGeometry(const QByteArray &geometry = QByteArray());
-    QByteArray applicationGeometry(bool isDefault = false) const;
+    QByteArray applicationGeometry() const;
 
 protected:
     void closeEvent(QCloseEvent *event) override;

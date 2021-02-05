@@ -98,11 +98,8 @@ void MainWindow::setApplicationState(const QByteArray &state)
 }
 
 
-QByteArray MainWindow::applicationState(bool isDefault) const
+QByteArray MainWindow::applicationState() const
 {
-    if (isDefault)
-        return QByteArray();
-
     return saveState();
 }
 
@@ -120,11 +117,8 @@ void MainWindow::setApplicationGeometry(const QByteArray &geometry)
 }
 
 
-QByteArray MainWindow::applicationGeometry(bool isDefault) const
+QByteArray MainWindow::applicationGeometry() const
 {
-    if (isDefault)
-        return QByteArray();
-
     return saveGeometry();
 }
 
@@ -148,11 +142,14 @@ void MainWindow::readSettings()
     m_settings.load(settings);
 
     // Application properties
-    setApplicationState(settings.value(QStringLiteral("Application/State"), QByteArray()).toByteArray());
-    setApplicationGeometry(settings.value(QStringLiteral("Application/Geometry"), QByteArray()).toByteArray());
+    const auto state = m_settings.restoreApplicationState() ? settings.value(QStringLiteral("Application/State"), QByteArray()).toByteArray() : QByteArray();
+    const auto geometry = m_settings.restoreApplicationGeometry() ? settings.value(QStringLiteral("Application/Geometry"), QByteArray()).toByteArray() : QByteArray();
     m_aboutDialogGeometry = settings.value(QStringLiteral("AboutDialog/Geometry"), QByteArray()).toByteArray();
     m_colophonDialogGeometry = settings.value(QStringLiteral("ColophonDialog/Geometry"), QByteArray()).toByteArray();
     m_preferencesDialogGeometry = settings.value(QStringLiteral("PreferencesDialog/Geometry"), QByteArray()).toByteArray();
+
+    setApplicationState(state);
+    setApplicationGeometry(geometry);
 }
 
 
@@ -163,8 +160,11 @@ void MainWindow::writeSettings()
     m_settings.save(settings);
 
     // Application properties
-    settings.setValue(QStringLiteral("Application/State"), applicationState(!m_settings.restoreApplicationState()));
-    settings.setValue(QStringLiteral("Application/Geometry"), applicationGeometry(!m_settings.restoreApplicationGeometry()));
+    const auto state = m_settings.restoreApplicationState() ? applicationState() : QByteArray();
+    const auto geometry = m_settings.restoreApplicationGeometry() ? applicationGeometry() : QByteArray();
+
+    settings.setValue(QStringLiteral("Application/State"), state);
+    settings.setValue(QStringLiteral("Application/Geometry"), geometry);
     settings.setValue(QStringLiteral("AboutDialog/Geometry"), m_aboutDialogGeometry);
     settings.setValue(QStringLiteral("ColophonDialog/Geometry"), m_colophonDialogGeometry);
     settings.setValue(QStringLiteral("PreferencesDialog/Geometry"), m_preferencesDialogGeometry);
