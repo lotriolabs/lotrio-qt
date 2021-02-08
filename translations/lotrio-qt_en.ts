@@ -98,44 +98,130 @@
 <context>
     <name>MainWindow</name>
     <message>
-        <location filename="../main_window.cpp" line="49"/>
+        <location filename="../main_window.cpp" line="52"/>
         <source>About %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../main_window.cpp" line="52"/>
+        <location filename="../main_window.cpp" line="55"/>
         <source>About</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../main_window.cpp" line="53"/>
+        <location filename="../main_window.cpp" line="56"/>
         <source>Brief description of the application</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../main_window.cpp" line="56"/>
+        <location filename="../main_window.cpp" line="59"/>
         <source>Colophon</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../main_window.cpp" line="58"/>
+        <location filename="../main_window.cpp" line="61"/>
         <source>Lengthy description of the application</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../main_window.cpp" line="61"/>
         <location filename="../main_window.cpp" line="64"/>
+        <source>Preferences…</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../main_window.cpp" line="67"/>
+        <source>Preferences</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../main_window.cpp" line="68"/>
+        <source>Customize the appearance and behavior of the application</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../main_window.cpp" line="71"/>
+        <location filename="../main_window.cpp" line="74"/>
         <source>Quit</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../main_window.cpp" line="66"/>
+        <location filename="../main_window.cpp" line="76"/>
         <source>Quit the application [%1]</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../main_window.cpp" line="74"/>
+        <location filename="../main_window.cpp" line="82"/>
+        <source>Full Screen</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../main_window.cpp" line="92"/>
+        <source>Full Screen Mode</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../main_window.cpp" line="95"/>
+        <source>Display the window in full screen [%1]</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../main_window.cpp" line="98"/>
+        <source>Exit Full Screen Mode</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../main_window.cpp" line="101"/>
+        <source>Exit the full screen mode [%1]</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../main_window.cpp" line="109"/>
         <source>Application</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../main_window.cpp" line="119"/>
+        <source>View</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>PreferencesDialog</name>
+    <message>
+        <location filename="../preferences_dialog.cpp" line="31"/>
+        <source>Preferences</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>PreferencesGeneralPage</name>
+    <message>
+        <location filename="../preferences_general_page.cpp" line="30"/>
+        <source>&lt;strong style=&quot;font-size:large;&quot;&gt;General&lt;/strong&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../preferences_general_page.cpp" line="33"/>
+        <source>Save and restore the application state</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../preferences_general_page.cpp" line="36"/>
+        <source>Save and restore the application geometry</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../preferences_general_page.cpp" line="39"/>
+        <source>Save and restore dialog geometries</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../preferences_general_page.cpp" line="47"/>
+        <source>State &amp;&amp; Geometries</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../preferences_general_page.cpp" line="66"/>
+        <source>General</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

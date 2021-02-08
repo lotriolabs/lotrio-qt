@@ -50,6 +50,8 @@ private slots:
     void onActionColophonTriggered();
     void onActionPreferencesTriggered();
 
+    void onActionFullScreenTriggered();
+
 private:
     Settings m_settings;
     void readSettings();
@@ -58,10 +60,14 @@ private:
     void createActions();
     void createMenus();
 
+    void updateActionFullScreen();
+
     QAction *m_actionAbout;
     QAction *m_actionColophon;
     QAction *m_actionPreferences;
     QAction *m_actionQuit;
+
+    QAction *m_actionFullScreen;
 
     QByteArray m_aboutDialogGeometry;
     QByteArray m_colophonDialogGeometry;
