@@ -141,6 +141,11 @@ void MainWindow::createToolBars()
     m_toolbarApplication->addSeparator();
     m_toolbarApplication->addAction(m_actionQuit);
     connect(m_toolbarApplication, &QToolBar::visibilityChanged, [=](bool visible) { m_actionToolbarApplication->setChecked(visible); });
+
+    // Toolbar: View
+    m_toolbarView = addToolBar(tr("View Toolbar"));
+    m_toolbarView->setObjectName(QStringLiteral("toolbarView"));
+    m_toolbarView->addAction(m_actionFullScreen);
 }
 
 
@@ -151,6 +156,7 @@ void MainWindow::setApplicationState(const QByteArray &state)
     }
     else {
         m_toolbarApplication->setVisible(true);
+        m_toolbarView->setVisible(false);
     }
 }
 

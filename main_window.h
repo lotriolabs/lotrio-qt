@@ -69,6 +69,7 @@ private:
     void updateActionFullScreen();
 
     QToolBar *m_toolbarApplication;
+    QToolBar *m_toolbarView;
 
     QAction *m_actionAbout;
     QAction *m_actionColophon;

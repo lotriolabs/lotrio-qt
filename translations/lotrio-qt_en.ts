@@ -198,6 +198,11 @@
         <source>Application Toolbar</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <location filename="../main_window.cpp" line="146"/>
+        <source>View Toolbar</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>PreferencesDialog</name>
