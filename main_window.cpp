@@ -35,6 +35,7 @@ MainWindow::MainWindow(QWidget *parent)
 
     createActions();
     createMenus();
+    createToolBars();
 
     readSettings();
 
@@ -122,10 +123,25 @@ void MainWindow::createMenus()
 }
 
 
+void MainWindow::createToolBars()
+{
+    // Toolbar: Application
+    m_toolbarApplication = addToolBar(tr("Application Toolbar"));
+    m_toolbarApplication->setObjectName(QStringLiteral("toolbarApplication"));
+    m_toolbarApplication->addAction(m_actionAbout);
+    m_toolbarApplication->addAction(m_actionPreferences);
+    m_toolbarApplication->addSeparator();
+    m_toolbarApplication->addAction(m_actionQuit);
+}
+
+
 void MainWindow::setApplicationState(const QByteArray &state)
 {
     if (!state.isEmpty()) {
         restoreState(state);
+    }
+    else {
+        m_toolbarApplication->setVisible(true);
     }
 }
 
