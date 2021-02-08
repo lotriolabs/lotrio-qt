@@ -90,6 +90,12 @@ void MainWindow::createActions()
     m_actionToolbarApplication->setCheckable(true);
     m_actionToolbarApplication->setToolTip(tr("Display the Application toolbar"));
     connect(m_actionToolbarApplication, &QAction::toggled, [=](bool checked) { m_toolbarApplication->setVisible(checked); });
+
+    m_actionToolbarView = new QAction(tr("Show View Toolbar"), this);
+    m_actionToolbarView->setObjectName(QStringLiteral("actionToolbarView"));
+    m_actionToolbarView->setCheckable(true);
+    m_actionToolbarView->setToolTip(tr("Display the View toolbar"));
+    connect(m_actionToolbarView, &QAction::toggled, [=](bool checked) { m_toolbarView->setVisible(checked); });
 }
 
 
@@ -128,6 +134,7 @@ void MainWindow::createMenus()
     menuView->addAction(m_actionFullScreen);
     menuView->addSeparator();
     menuView->addAction(m_actionToolbarApplication);
+    menuView->addAction(m_actionToolbarView);
 }
 
 
@@ -146,6 +153,7 @@ void MainWindow::createToolBars()
     m_toolbarView = addToolBar(tr("View Toolbar"));
     m_toolbarView->setObjectName(QStringLiteral("toolbarView"));
     m_toolbarView->addAction(m_actionFullScreen);
+    connect(m_toolbarView, &QToolBar::visibilityChanged, [=](bool visible) { m_actionToolbarView->setChecked(visible); });
 }
 
 

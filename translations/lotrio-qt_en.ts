@@ -164,42 +164,52 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../main_window.cpp" line="99"/>
-        <source>Full Screen Mode</source>
+        <location filename="../main_window.cpp" line="94"/>
+        <source>Show View Toolbar</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../main_window.cpp" line="102"/>
-        <source>Display the window in full screen [%1]</source>
+        <location filename="../main_window.cpp" line="97"/>
+        <source>Display the View toolbar</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../main_window.cpp" line="105"/>
-        <source>Exit Full Screen Mode</source>
+        <source>Full Screen Mode</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../main_window.cpp" line="108"/>
+        <source>Display the window in full screen [%1]</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../main_window.cpp" line="111"/>
+        <source>Exit Full Screen Mode</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../main_window.cpp" line="114"/>
         <source>Exit the full screen mode [%1]</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../main_window.cpp" line="116"/>
+        <location filename="../main_window.cpp" line="122"/>
         <source>Application</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../main_window.cpp" line="126"/>
+        <location filename="../main_window.cpp" line="132"/>
         <source>View</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../main_window.cpp" line="137"/>
+        <location filename="../main_window.cpp" line="144"/>
         <source>Application Toolbar</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../main_window.cpp" line="146"/>
+        <location filename="../main_window.cpp" line="153"/>
         <source>View Toolbar</source>
         <translation type="unfinished"></translation>
     </message>
