@@ -116,6 +116,12 @@ void MainWindow::createActions()
     m_actionToolbarApplication->setToolTip(tr("Display the Application toolbar"));
     connect(m_actionToolbarApplication, &QAction::toggled, [=](bool checked) { m_toolbarApplication->setVisible(checked); });
 
+    m_actionToolbarLotteries = new QAction(tr("Show Lotteries Toolbar"), this);
+    m_actionToolbarLotteries->setObjectName(QStringLiteral("actionToolbarLotteries"));
+    m_actionToolbarLotteries->setCheckable(true);
+    m_actionToolbarLotteries->setToolTip(tr("Display the Lotteries toolbar"));
+    connect(m_actionToolbarLotteries, &QAction::toggled, [=](bool checked) { m_toolbarLotteries->setVisible(checked); });
+
     m_actionToolbarView = new QAction(tr("Show View Toolbar"), this);
     m_actionToolbarView->setObjectName(QStringLiteral("actionToolbarView"));
     m_actionToolbarView->setCheckable(true);
@@ -164,6 +170,7 @@ void MainWindow::createMenus()
     menuView->addAction(m_actionFullScreen);
     menuView->addSeparator();
     menuView->addAction(m_actionToolbarApplication);
+    menuView->addAction(m_actionToolbarLotteries);
     menuView->addAction(m_actionToolbarView);
 }
 
@@ -183,6 +190,7 @@ void MainWindow::createToolBars()
     m_toolbarLotteries = addToolBar(tr("Lotteries Toolbar"));
     m_toolbarLotteries->setObjectName(QStringLiteral("toolbarLotteries"));
     m_toolbarLotteries->addActions(m_actionLotteries);
+    connect(m_toolbarLotteries, &QToolBar::visibilityChanged, [=](bool visible) { m_actionToolbarLotteries->setChecked(visible); });
 
     // Toolbar: View
     m_toolbarView = addToolBar(tr("View Toolbar"));

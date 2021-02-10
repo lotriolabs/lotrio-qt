@@ -86,6 +86,7 @@ private:
 
     QAction *m_actionFullScreen;
     QAction *m_actionToolbarApplication;
+    QAction *m_actionToolbarLotteries;
     QAction *m_actionToolbarView;
 };
 
