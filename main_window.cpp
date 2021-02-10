@@ -51,9 +51,9 @@ MainWindow::~MainWindow()
 
 void MainWindow::createLotteries()
 {
-    m_listLotteries[QStringLiteral("euEurojackpot")] = QStringList() << tr("Eurojackpot") << tr("Eurojackpot is a transnational European lottery");
-    m_listLotteries[QStringLiteral("euEuroMillions")] = QStringList() << tr("EuroMillions") << tr("EuroMillions is a transnational European lottery");
-    m_listLotteries[QStringLiteral("euVikinglotto")] = QStringList() << tr("Vikinglotto") << tr("Vikinglotto is a transnational European lottery");
+    m_listLotteries[QStringLiteral("eurojackpot")] = QStringList() << QStringLiteral("euEurojackpot") << tr("Eurojackpot") << tr("Eurojackpot is a transnational European lottery");
+    m_listLotteries[QStringLiteral("euromillions")] = QStringList() << QStringLiteral("euEuroMillions") << tr("EuroMillions") << tr("EuroMillions is a transnational European lottery");
+    m_listLotteries[QStringLiteral("vikinglotto")] = QStringList() << QStringLiteral("euVikinglotto") << tr("Vikinglotto") << tr("Vikinglotto is a transnational European lottery");
 }
 
 
@@ -86,6 +86,21 @@ void MainWindow::createActions()
     m_actionQuit->setShortcut(QKeySequence::Quit);
     m_actionQuit->setToolTip(tr("Quit the application [%1]").arg(m_actionQuit->shortcut().toString(QKeySequence::NativeText)));
     connect(m_actionQuit, &QAction::triggered, this, &MainWindow::close);
+
+    // Actions: Lotteries
+    QMapIterator<QString, QStringList> it(m_listLotteries);
+    while (it.hasNext()) {
+        it.next();
+
+        auto *lottery = new QAction(it.value()[1], this);
+        lottery->setObjectName(QStringLiteral("actionLottery_%1").arg(it.value()[0]));
+        lottery->setIconText(it.value()[1]);
+        lottery->setCheckable(true);
+        lottery->setToolTip(it.value()[2]);
+        connect(lottery, &QAction::toggled, [=](bool checked) { onActionLotteriesToggled(lottery->objectName(), checked); });
+
+        m_actionLotteries << lottery;
+    }
 
     // Actions: View
     m_actionFullScreen = new QAction(this);
@@ -287,6 +302,12 @@ void MainWindow::onActionPreferencesTriggered()
 
     m_settings = dialog.settings();
     m_preferencesDialogGeometry = m_settings.restoreDialogGeometry() ? dialog.dialogGeometry() : QByteArray();
+}
+
+
+void MainWindow::onActionLotteriesToggled(const QString &lottery, bool checked)
+{
+
 }
 
 
