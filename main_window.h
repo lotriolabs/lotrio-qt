@@ -62,6 +62,9 @@ private:
     QByteArray m_colophonDialogGeometry;
     QByteArray m_preferencesDialogGeometry;
 
+    void createLotteries();
+    QMap<QString, QStringList> m_listLotteries;
+
     void createActions();
     void createMenus();
     void createToolBars();

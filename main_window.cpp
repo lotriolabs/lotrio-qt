@@ -33,6 +33,8 @@ MainWindow::MainWindow(QWidget *parent)
 {
     setWindowIcon(QIcon(QStringLiteral(":/icons/apps/512/lotrio.svg")));
 
+    createLotteries();
+
     createActions();
     createMenus();
     createToolBars();
@@ -44,6 +46,14 @@ MainWindow::MainWindow(QWidget *parent)
 
 MainWindow::~MainWindow()
 {
+}
+
+
+void MainWindow::createLotteries()
+{
+    m_listLotteries[QStringLiteral("euEurojackpot")] = QStringList() << tr("Eurojackpot") << tr("Eurojackpot is a transnational European lottery");
+    m_listLotteries[QStringLiteral("euEuroMillions")] = QStringList() << tr("EuroMillions") << tr("EuroMillions is a transnational European lottery");
+    m_listLotteries[QStringLiteral("euVikinglotto")] = QStringList() << tr("Vikinglotto") << tr("Vikinglotto is a transnational European lottery");
 }
 
 
