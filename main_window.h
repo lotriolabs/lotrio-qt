@@ -74,6 +74,7 @@ private:
     void updateActionFullScreen();
 
     QToolBar *m_toolbarApplication;
+    QToolBar *m_toolbarLotteries;
     QToolBar *m_toolbarView;
 
     QAction *m_actionAbout;

@@ -179,6 +179,11 @@ void MainWindow::createToolBars()
     m_toolbarApplication->addAction(m_actionQuit);
     connect(m_toolbarApplication, &QToolBar::visibilityChanged, [=](bool visible) { m_actionToolbarApplication->setChecked(visible); });
 
+    // Toolbar: Lotteries
+    m_toolbarLotteries = addToolBar(tr("Lotteries Toolbar"));
+    m_toolbarLotteries->setObjectName(QStringLiteral("toolbarLotteries"));
+    m_toolbarLotteries->addActions(m_actionLotteries);
+
     // Toolbar: View
     m_toolbarView = addToolBar(tr("View Toolbar"));
     m_toolbarView->setObjectName(QStringLiteral("toolbarView"));
@@ -194,6 +199,7 @@ void MainWindow::setApplicationState(const QByteArray &state)
     }
     else {
         m_toolbarApplication->setVisible(true);
+        m_toolbarLotteries->setVisible(true);
         m_toolbarView->setVisible(false);
     }
 }
