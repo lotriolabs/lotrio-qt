@@ -153,6 +153,11 @@ void MainWindow::createMenus()
     menuApplication->addSeparator();
     menuApplication->addAction(m_actionQuit);
 
+    // Menu: Lotteries
+    auto *menuLotteries = menuBar()->addMenu(tr("Lotteries"));
+    menuLotteries->setObjectName(QStringLiteral("menuLotteries"));
+    menuLotteries->addActions(m_actionLotteries);
+
     // Menu: View
     auto *menuView = menuBar()->addMenu(tr("View"));
     menuView->setObjectName(QStringLiteral("menuView"));
