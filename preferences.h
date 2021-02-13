@@ -17,16 +17,16 @@
  * along with Lotrio-Qt.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-#ifndef SETTINGS_H
-#define SETTINGS_H
+#ifndef PREFERENCES_H
+#define PREFERENCES_H
 
 #include <QSettings>
 
 
-class Settings
+class Preferences
 {
 public:
-    Settings();
+    Preferences();
 
     void load(QSettings &settings);
     void save(QSettings &settings);
@@ -46,4 +46,4 @@ private:
     bool m_restoreDialogGeometry;
 };
 
-#endif // SETTINGS_H
+#endif // PREFERENCES_H

@@ -17,10 +17,10 @@
  * along with Lotrio-Qt.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-#include "settings.h"
+#include "preferences.h"
 
 
-Settings::Settings()
+Preferences::Preferences()
 {
     // General: State & Geometries
     m_restoreApplicationState = true;
@@ -29,9 +29,9 @@ Settings::Settings()
 }
 
 
-void Settings::load(QSettings &settings)
+void Preferences::load(QSettings &settings)
 {
-    settings.beginGroup(QStringLiteral("Settings"));
+    settings.beginGroup(QStringLiteral("Preferences"));
 
     // General: State & Geometries
     setRestoreApplicationState(settings.value(QStringLiteral("RestoreApplicationState"), true).toBool());
@@ -42,9 +42,9 @@ void Settings::load(QSettings &settings)
 }
 
 
-void Settings::save(QSettings &settings)
+void Preferences::save(QSettings &settings)
 {
-    settings.beginGroup(QStringLiteral("Settings"));
+    settings.beginGroup(QStringLiteral("Preferences"));
     settings.remove("");
 
     // General: State & Geometries
@@ -56,13 +56,13 @@ void Settings::save(QSettings &settings)
 }
 
 
-void Settings::setRestoreApplicationState(bool value)
+void Preferences::setRestoreApplicationState(bool value)
 {
     m_restoreApplicationState = value;
 }
 
 
-bool Settings::restoreApplicationState(bool isDefault)
+bool Preferences::restoreApplicationState(bool isDefault)
 {
     if (isDefault)
         return true;
@@ -71,13 +71,13 @@ bool Settings::restoreApplicationState(bool isDefault)
 }
 
 
-void Settings::setRestoreApplicationGeometry(bool value)
+void Preferences::setRestoreApplicationGeometry(bool value)
 {
     m_restoreApplicationGeometry = value;
 }
 
 
-bool Settings::restoreApplicationGeometry(bool isDefault)
+bool Preferences::restoreApplicationGeometry(bool isDefault)
 {
     if (isDefault)
         return true;
@@ -86,13 +86,13 @@ bool Settings::restoreApplicationGeometry(bool isDefault)
 }
 
 
-void Settings::setRestoreDialogGeometry(bool value)
+void Preferences::setRestoreDialogGeometry(bool value)
 {
     m_restoreDialogGeometry = value;
 }
 
 
-bool Settings::restoreDialogGeometry(bool isDefault)
+bool Preferences::restoreDialogGeometry(bool isDefault)
 {
     if (isDefault)
         return true;

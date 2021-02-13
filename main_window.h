@@ -26,7 +26,7 @@
 #include <QMainWindow>
 #include <QToolBar>
 
-#include "settings.h"
+#include "preferences.h"
 
 
 class MainWindow : public QMainWindow
@@ -56,7 +56,7 @@ private slots:
     void onActionFullScreenTriggered();
 
 private:
-    Settings m_settings;
+    Preferences m_preferences;
     void readSettings();
     void writeSettings();
 

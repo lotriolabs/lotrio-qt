@@ -30,10 +30,10 @@ PreferencesDialog::PreferencesDialog(QWidget *parent)
 {
     setWindowTitle(tr("Preferences"));
 
-    // Settings box
+    // Preferences box
     m_generalPage = new PreferencesGeneralPage(this);
     m_generalPage->setZeroMargins();
-    connect(m_generalPage, &PreferencesGeneralPage::settingsChanged, this, &PreferencesDialog::onSettingsChanged);
+    connect(m_generalPage, &PreferencesGeneralPage::preferencesChanged, this, &PreferencesDialog::onPreferencesChanged);
 
     auto *stackedBox = new QStackedWidget;
     stackedBox->addWidget(m_generalPage);
@@ -44,9 +44,9 @@ PreferencesDialog::PreferencesDialog(QWidget *parent)
     listBox->setCurrentRow(stackedBox->currentIndex());
     connect(listBox, &QListWidget::currentRowChanged, stackedBox, &QStackedWidget::setCurrentIndex);
 
-    auto *settingsBox = new QHBoxLayout;
-    settingsBox->addWidget(listBox, 1);
-    settingsBox->addWidget(stackedBox, 3);
+    auto *preferencesBox = new QHBoxLayout;
+    preferencesBox->addWidget(listBox, 1);
+    preferencesBox->addWidget(stackedBox, 3);
 
     // Button box
     auto *buttonBox = new QDialogButtonBox(QDialogButtonBox::RestoreDefaults | QDialogButtonBox::Ok | QDialogButtonBox::Apply | QDialogButtonBox::Cancel);
@@ -58,10 +58,10 @@ PreferencesDialog::PreferencesDialog(QWidget *parent)
 
     // Main layout
     auto *layout = new QVBoxLayout(this);
-    layout->addLayout(settingsBox);
+    layout->addLayout(preferencesBox);
     layout->addWidget(buttonBox);
 
-    updateSettings();
+    updatePreferences();
     m_buttonApply->setEnabled(false);
 }
 
@@ -81,22 +81,22 @@ QByteArray PreferencesDialog::dialogGeometry() const
 }
 
 
-void PreferencesDialog::setSettings(const Settings &settings)
+void PreferencesDialog::setPreferences(const Preferences &preferences)
 {
-    m_settings = settings;
+    m_preferences = preferences;
 
-    updateSettings();
+    updatePreferences();
     m_buttonApply->setEnabled(false);
 }
 
 
-Settings PreferencesDialog::settings() const
+Preferences PreferencesDialog::preferences() const
 {
-    return m_settings;
+    return m_preferences;
 }
 
 
-void PreferencesDialog::onSettingsChanged()
+void PreferencesDialog::onPreferencesChanged()
 {
     m_buttonApply->setEnabled(true);
 }
@@ -104,37 +104,37 @@ void PreferencesDialog::onSettingsChanged()
 
 void PreferencesDialog::onButtonDefaultsClicked()
 {
-    updateSettings(true);
+    updatePreferences(true);
 }
 
 
 void PreferencesDialog::onButtonOkClicked()
 {
-    saveSettings();
+    savePreferences();
     close();
 }
 
 
 void PreferencesDialog::onButtonApplyClicked()
 {
-    saveSettings();
+    savePreferences();
     m_buttonApply->setEnabled(false);
 }
 
 
-void PreferencesDialog::updateSettings(bool isDefault)
+void PreferencesDialog::updatePreferences(bool isDefault)
 {
     // General: State & Geometries
-    m_generalPage->setRestoreApplicationState(m_settings.restoreApplicationState(isDefault));
-    m_generalPage->setRestoreApplicationGeometry(m_settings.restoreApplicationGeometry(isDefault));
-    m_generalPage->setRestoreDialogGeometry(m_settings.restoreDialogGeometry(isDefault));
+    m_generalPage->setRestoreApplicationState(m_preferences.restoreApplicationState(isDefault));
+    m_generalPage->setRestoreApplicationGeometry(m_preferences.restoreApplicationGeometry(isDefault));
+    m_generalPage->setRestoreDialogGeometry(m_preferences.restoreDialogGeometry(isDefault));
 }
 
 
-void PreferencesDialog::saveSettings()
+void PreferencesDialog::savePreferences()
 {
     // General: State & Geometries
-    m_settings.setRestoreApplicationState(m_generalPage->restoreApplicationState());
-    m_settings.setRestoreApplicationGeometry(m_generalPage->restoreApplicationGeometry());
-    m_settings.setRestoreDialogGeometry(m_generalPage->restoreDialogGeometry());
+    m_preferences.setRestoreApplicationState(m_generalPage->restoreApplicationState());
+    m_preferences.setRestoreApplicationGeometry(m_generalPage->restoreApplicationGeometry());
+    m_preferences.setRestoreDialogGeometry(m_generalPage->restoreDialogGeometry());
 }

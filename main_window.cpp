@@ -93,8 +93,8 @@ QByteArray MainWindow::applicationGeometry() const
 void MainWindow::closeEvent(QCloseEvent *event)
 {
     if (true) {
-        m_applicationState = m_settings.restoreApplicationState() ? applicationState() : QByteArray();
-        m_applicationGeometry = m_settings.restoreApplicationGeometry() ? applicationGeometry() : QByteArray();
+        m_applicationState = m_preferences.restoreApplicationState() ? applicationState() : QByteArray();
+        m_applicationGeometry = m_preferences.restoreApplicationGeometry() ? applicationGeometry() : QByteArray();
 
         writeSettings();
         event->accept();
@@ -109,11 +109,12 @@ void MainWindow::readSettings()
 {
     QSettings settings;
 
-    m_settings.load(settings);
+    // Preferences
+    m_preferences.load(settings);
 
     // Application properties
-    m_applicationState = m_settings.restoreApplicationState() ? settings.value(QStringLiteral("Application/State"), QByteArray()).toByteArray() : QByteArray();
-    m_applicationGeometry = m_settings.restoreApplicationGeometry() ? settings.value(QStringLiteral("Application/Geometry"), QByteArray()).toByteArray() : QByteArray();
+    m_applicationState = m_preferences.restoreApplicationState() ? settings.value(QStringLiteral("Application/State"), QByteArray()).toByteArray() : QByteArray();
+    m_applicationGeometry = m_preferences.restoreApplicationGeometry() ? settings.value(QStringLiteral("Application/Geometry"), QByteArray()).toByteArray() : QByteArray();
     m_aboutDialogGeometry = settings.value(QStringLiteral("AboutDialog/Geometry"), QByteArray()).toByteArray();
     m_colophonDialogGeometry = settings.value(QStringLiteral("ColophonDialog/Geometry"), QByteArray()).toByteArray();
     m_preferencesDialogGeometry = settings.value(QStringLiteral("PreferencesDialog/Geometry"), QByteArray()).toByteArray();
@@ -124,7 +125,8 @@ void MainWindow::writeSettings()
 {
     QSettings settings;
 
-    m_settings.save(settings);
+    // Preferences
+    m_preferences.save(settings);
 
     // Application properties
     settings.setValue(QStringLiteral("Application/State"), m_applicationState);
@@ -288,39 +290,39 @@ void MainWindow::createToolBars()
 
 void MainWindow::onActionAboutTriggered()
 {
-    const auto geometry = m_settings.restoreDialogGeometry() ? m_aboutDialogGeometry : QByteArray();
+    const auto geometry = m_preferences.restoreDialogGeometry() ? m_aboutDialogGeometry : QByteArray();
 
     AboutDialog dialog(this);
     dialog.setDialogGeometry(geometry);
     dialog.exec();
 
-    m_aboutDialogGeometry = m_settings.restoreDialogGeometry() ? dialog.dialogGeometry() : QByteArray();
+    m_aboutDialogGeometry = m_preferences.restoreDialogGeometry() ? dialog.dialogGeometry() : QByteArray();
 }
 
 
 void MainWindow::onActionColophonTriggered()
 {
-    const auto geometry = m_settings.restoreDialogGeometry() ? m_colophonDialogGeometry : QByteArray();
+    const auto geometry = m_preferences.restoreDialogGeometry() ? m_colophonDialogGeometry : QByteArray();
 
     ColophonDialog dialog(this);
     dialog.setDialogGeometry(geometry);
     dialog.exec();
 
-    m_colophonDialogGeometry = m_settings.restoreDialogGeometry() ? dialog.dialogGeometry() : QByteArray();
+    m_colophonDialogGeometry = m_preferences.restoreDialogGeometry() ? dialog.dialogGeometry() : QByteArray();
 }
 
 
 void MainWindow::onActionPreferencesTriggered()
 {
-    const auto geometry = m_settings.restoreDialogGeometry() ? m_preferencesDialogGeometry : QByteArray();
+    const auto geometry = m_preferences.restoreDialogGeometry() ? m_preferencesDialogGeometry : QByteArray();
 
     PreferencesDialog dialog(this);
     dialog.setDialogGeometry(geometry);
-    dialog.setSettings(m_settings);
+    dialog.setPreferences(m_preferences);
     dialog.exec();
 
-    m_settings = dialog.settings();
-    m_preferencesDialogGeometry = m_settings.restoreDialogGeometry() ? dialog.dialogGeometry() : QByteArray();
+    m_preferences = dialog.preferences();
+    m_preferencesDialogGeometry = m_preferences.restoreDialogGeometry() ? dialog.dialogGeometry() : QByteArray();
 }
 
 
