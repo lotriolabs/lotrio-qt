@@ -35,12 +35,16 @@ PreferencesDialog::PreferencesDialog(QWidget *parent)
     m_generalPage->setZeroMargins();
     connect(m_generalPage, &PreferencesGeneralPage::preferencesChanged, this, &PreferencesDialog::onPreferencesChanged);
 
+    m_lotteriesPage = new PreferencesLotteriesPage(this);
+
     auto *stackedBox = new QStackedWidget;
     stackedBox->addWidget(m_generalPage);
+    stackedBox->addWidget(m_lotteriesPage);
     stackedBox->setCurrentIndex(0);
 
     auto *listBox = new QListWidget;
     listBox->addItem(m_generalPage->title());
+    listBox->addItem(m_lotteriesPage->title());
     listBox->setCurrentRow(stackedBox->currentIndex());
     connect(listBox, &QListWidget::currentRowChanged, stackedBox, &QStackedWidget::setCurrentIndex);
 

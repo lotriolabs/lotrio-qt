@@ -25,6 +25,7 @@
 
 #include "preferences.h"
 #include "preferences_general_page.h"
+#include "preferences_lotteries_page.h"
 
 
 class PreferencesDialog : public QDialog
@@ -56,6 +57,7 @@ private:
     QPushButton *m_buttonApply;
 
     PreferencesGeneralPage *m_generalPage;
+    PreferencesLotteriesPage *m_lotteriesPage;
 };
 
 #endif // PREFERENCES_DIALOG_H

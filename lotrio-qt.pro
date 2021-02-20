@@ -40,7 +40,8 @@ SOURCES += \
     main_window.cpp \
     preferences.cpp \
     preferences_dialog.cpp \
-    preferences_general_page.cpp
+    preferences_general_page.cpp \
+    preferences_lotteries_page.cpp
 
 HEADERS += \
     about_dialog.h \
@@ -54,7 +55,8 @@ HEADERS += \
     main_window.h \
     preferences.h \
     preferences_dialog.h \
-    preferences_general_page.h
+    preferences_general_page.h \
+    preferences_lotteries_page.h
 
 TRANSLATIONS += \
     translations/lotrio-qt_en.ts
