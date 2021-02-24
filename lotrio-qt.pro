@@ -36,6 +36,7 @@ SOURCES += \
     colophon_environment_page.cpp \
     colophon_license_page.cpp \
     dialog_title_box.cpp \
+    document.cpp \
     main.cpp \
     main_window.cpp \
     preferences.cpp \
@@ -54,6 +55,7 @@ HEADERS += \
     colophon_environment_page.h \
     colophon_license_page.h \
     dialog_title_box.h \
+    document.h \
     main_window.h \
     preferences.h \
     preferences_dialog.h \
