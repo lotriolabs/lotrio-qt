@@ -29,6 +29,13 @@ class Document : public QWidget
 
 public:
     explicit Document(QWidget *parent = nullptr);
+
+    bool load(const QString &name);
+
+    QString name() const;
+
+private:
+    QString m_name;
 };
 
 #endif // DOCUMENT_H

@@ -195,7 +195,8 @@ void MainWindow::createActions()
         lottery->setIconText(it.value()[1]);
         lottery->setCheckable(true);
         lottery->setToolTip(it.value()[2]);
-        connect(lottery, &QAction::toggled, [=](bool checked) { onActionLotteriesToggled(lottery->objectName(), checked); });
+        lottery->setData(it.key());
+        connect(lottery, &QAction::toggled, [=](bool checked) { onActionLotteriesToggled(lottery->data().toString(), checked); });
 
         m_actionLotteries << lottery;
     }
@@ -338,7 +339,8 @@ void MainWindow::onActionPreferencesTriggered()
 
 void MainWindow::onActionLotteriesToggled(const QString &lottery, bool checked)
 {
-
+    if (checked)
+        openDocument(lottery);
 }
 
 
@@ -356,4 +358,56 @@ void MainWindow::onActionFullScreenTriggered()
 void MainWindow::onDocumentActivated()
 {
 
+}
+
+
+Document *MainWindow::createDocument()
+{
+    auto *document = new Document;
+    m_documentArea->addSubWindow(document);
+
+    return document;
+}
+
+
+QMdiSubWindow *MainWindow::findDocument(const QString &documentName) const
+{
+    const QList<QMdiSubWindow *> windows = m_documentArea->subWindowList();
+    for (auto *window : windows) {
+
+        auto *document = qobject_cast<Document *>(window->widget());
+        if (document->name() == documentName)
+            return window;
+    }
+
+    return nullptr;
+}
+
+
+bool MainWindow::openDocument(const QString &documentName)
+{
+    // Checks whether the given document is already open.
+    if (auto *window = findDocument(documentName)) {
+        m_documentArea->setActiveSubWindow(window);
+        return true;
+    }
+
+    return loadDocument(documentName);
+}
+
+
+bool MainWindow::loadDocument(const QString &documentName)
+{
+    auto *document = createDocument();
+
+    const bool succeeded = document->load(documentName);
+    if (succeeded) {
+        document->setWindowTitle(m_listLotteries[documentName][1]);
+        document->show();
+    }
+    else {
+        document->close();
+    }
+
+    return succeeded;
 }

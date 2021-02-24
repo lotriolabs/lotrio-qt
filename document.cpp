@@ -27,3 +27,17 @@ Document::Document(QWidget *parent)
 
 
 }
+
+
+bool Document::load(const QString &name)
+{
+    m_name = name;
+
+    return true;
+}
+
+
+QString Document::name() const
+{
+    return m_name;
+}

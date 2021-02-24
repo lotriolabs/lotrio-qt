@@ -28,6 +28,7 @@
 #include <QMdiSubWindow>
 #include <QToolBar>
 
+#include "document.h"
 #include "preferences.h"
 
 
@@ -44,6 +45,8 @@ public:
 
     void setApplicationGeometry(const QByteArray &geometry = QByteArray());
     QByteArray applicationGeometry() const;
+
+    bool openDocument(const QString &documentName);
 
 protected:
     void closeEvent(QCloseEvent *event) override;
@@ -98,6 +101,11 @@ private:
     QAction *m_actionToolbarView;
 
     QMdiArea *m_documentArea;
+
+    Document *createDocument();
+    QMdiSubWindow *findDocument(const QString &documentName) const;
+
+    bool loadDocument(const QString &documentName);
 };
 
 #endif // MAIN_WINDOW_H
