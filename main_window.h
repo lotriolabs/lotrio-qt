@@ -24,6 +24,8 @@
 #include <QByteArray>
 #include <QCloseEvent>
 #include <QMainWindow>
+#include <QMdiArea>
+#include <QMdiSubWindow>
 #include <QToolBar>
 
 #include "preferences.h"
@@ -54,6 +56,8 @@ private slots:
     void onActionLotteriesToggled(const QString &lottery, bool checked);
 
     void onActionFullScreenTriggered();
+
+    void onDocumentActivated();
 
 private:
     Preferences m_preferences;
@@ -92,6 +96,8 @@ private:
     QAction *m_actionToolbarApplication;
     QAction *m_actionToolbarLotteries;
     QAction *m_actionToolbarView;
+
+    QMdiArea *m_documentArea;
 };
 
 #endif // MAIN_WINDOW_H

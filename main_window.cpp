@@ -30,6 +30,7 @@
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
+    , m_documentArea(new QMdiArea)
 {
     setWindowIcon(QIcon(QStringLiteral(":/icons/apps/512/lotrio.svg")));
 
@@ -41,10 +42,18 @@ MainWindow::MainWindow(QWidget *parent)
     createMenus();
     createToolBars();
 
+    // Application properties
     setApplicationState(m_applicationState);
     setApplicationGeometry(m_applicationGeometry);
 
     updateActionFullScreen();
+
+    // Central widget
+    m_documentArea->setViewMode(QMdiArea::TabbedView);
+    m_documentArea->setTabsMovable(true);
+    m_documentArea->setTabsClosable(true);
+    setCentralWidget(m_documentArea);
+    connect(m_documentArea, &QMdiArea::subWindowActivated, this, &MainWindow::onDocumentActivated);
 }
 
 MainWindow::~MainWindow()
@@ -341,4 +350,10 @@ void MainWindow::onActionFullScreenTriggered()
         setWindowState(windowState() & ~Qt::WindowFullScreen);
 
     updateActionFullScreen();
+}
+
+
+void MainWindow::onDocumentActivated()
+{
+
 }
