@@ -82,6 +82,7 @@ private:
     QToolBar *m_toolbarApplication;
     QToolBar *m_toolbarLotteries;
     QToolBar *m_toolbarView;
+    QToolBar *m_toolbarHelp;
 
     void createActions();
     void createMenus();
@@ -100,6 +101,7 @@ private:
     QAction *m_actionToolbarApplication;
     QAction *m_actionToolbarLotteries;
     QAction *m_actionToolbarView;
+    QAction *m_actionToolbarHelp;
 
     QMdiArea *m_documentArea;
 
