@@ -1,7 +1,7 @@
 /**
  * Copyright 2021 LotrioLabs, <https://lotriolabs.github.io>.
  *
- * This file is part of Lotrio-Qt.
+ * This file is part of Lotrio-Qt, <https://github.com/lotriolabs/lotrio-qt>.
  *
  * Lotrio-Qt is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -93,6 +93,7 @@ QByteArray MainWindow::applicationGeometry() const
 void MainWindow::closeEvent(QCloseEvent *event)
 {
     if (true) {
+        // Application properties
         m_applicationState = m_preferences.restoreApplicationState() ? applicationState() : QByteArray();
         m_applicationGeometry = m_preferences.restoreApplicationGeometry() ? applicationGeometry() : QByteArray();
 
@@ -112,7 +113,7 @@ void MainWindow::readSettings()
     // Preferences
     m_preferences.load(settings);
 
-    // Application properties
+    // Application and dialog properties
     m_applicationState = m_preferences.restoreApplicationState() ? settings.value(QStringLiteral("Application/State"), QByteArray()).toByteArray() : QByteArray();
     m_applicationGeometry = m_preferences.restoreApplicationGeometry() ? settings.value(QStringLiteral("Application/Geometry"), QByteArray()).toByteArray() : QByteArray();
     m_aboutDialogGeometry = settings.value(QStringLiteral("AboutDialog/Geometry"), QByteArray()).toByteArray();
@@ -128,7 +129,7 @@ void MainWindow::writeSettings()
     // Preferences
     m_preferences.save(settings);
 
-    // Application properties
+    // Application and dialog properties
     settings.setValue(QStringLiteral("Application/State"), m_applicationState);
     settings.setValue(QStringLiteral("Application/Geometry"), m_applicationGeometry);
     settings.setValue(QStringLiteral("AboutDialog/Geometry"), m_aboutDialogGeometry);
@@ -218,23 +219,6 @@ void MainWindow::createActions()
 }
 
 
-void MainWindow::updateActionFullScreen()
-{
-    if (!isFullScreen()) {
-        m_actionFullScreen->setText(tr("Full Screen Mode"));
-        m_actionFullScreen->setIcon(QIcon::fromTheme(QStringLiteral("view-fullscreen"), QIcon(QStringLiteral(":/icons/actions/16/view-fullscreen.svg"))));
-        m_actionFullScreen->setChecked(false);
-        m_actionFullScreen->setToolTip(tr("Display the window in full screen [%1]").arg(m_actionFullScreen->shortcut().toString(QKeySequence::NativeText)));
-    }
-    else {
-        m_actionFullScreen->setText(tr("Exit Full Screen Mode"));
-        m_actionFullScreen->setIcon(QIcon::fromTheme(QStringLiteral("view-restore"), QIcon(QStringLiteral(":/icons/actions/16/view-restore.svg"))));
-        m_actionFullScreen->setChecked(true);
-        m_actionFullScreen->setToolTip(tr("Exit the full screen mode [%1]").arg(m_actionFullScreen->shortcut().toString(QKeySequence::NativeText)));
-    }
-}
-
-
 void MainWindow::createMenus()
 {
     // Menu: Application
@@ -285,6 +269,23 @@ void MainWindow::createToolBars()
     m_toolbarView->setObjectName(QStringLiteral("toolbarView"));
     m_toolbarView->addAction(m_actionFullScreen);
     connect(m_toolbarView, &QToolBar::visibilityChanged, [=](bool visible) { m_actionToolbarView->setChecked(visible); });
+}
+
+
+void MainWindow::updateActionFullScreen()
+{
+    if (!isFullScreen()) {
+        m_actionFullScreen->setText(tr("Full Screen Mode"));
+        m_actionFullScreen->setIcon(QIcon::fromTheme(QStringLiteral("view-fullscreen"), QIcon(QStringLiteral(":/icons/actions/16/view-fullscreen.svg"))));
+        m_actionFullScreen->setChecked(false);
+        m_actionFullScreen->setToolTip(tr("Display the window in full screen [%1]").arg(m_actionFullScreen->shortcut().toString(QKeySequence::NativeText)));
+    }
+    else {
+        m_actionFullScreen->setText(tr("Exit Full Screen Mode"));
+        m_actionFullScreen->setIcon(QIcon::fromTheme(QStringLiteral("view-restore"), QIcon(QStringLiteral(":/icons/actions/16/view-restore.svg"))));
+        m_actionFullScreen->setChecked(true);
+        m_actionFullScreen->setToolTip(tr("Exit the full screen mode [%1]").arg(m_actionFullScreen->shortcut().toString(QKeySequence::NativeText)));
+    }
 }
 
 

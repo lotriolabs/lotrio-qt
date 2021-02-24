@@ -1,7 +1,7 @@
 /**
  * Copyright 2021 LotrioLabs, <https://lotriolabs.github.io>.
  *
- * This file is part of Lotrio-Qt.
+ * This file is part of Lotrio-Qt, <https://github.com/lotriolabs/lotrio-qt>.
  *
  * Lotrio-Qt is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -57,8 +57,6 @@ private slots:
 
 private:
     Preferences m_preferences;
-    void readSettings();
-    void writeSettings();
 
     QByteArray m_applicationState;
     QByteArray m_applicationGeometry;
@@ -66,18 +64,22 @@ private:
     QByteArray m_colophonDialogGeometry;
     QByteArray m_preferencesDialogGeometry;
 
-    void createLotteries();
+    void readSettings();
+    void writeSettings();
+
     QMap<QString, QStringList> m_listLotteries;
+
+    void createLotteries();
+
+    QToolBar *m_toolbarApplication;
+    QToolBar *m_toolbarLotteries;
+    QToolBar *m_toolbarView;
 
     void createActions();
     void createMenus();
     void createToolBars();
 
     void updateActionFullScreen();
-
-    QToolBar *m_toolbarApplication;
-    QToolBar *m_toolbarLotteries;
-    QToolBar *m_toolbarView;
 
     QAction *m_actionAbout;
     QAction *m_actionColophon;
