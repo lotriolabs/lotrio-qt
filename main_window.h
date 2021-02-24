@@ -61,6 +61,7 @@ private slots:
     void onActionFullScreenTriggered();
 
     void onDocumentActivated();
+    void onDocumentClosed(const QString &documentName);
 
 private:
     Preferences m_preferences;

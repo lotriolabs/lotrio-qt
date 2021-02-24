@@ -41,3 +41,16 @@ QString Document::name() const
 {
     return m_name;
 }
+
+
+void Document::closeEvent(QCloseEvent *event)
+{
+    if (true) {
+        // Document will be closed
+        emit documentClosed();
+
+        event->accept();
+    } else {
+        event->ignore();
+    }
+}

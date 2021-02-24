@@ -20,6 +20,7 @@
 #include "main_window.h"
 
 #include <QApplication>
+#include <QDebug>
 #include <QMenuBar>
 #include <QScreen>
 
@@ -363,9 +364,23 @@ void MainWindow::onDocumentActivated()
 }
 
 
+void MainWindow::onDocumentClosed(const QString &documentName)
+{
+    foreach (QAction *actionLottery, m_actionLotteries) {
+
+        if (actionLottery->objectName() == QStringLiteral("actionLottery_%1").arg(m_listLotteries[documentName][0])) {
+            actionLottery->setChecked(false);
+            break;
+        }
+    }
+}
+
+
 Document *MainWindow::createDocument()
 {
     auto *document = new Document;
+    connect(document, &Document::documentClosed, [=]() { onDocumentClosed(document->name()); });
+
     m_documentArea->addSubWindow(document);
 
     return document;
