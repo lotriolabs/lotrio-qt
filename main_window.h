@@ -106,6 +106,7 @@ private:
     QMdiSubWindow *findDocument(const QString &documentName) const;
 
     bool loadDocument(const QString &documentName);
+    bool closeDocument(const QString &documentName);
 };
 
 #endif // MAIN_WINDOW_H

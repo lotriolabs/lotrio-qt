@@ -341,6 +341,8 @@ void MainWindow::onActionLotteriesToggled(const QString &lottery, bool checked)
 {
     if (checked)
         openDocument(lottery);
+    else
+        closeDocument(lottery);
 }
 
 
@@ -408,6 +410,17 @@ bool MainWindow::loadDocument(const QString &documentName)
     else {
         document->close();
     }
+
+    return succeeded;
+}
+
+
+bool MainWindow::closeDocument(const QString &documentName)
+{
+    bool succeeded = false;
+
+    if (auto *window = findDocument(documentName))
+        succeeded = window->close();
 
     return succeeded;
 }
