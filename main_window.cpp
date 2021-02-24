@@ -255,6 +255,10 @@ void MainWindow::createMenus()
     menuView->addAction(m_actionToolbarApplication);
     menuView->addAction(m_actionToolbarLotteries);
     menuView->addAction(m_actionToolbarView);
+
+    // Menu: Help
+    auto *menuHelp = menuBar()->addMenu(tr("Help"));
+    menuHelp->setObjectName(QStringLiteral("menuHelp"));
 }
 
 
