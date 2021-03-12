@@ -395,10 +395,15 @@ void MainWindow::onActionFullScreenTriggered()
 }
 
 
-void MainWindow::onDocumentActivated()
+void MainWindow::onDocumentActivated(const QMdiSubWindow *window)
 {
     updateTitleBar();
     updateMenus(m_documentArea->subWindowList().count());
+
+    if (!window)
+        return;
+
+
 }
 
 

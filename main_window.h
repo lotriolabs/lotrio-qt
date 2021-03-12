@@ -46,7 +46,7 @@ public:
     void setApplicationGeometry(const QByteArray &geometry = QByteArray());
     QByteArray applicationGeometry() const;
 
-    bool openDocument(const QString &documentName);
+    bool openDocument(const QString &canonicalName);
 
 protected:
     void closeEvent(QCloseEvent *event) override;
@@ -60,7 +60,7 @@ private slots:
 
     void onActionFullScreenTriggered();
 
-    void onDocumentActivated();
+    void onDocumentActivated(const QMdiSubWindow *window);
     void onDocumentAboutToClose(const QString &canonicalName);
 
 private:
