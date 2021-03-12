@@ -64,10 +64,7 @@ void Preferences::setRestoreApplicationState(bool value)
 
 bool Preferences::restoreApplicationState(bool isDefault)
 {
-    if (isDefault)
-        return true;
-
-    return m_restoreApplicationState;
+    return !isDefault ? m_restoreApplicationState : true;
 }
 
 
@@ -79,10 +76,7 @@ void Preferences::setRestoreApplicationGeometry(bool value)
 
 bool Preferences::restoreApplicationGeometry(bool isDefault)
 {
-    if (isDefault)
-        return true;
-
-    return m_restoreApplicationGeometry;
+    return !isDefault ? m_restoreApplicationGeometry : true;
 }
 
 
@@ -94,8 +88,5 @@ void Preferences::setRestoreDialogGeometry(bool value)
 
 bool Preferences::restoreDialogGeometry(bool isDefault)
 {
-    if (isDefault)
-        return true;
-
-    return m_restoreDialogGeometry;
+    return !isDefault ? m_restoreDialogGeometry : true;
 }
