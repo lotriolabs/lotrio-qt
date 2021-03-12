@@ -72,8 +72,8 @@ private:
     QByteArray m_colophonDialogGeometry;
     QByteArray m_preferencesDialogGeometry;
 
-    void readSettings();
-    void writeSettings();
+    void loadSettings();
+    void saveSettings();
 
     QMap<QString, QStringList> m_listLotteries;
 
