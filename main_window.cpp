@@ -212,6 +212,11 @@ void MainWindow::createActions()
     m_actionClose->setToolTip(tr("Close document [%1]").arg(m_actionClose->shortcut().toString(QKeySequence::NativeText)));
     connect(m_actionClose, &QAction::triggered, this, &MainWindow::onActionCloseTriggered);
 
+    m_actionCloseOther = new QAction(tr("Close Other"), this);
+    m_actionCloseOther->setObjectName(QStringLiteral("actionCloseOther"));
+    m_actionCloseOther->setToolTip(tr("Close all other documents"));
+    connect(m_actionCloseOther, &QAction::triggered, this, &MainWindow::onActionCloseOtherTriggered);
+
     // Actions: View
     m_actionFullScreen = new QAction(this);
     m_actionFullScreen->setObjectName(QStringLiteral("actionFullScreen"));
@@ -264,6 +269,7 @@ void MainWindow::createMenus()
     menuLotteries->addActions(m_actionLotteries);
     menuLotteries->addSeparator();
     menuLotteries->addAction(m_actionClose);
+    menuLotteries->addAction(m_actionCloseOther);
 
     // Menu: View
     auto *menuView = menuBar()->addMenu(tr("View"));
@@ -334,6 +340,7 @@ void MainWindow::updateMenus(const int cntWindows)
     bool hasDocuments = cntWindows >= 2;
 
     m_actionClose->setEnabled(hasDocument);
+    m_actionCloseOther->setEnabled(hasDocuments);
 }
 
 
@@ -398,6 +405,15 @@ void MainWindow::onActionLotteriesToggled(const QString &lottery, bool checked)
 void MainWindow::onActionCloseTriggered()
 {
     m_documentArea->closeActiveSubWindow();
+}
+
+
+void MainWindow::onActionCloseOtherTriggered()
+{
+    const QList<QMdiSubWindow *> windows = m_documentArea->subWindowList();
+    for (auto *window : windows)
+        if (window != m_documentArea->activeSubWindow())
+            window->close();
 }
 
 

@@ -58,6 +58,7 @@ private slots:
 
     void onActionLotteriesToggled(const QString &lottery, bool checked);
     void onActionCloseTriggered();
+    void onActionCloseOtherTriggered();
 
     void onActionFullScreenTriggered();
 
@@ -100,6 +101,7 @@ private:
 
     QList<QAction *> m_actionLotteries;
     QAction *m_actionClose;
+    QAction *m_actionCloseOther;
 
     QAction *m_actionFullScreen;
     QAction *m_actionToolbarApplication;
