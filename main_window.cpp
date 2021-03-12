@@ -48,6 +48,7 @@ MainWindow::MainWindow(QWidget *parent)
     setApplicationGeometry(m_applicationGeometry);
 
     updateActionFullScreen();
+    updateMenus();
 
     // Central widget
     m_documentArea->setViewMode(QMdiArea::TabbedView);
@@ -317,6 +318,14 @@ void MainWindow::updateActionFullScreen()
 }
 
 
+void MainWindow::updateMenus(const int cntWindows)
+{
+    bool hasDocument = cntWindows >= 1;
+    bool hasDocuments = cntWindows >= 2;
+
+}
+
+
 void MainWindow::updateTitleBar()
 {
     QString title;
@@ -389,13 +398,17 @@ void MainWindow::onActionFullScreenTriggered()
 void MainWindow::onDocumentActivated()
 {
     updateTitleBar();
+    updateMenus(m_documentArea->subWindowList().count());
 }
 
 
 void MainWindow::onDocumentAboutToClose(const QString &canonicalName)
 {
-    foreach (auto *actionLottery, m_actionLotteries) {
+    // Update menu items; delete emitter from the list
+    updateMenus(m_documentArea->subWindowList().count() - 1);
 
+    // Update lottery button
+    foreach (auto *actionLottery, m_actionLotteries) {
         if (actionLottery->data().toString() == canonicalName) {
             actionLottery->setChecked(false);
             break;
@@ -463,6 +476,7 @@ bool MainWindow::loadDocument(const QString &canonicalName)
         document->show();
 
         updateTitleBar();
+        updateMenus(m_documentArea->subWindowList().count());
     }
     else {
         document->close();

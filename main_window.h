@@ -89,6 +89,7 @@ private:
     void createToolBars();
 
     void updateActionFullScreen();
+    void updateMenus(const int cntWindows = 0);
     void updateTitleBar();
 
     QAction *m_actionAbout;
