@@ -217,6 +217,12 @@ void MainWindow::createActions()
     m_actionCloseOther->setToolTip(tr("Close all other documents"));
     connect(m_actionCloseOther, &QAction::triggered, this, &MainWindow::onActionCloseOtherTriggered);
 
+    m_actionCloseAll = new QAction(tr("Close All"), this);
+    m_actionCloseAll->setObjectName(QStringLiteral("actionCloseAll"));
+    m_actionCloseAll->setShortcut(QKeySequence(Qt::CTRL + Qt::SHIFT + Qt::Key_W));
+    m_actionCloseAll->setToolTip(tr("Close all documents [%1]").arg(m_actionCloseAll->shortcut().toString(QKeySequence::NativeText)));
+    connect(m_actionCloseAll, &QAction::triggered, this, &MainWindow::onActionCloseAllTriggered);
+
     // Actions: View
     m_actionFullScreen = new QAction(this);
     m_actionFullScreen->setObjectName(QStringLiteral("actionFullScreen"));
@@ -270,6 +276,7 @@ void MainWindow::createMenus()
     menuLotteries->addSeparator();
     menuLotteries->addAction(m_actionClose);
     menuLotteries->addAction(m_actionCloseOther);
+    menuLotteries->addAction(m_actionCloseAll);
 
     // Menu: View
     auto *menuView = menuBar()->addMenu(tr("View"));
@@ -341,6 +348,7 @@ void MainWindow::updateMenus(const int cntWindows)
 
     m_actionClose->setEnabled(hasDocument);
     m_actionCloseOther->setEnabled(hasDocuments);
+    m_actionCloseAll->setEnabled(hasDocument);
 }
 
 
@@ -414,6 +422,12 @@ void MainWindow::onActionCloseOtherTriggered()
     for (auto *window : windows)
         if (window != m_documentArea->activeSubWindow())
             window->close();
+}
+
+
+void MainWindow::onActionCloseAllTriggered()
+{
+    m_documentArea->closeAllSubWindows();
 }
 
 
