@@ -89,6 +89,7 @@ private:
     void createToolBars();
 
     void updateActionFullScreen();
+    void updateTitleBar();
 
     QAction *m_actionAbout;
     QAction *m_actionColophon;

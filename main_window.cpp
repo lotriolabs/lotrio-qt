@@ -317,6 +317,17 @@ void MainWindow::updateActionFullScreen()
 }
 
 
+void MainWindow::updateTitleBar()
+{
+    QString title;
+
+    if (auto *document = activeDocument())
+        title = document->documentTitle();
+
+    setWindowTitle(title);
+}
+
+
 void MainWindow::onActionAboutTriggered()
 {
     const auto geometry = m_preferences.restoreDialogGeometry() ? m_aboutDialogGeometry : QByteArray();
@@ -377,7 +388,7 @@ void MainWindow::onActionFullScreenTriggered()
 
 void MainWindow::onDocumentActivated()
 {
-
+    updateTitleBar();
 }
 
 
@@ -450,6 +461,8 @@ bool MainWindow::loadDocument(const QString &canonicalName)
     if (succeeded) {
         document->updateDocumentTitle();
         document->show();
+
+        updateTitleBar();
     }
     else {
         document->close();
