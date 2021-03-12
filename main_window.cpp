@@ -399,7 +399,8 @@ Document *MainWindow::createDocument()
     document->setPreferences(m_preferences);
     connect(document, &Document::aboutToClose, this, &MainWindow::onDocumentAboutToClose);
 
-    m_documentArea->addSubWindow(document);
+    auto *window = m_documentArea->addSubWindow(document);
+    window->setWindowIcon(QIcon());
 
     return document;
 }
