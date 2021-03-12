@@ -19,6 +19,8 @@
 
 #include "document.h"
 
+#include <QFileInfo>
+
 
 Document::Document(QWidget *parent)
     : QWidget(parent)
@@ -44,6 +46,20 @@ void Document::setCanonicalName(const QString &canonicalName)
 QString Document::canonicalName() const
 {
     return m_canonicalName;
+}
+
+
+QString Document::documentTitle() const
+{
+    return windowTitle();
+}
+
+
+void Document::updateDocumentTitle()
+{
+    const auto fileName = !m_canonicalName.isEmpty() ? QFileInfo(m_canonicalName).fileName() : tr("Untitled");
+
+    setWindowTitle(fileName);
 }
 
 

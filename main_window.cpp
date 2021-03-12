@@ -437,7 +437,7 @@ bool MainWindow::loadDocument(const QString &documentName)
 
     const bool succeeded = document->load(documentName);
     if (succeeded) {
-        document->setWindowTitle(m_listLotteries[documentName][1]);
+        document->updateDocumentTitle();
         document->show();
     }
     else {

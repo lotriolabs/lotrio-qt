@@ -38,6 +38,9 @@ public:
     void setCanonicalName(const QString &canonicalName);
     QString canonicalName() const;
 
+    QString documentTitle() const;
+    void updateDocumentTitle();
+
     bool load(const QString &canonicalName);
 
 signals:
