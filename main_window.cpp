@@ -197,7 +197,7 @@ void MainWindow::createActions()
         lottery->setIconText(it.value()[1]);
         lottery->setCheckable(true);
         lottery->setToolTip(it.value()[2]);
-        lottery->setData(it.key());
+        lottery->setData(QStringLiteral("%1/%2").arg(it.key(), it.value()[1]));
         connect(lottery, &QAction::toggled, [=](bool checked) { onActionLotteriesToggled(lottery->data().toString(), checked); });
 
         m_actionLotteries << lottery;
@@ -383,9 +383,9 @@ void MainWindow::onDocumentActivated()
 
 void MainWindow::onDocumentAboutToClose(const QString &canonicalName)
 {
-    foreach (QAction *actionLottery, m_actionLotteries) {
+    foreach (auto *actionLottery, m_actionLotteries) {
 
-        if (actionLottery->objectName() == QStringLiteral("actionLottery_%1").arg(m_listLotteries[canonicalName][0])) {
+        if (actionLottery->data().toString() == canonicalName) {
             actionLottery->setChecked(false);
             break;
         }
@@ -405,13 +405,13 @@ Document *MainWindow::createDocument()
 }
 
 
-QMdiSubWindow *MainWindow::findDocument(const QString &documentName) const
+QMdiSubWindow *MainWindow::findDocument(const QString &canonicalName) const
 {
     const QList<QMdiSubWindow *> windows = m_documentArea->subWindowList();
     for (auto *window : windows) {
 
         auto *document = qobject_cast<Document *>(window->widget());
-        if (document->canonicalName() == documentName)
+        if (document->canonicalName() == canonicalName)
             return window;
     }
 
@@ -419,23 +419,32 @@ QMdiSubWindow *MainWindow::findDocument(const QString &documentName) const
 }
 
 
-bool MainWindow::openDocument(const QString &documentName)
+Document *MainWindow::activeDocument() const
+{
+    if (auto *window = m_documentArea->activeSubWindow())
+           return qobject_cast<Document *>(window->widget());
+
+    return nullptr;
+}
+
+
+bool MainWindow::openDocument(const QString &canonicalName)
 {
     // Checks whether the given document is already open.
-    if (auto *window = findDocument(documentName)) {
+    if (auto *window = findDocument(canonicalName)) {
         m_documentArea->setActiveSubWindow(window);
         return true;
     }
 
-    return loadDocument(documentName);
+    return loadDocument(canonicalName);
 }
 
 
-bool MainWindow::loadDocument(const QString &documentName)
+bool MainWindow::loadDocument(const QString &canonicalName)
 {
     auto *document = createDocument();
 
-    const bool succeeded = document->load(documentName);
+    const bool succeeded = document->load(canonicalName);
     if (succeeded) {
         document->updateDocumentTitle();
         document->show();
@@ -448,11 +457,11 @@ bool MainWindow::loadDocument(const QString &documentName)
 }
 
 
-bool MainWindow::closeDocument(const QString &documentName)
+bool MainWindow::closeDocument(const QString &canonicalName)
 {
     bool succeeded = false;
 
-    if (auto *window = findDocument(documentName))
+    if (auto *window = findDocument(canonicalName))
         succeeded = window->close();
 
     return succeeded;
