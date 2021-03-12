@@ -35,17 +35,23 @@ void Document::setPreferences(const Preferences &preferences)
 }
 
 
-bool Document::load(const QString &name)
+void Document::setCanonicalName(const QString &canonicalName)
 {
-    m_name = name;
-
-    return true;
+    m_canonicalName = canonicalName;
 }
 
 
-QString Document::name() const
+QString Document::canonicalName() const
 {
-    return m_name;
+    return m_canonicalName;
+}
+
+
+bool Document::load(const QString &canonicalName)
+{
+    setCanonicalName(canonicalName);
+
+    return true;
 }
 
 

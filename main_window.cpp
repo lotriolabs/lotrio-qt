@@ -397,7 +397,7 @@ Document *MainWindow::createDocument()
 {
     auto *document = new Document;
     document->setPreferences(m_preferences);
-    connect(document, &Document::documentClosed, [=]() { onDocumentClosed(document->name()); });
+    connect(document, &Document::documentClosed, [=]() { onDocumentClosed(document->canonicalName()); });
 
     m_documentArea->addSubWindow(document);
 
@@ -411,7 +411,7 @@ QMdiSubWindow *MainWindow::findDocument(const QString &documentName) const
     for (auto *window : windows) {
 
         auto *document = qobject_cast<Document *>(window->widget());
-        if (document->name() == documentName)
+        if (document->canonicalName() == documentName)
             return window;
     }
 

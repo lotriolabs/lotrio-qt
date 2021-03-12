@@ -35,9 +35,10 @@ public:
 
     void setPreferences(const Preferences &preferences);
 
-    bool load(const QString &name);
+    void setCanonicalName(const QString &canonicalName);
+    QString canonicalName() const;
 
-    QString name() const;
+    bool load(const QString &canonicalName);
 
 signals:
     void documentClosed();
@@ -48,7 +49,7 @@ protected:
 private:
     Preferences m_preferences;
 
-    QString m_name;
+    QString m_canonicalName;
 };
 
 #endif // DOCUMENT_H
