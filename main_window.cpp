@@ -401,6 +401,7 @@ Document *MainWindow::createDocument()
 
     auto *window = m_documentArea->addSubWindow(document);
     window->setWindowIcon(QIcon());
+    window->showMaximized();
 
     return document;
 }
