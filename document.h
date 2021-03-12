@@ -44,7 +44,7 @@ public:
     bool load(const QString &canonicalName);
 
 signals:
-    void documentClosed();
+    void aboutToClose(QString);
 
 protected:
     void closeEvent(QCloseEvent *event) override;

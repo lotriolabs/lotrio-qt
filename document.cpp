@@ -67,6 +67,7 @@ bool Document::load(const QString &canonicalName)
 {
     setCanonicalName(canonicalName);
 
+
     return true;
 }
 
@@ -75,7 +76,7 @@ void Document::closeEvent(QCloseEvent *event)
 {
     if (true) {
         // Document will be closed
-        emit documentClosed();
+        emit aboutToClose(m_canonicalName);
 
         event->accept();
     } else {

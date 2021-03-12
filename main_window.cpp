@@ -381,11 +381,11 @@ void MainWindow::onDocumentActivated()
 }
 
 
-void MainWindow::onDocumentClosed(const QString &documentName)
+void MainWindow::onDocumentAboutToClose(const QString &canonicalName)
 {
     foreach (QAction *actionLottery, m_actionLotteries) {
 
-        if (actionLottery->objectName() == QStringLiteral("actionLottery_%1").arg(m_listLotteries[documentName][0])) {
+        if (actionLottery->objectName() == QStringLiteral("actionLottery_%1").arg(m_listLotteries[canonicalName][0])) {
             actionLottery->setChecked(false);
             break;
         }
@@ -397,7 +397,7 @@ Document *MainWindow::createDocument()
 {
     auto *document = new Document;
     document->setPreferences(m_preferences);
-    connect(document, &Document::documentClosed, [=]() { onDocumentClosed(document->canonicalName()); });
+    connect(document, &Document::aboutToClose, this, &MainWindow::onDocumentAboutToClose);
 
     m_documentArea->addSubWindow(document);
 
