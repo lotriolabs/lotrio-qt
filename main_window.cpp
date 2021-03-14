@@ -483,7 +483,7 @@ Document *MainWindow::createDocument()
 }
 
 
-QMdiSubWindow *MainWindow::findDocument(const QString &canonicalName) const
+QMdiSubWindow *MainWindow::findDocumentWindow(const QString &canonicalName) const
 {
     const QList<QMdiSubWindow *> windows = m_documentArea->subWindowList();
     for (auto *window : windows) {
@@ -508,7 +508,7 @@ Document *MainWindow::activeDocument() const
 
 bool MainWindow::openDocument(const QString &canonicalName)
 {
-    if (auto *window = findDocument(canonicalName)) {
+    if (auto *window = findDocumentWindow(canonicalName)) {
         // Given document is already open; activate the window
         m_documentArea->setActiveSubWindow(window);
         return true;
@@ -543,7 +543,7 @@ bool MainWindow::closeDocument(const QString &canonicalName)
 {
     bool succeeded = false;
 
-    if (auto *window = findDocument(canonicalName))
+    if (auto *window = findDocumentWindow(canonicalName))
         succeeded = window->close();
 
     return succeeded;

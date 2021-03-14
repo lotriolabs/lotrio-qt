@@ -114,7 +114,7 @@ private:
     QMdiArea *m_documentArea;
 
     Document *createDocument();
-    QMdiSubWindow *findDocument(const QString &canonicalName) const;
+    QMdiSubWindow *findDocumentWindow(const QString &canonicalName) const;
     Document *activeDocument() const;
     bool loadDocument(const QString &canonicalName);
     bool closeDocument(const QString &canonicalName);
