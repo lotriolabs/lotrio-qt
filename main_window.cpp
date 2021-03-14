@@ -55,7 +55,7 @@ MainWindow::MainWindow(QWidget *parent)
     m_documentArea->setTabsMovable(true);
     m_documentArea->setTabsClosable(true);
     setCentralWidget(m_documentArea);
-    connect(m_documentArea, &QMdiArea::subWindowActivated, this, &MainWindow::onDocumentActivated);
+    connect(m_documentArea, &QMdiArea::subWindowActivated, this, &MainWindow::onDocumentWindowActivated);
 }
 
 MainWindow::~MainWindow()
@@ -442,7 +442,7 @@ void MainWindow::onActionFullScreenTriggered()
 }
 
 
-void MainWindow::onDocumentActivated(const QMdiSubWindow *window)
+void MainWindow::onDocumentWindowActivated(const QMdiSubWindow *window)
 {
     updateTitleBar();
     updateMenus(m_documentArea->subWindowList().count());

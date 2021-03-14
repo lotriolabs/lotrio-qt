@@ -63,7 +63,7 @@ private slots:
 
     void onActionFullScreenTriggered();
 
-    void onDocumentActivated(const QMdiSubWindow *window);
+    void onDocumentWindowActivated(const QMdiSubWindow *window);
     void onDocumentAboutToClose(const QString &canonicalName);
 
 private:
