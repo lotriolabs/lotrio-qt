@@ -193,15 +193,15 @@ void MainWindow::createActions()
     while (it.hasNext()) {
         it.next();
 
-        auto *lottery = new QAction(it.value()[1], this);
-        lottery->setObjectName(QStringLiteral("actionLottery_%1").arg(it.value()[0]));
-        lottery->setIconText(it.value()[1]);
-        lottery->setCheckable(true);
-        lottery->setToolTip(it.value()[2]);
-        lottery->setData(QStringLiteral("%1/%2").arg(it.key(), it.value()[1]));
-        connect(lottery, &QAction::toggled, [=](bool checked) { onActionLotteriesToggled(lottery->data().toString(), checked); });
+        auto *actionLottery = new QAction(it.value()[1], this);
+        actionLottery->setObjectName(QStringLiteral("actionLottery_%1").arg(it.value()[0]));
+        actionLottery->setIconText(it.value()[1]);
+        actionLottery->setCheckable(true);
+        actionLottery->setToolTip(it.value()[2]);
+        actionLottery->setData(QStringLiteral("%1/%2").arg(it.key(), it.value()[1]));
+        connect(actionLottery, &QAction::toggled, [=](bool checked) { onActionLotteriesToggled(actionLottery->data().toString(), checked); });
 
-        m_actionLotteries << lottery;
+        m_actionLotteries << actionLottery;
     }
 
     m_actionClose = new QAction(tr("Close"), this);
@@ -456,14 +456,14 @@ void MainWindow::onDocumentActivated(const QMdiSubWindow *window)
 
 void MainWindow::onDocumentAboutToClose(const QString &canonicalName)
 {
-    // Update menu items; delete emitter from the list
+    // Update menu items but first delete the emitter from the list
     updateMenus(m_documentArea->subWindowList().count() - 1);
 
     // Update lottery button
     foreach (auto *actionLottery, m_actionLotteries) {
         if (actionLottery->data().toString() == canonicalName) {
             actionLottery->setChecked(false);
-            break;
+            return;
         }
     }
 }
@@ -508,8 +508,8 @@ Document *MainWindow::activeDocument() const
 
 bool MainWindow::openDocument(const QString &canonicalName)
 {
-    // Checks whether the given document is already open.
     if (auto *window = findDocument(canonicalName)) {
+        // Given document is already open; activate the window
         m_documentArea->setActiveSubWindow(window);
         return true;
     }
@@ -527,6 +527,7 @@ bool MainWindow::loadDocument(const QString &canonicalName)
         document->updateDocumentTitle();
         document->show();
 
+        // Update application
         updateTitleBar();
         updateMenus(m_documentArea->subWindowList().count());
     }

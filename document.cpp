@@ -63,15 +63,6 @@ void Document::updateDocumentTitle()
 }
 
 
-bool Document::load(const QString &canonicalName)
-{
-    setCanonicalName(canonicalName);
-
-
-    return true;
-}
-
-
 void Document::closeEvent(QCloseEvent *event)
 {
     if (true) {
@@ -82,4 +73,13 @@ void Document::closeEvent(QCloseEvent *event)
     } else {
         event->ignore();
     }
+}
+
+
+bool Document::load(const QString &canonicalName)
+{
+    setCanonicalName(canonicalName);
+
+
+    return true;
 }
