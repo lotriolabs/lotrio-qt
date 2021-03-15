@@ -47,8 +47,8 @@ MainWindow::MainWindow(QWidget *parent)
     setApplicationState(m_applicationState);
     setApplicationGeometry(m_applicationGeometry);
 
+    updateActions();
     updateActionFullScreen();
-    updateMenus();
 
     // Central widget
     m_documentArea->setViewMode(QMdiArea::TabbedView);
@@ -324,6 +324,18 @@ void MainWindow::createToolBars()
 }
 
 
+void MainWindow::updateActions(const int windowCount)
+{
+    bool hasDocument = windowCount >= 1;
+    bool hasDocuments = windowCount >= 2;
+
+    // Actions: Lotteries
+    m_actionClose->setEnabled(hasDocument);
+    m_actionCloseOther->setEnabled(hasDocuments);
+    m_actionCloseAll->setEnabled(hasDocument);
+}
+
+
 void MainWindow::updateActionFullScreen()
 {
     if (!isFullScreen()) {
@@ -338,17 +350,6 @@ void MainWindow::updateActionFullScreen()
         m_actionFullScreen->setChecked(true);
         m_actionFullScreen->setToolTip(tr("Exit the full screen mode [%1]").arg(m_actionFullScreen->shortcut().toString(QKeySequence::NativeText)));
     }
-}
-
-
-void MainWindow::updateMenus(const int cntWindows)
-{
-    bool hasDocument = cntWindows >= 1;
-    bool hasDocuments = cntWindows >= 2;
-
-    m_actionClose->setEnabled(hasDocument);
-    m_actionCloseOther->setEnabled(hasDocuments);
-    m_actionCloseAll->setEnabled(hasDocument);
 }
 
 
@@ -444,8 +445,8 @@ void MainWindow::onActionFullScreenTriggered()
 
 void MainWindow::onDocumentWindowActivated(const QMdiSubWindow *window)
 {
+    updateActions(m_documentArea->subWindowList().count());
     updateTitleBar();
-    updateMenus(m_documentArea->subWindowList().count());
 
     if (!window)
         return;
@@ -456,8 +457,8 @@ void MainWindow::onDocumentWindowActivated(const QMdiSubWindow *window)
 
 void MainWindow::onDocumentAboutToClose(const QString &canonicalName)
 {
-    // Update menu items but first delete the emitter from the list
-    updateMenus(m_documentArea->subWindowList().count() - 1);
+    // Update menu items; delete the emitter from the list
+    updateActions(m_documentArea->subWindowList().count() - 1);
 
     // Update lottery button
     foreach (auto *actionLottery, m_actionLotteries) {
@@ -528,8 +529,8 @@ bool MainWindow::loadDocument(const QString &canonicalName)
         document->show();
 
         // Update application
+        updateActions(m_documentArea->subWindowList().count());
         updateTitleBar();
-        updateMenus(m_documentArea->subWindowList().count());
     }
     else {
         document->close();

@@ -91,8 +91,8 @@ private:
     void createMenus();
     void createToolBars();
 
+    void updateActions(const int windowCount = 0);
     void updateActionFullScreen();
-    void updateMenus(const int cntWindows = 0);
     void updateTitleBar();
 
     QAction *m_actionAbout;
