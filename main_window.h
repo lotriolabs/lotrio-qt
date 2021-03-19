@@ -57,6 +57,8 @@ private slots:
 
     void onActionFullScreenTriggered();
 
+    void onActionKeyboardShortcutsTriggered();
+
     void onDocumentWindowActivated(const QMdiSubWindow *window);
     void onDocumentAboutToClose(const QString &canonicalName);
 
@@ -98,6 +100,8 @@ private:
     QAction *m_actionToolbarLotteries;
     QAction *m_actionToolbarView;
     QAction *m_actionToolbarHelp;
+
+    QAction *m_actionKeyboardShortcuts;
 
     QMdiArea *m_documentArea;
 
