@@ -149,7 +149,7 @@ void MainWindow::createActions()
     m_actionQuit->setObjectName(QStringLiteral("actionQuit"));
     m_actionQuit->setIcon(QIcon::fromTheme(QStringLiteral("application-exit"), QIcon(QStringLiteral(":/icons/actions/16/application-exit.svg"))));
     m_actionQuit->setShortcut(QKeySequence::Quit);
-    m_actionQuit->setToolTip(tr("Quit the application [%1]").arg(m_actionQuit->shortcut().toString(QKeySequence::NativeText)));
+    m_actionQuit->setToolTip(tr("Quit the application"));
     connect(m_actionQuit, &QAction::triggered, this, &MainWindow::close);
 
     // Actions: Lotteries
@@ -172,7 +172,7 @@ void MainWindow::createActions()
     m_actionClose->setObjectName(QStringLiteral("actionClose"));
     m_actionClose->setIcon(QIcon::fromTheme(QStringLiteral("document-close"), QIcon(QStringLiteral(":/icons/actions/16/document-close.svg"))));
     m_actionClose->setShortcut(QKeySequence::Close);
-    m_actionClose->setToolTip(tr("Close document [%1]").arg(m_actionClose->shortcut().toString(QKeySequence::NativeText)));
+    m_actionClose->setToolTip(tr("Close document"));
     connect(m_actionClose, &QAction::triggered, this, &MainWindow::onActionCloseTriggered);
 
     m_actionCloseOther = new QAction(tr("Close Other"), this);
@@ -183,7 +183,7 @@ void MainWindow::createActions()
     m_actionCloseAll = new QAction(tr("Close All"), this);
     m_actionCloseAll->setObjectName(QStringLiteral("actionCloseAll"));
     m_actionCloseAll->setShortcut(QKeySequence(Qt::CTRL + Qt::SHIFT + Qt::Key_W));
-    m_actionCloseAll->setToolTip(tr("Close all documents [%1]").arg(m_actionCloseAll->shortcut().toString(QKeySequence::NativeText)));
+    m_actionCloseAll->setToolTip(tr("Close all documents"));
     connect(m_actionCloseAll, &QAction::triggered, this, &MainWindow::onActionCloseAllTriggered);
 
     // Actions: View
@@ -305,13 +305,13 @@ void MainWindow::updateActionFullScreen()
         m_actionFullScreen->setText(tr("Full Screen Mode"));
         m_actionFullScreen->setIcon(QIcon::fromTheme(QStringLiteral("view-fullscreen"), QIcon(QStringLiteral(":/icons/actions/16/view-fullscreen.svg"))));
         m_actionFullScreen->setChecked(false);
-        m_actionFullScreen->setToolTip(tr("Display the window in full screen [%1]").arg(m_actionFullScreen->shortcut().toString(QKeySequence::NativeText)));
+        m_actionFullScreen->setToolTip(tr("Display the window in full screen"));
     }
     else {
         m_actionFullScreen->setText(tr("Exit Full Screen Mode"));
         m_actionFullScreen->setIcon(QIcon::fromTheme(QStringLiteral("view-restore"), QIcon(QStringLiteral(":/icons/actions/16/view-restore.svg"))));
         m_actionFullScreen->setChecked(true);
-        m_actionFullScreen->setToolTip(tr("Exit the full screen mode [%1]").arg(m_actionFullScreen->shortcut().toString(QKeySequence::NativeText)));
+        m_actionFullScreen->setToolTip(tr("Exit the full screen mode"));
     }
 }
 
