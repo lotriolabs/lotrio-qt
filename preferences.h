@@ -20,16 +20,14 @@
 #ifndef PREFERENCES_H
 #define PREFERENCES_H
 
-#include <QSettings>
-
 
 class Preferences
 {
 public:
     Preferences();
 
-    void load(QSettings &settings);
-    void save(QSettings &settings);
+    void load();
+    void save();
 
     void setRestoreApplicationState(bool value);
     bool restoreApplicationState(bool isDefault = false);

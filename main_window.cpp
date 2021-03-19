@@ -23,6 +23,7 @@
 #include <QDebug>
 #include <QMenuBar>
 #include <QScreen>
+#include <QSettings>
 
 #include "about_dialog.h"
 #include "colophon_dialog.h"
@@ -34,6 +35,8 @@ MainWindow::MainWindow(QWidget *parent)
     , m_documentArea(new QMdiArea)
 {
     setWindowIcon(QIcon(QStringLiteral(":/icons/apps/512/lotrio.svg")));
+
+    m_preferences.load();
 
     loadSettings();
 
@@ -109,6 +112,8 @@ void MainWindow::closeEvent(QCloseEvent *event)
         m_applicationState = m_preferences.restoreApplicationState() ? applicationState() : QByteArray();
         m_applicationGeometry = m_preferences.restoreApplicationGeometry() ? applicationGeometry() : QByteArray();
 
+        m_preferences.save();
+
         saveSettings();
         event->accept();
     }
@@ -122,9 +127,6 @@ void MainWindow::loadSettings()
 {
     QSettings settings;
 
-    // Preferences
-    m_preferences.load(settings);
-
     // Application and dialog properties
     m_applicationState = m_preferences.restoreApplicationState() ? settings.value(QStringLiteral("Application/State"), QByteArray()).toByteArray() : QByteArray();
     m_applicationGeometry = m_preferences.restoreApplicationGeometry() ? settings.value(QStringLiteral("Application/Geometry"), QByteArray()).toByteArray() : QByteArray();
@@ -134,9 +136,6 @@ void MainWindow::loadSettings()
 void MainWindow::saveSettings()
 {
     QSettings settings;
-
-    // Preferences
-    m_preferences.save(settings);
 
     // Application and dialog properties
     settings.setValue(QStringLiteral("Application/State"), m_applicationState);

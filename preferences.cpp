@@ -19,6 +19,8 @@
 
 #include "preferences.h"
 
+#include <QSettings>
+
 
 Preferences::Preferences()
 {
@@ -29,8 +31,10 @@ Preferences::Preferences()
 }
 
 
-void Preferences::load(QSettings &settings)
+void Preferences::load()
 {
+    QSettings settings;
+
     settings.beginGroup(QStringLiteral("Preferences"));
 
     // General: State & Geometries
@@ -42,8 +46,10 @@ void Preferences::load(QSettings &settings)
 }
 
 
-void Preferences::save(QSettings &settings)
+void Preferences::save()
 {
+    QSettings settings;
+
     settings.beginGroup(QStringLiteral("Preferences"));
     settings.remove("");
 

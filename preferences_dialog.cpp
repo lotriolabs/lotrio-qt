@@ -21,6 +21,7 @@
 
 #include <QDialogButtonBox>
 #include <QListWidget>
+#include <QSettings>
 #include <QStackedWidget>
 #include <QVBoxLayout>
 
