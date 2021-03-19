@@ -25,10 +25,13 @@
 #include <QVBoxLayout>
 
 
-PreferencesDialog::PreferencesDialog(QWidget *parent)
+PreferencesDialog::PreferencesDialog(const bool &restoreGeometry, QWidget *parent)
     : QDialog(parent)
+    , m_restoreGeometry(restoreGeometry)
 {
     setWindowTitle(tr("Preferences"));
+
+    loadSettings();
 
     // Preferences box
     m_generalPage = new PreferencesGeneralPage(this);
@@ -84,8 +87,19 @@ PreferencesDialog::PreferencesDialog(QWidget *parent)
 }
 
 
-void PreferencesDialog::setDialogGeometry(const QByteArray &geometry)
+void PreferencesDialog::closeEvent(QCloseEvent *event)
 {
+    saveSettings();
+    event->accept();
+}
+
+
+void PreferencesDialog::loadSettings()
+{
+    QSettings settings;
+
+    const auto geometry = m_restoreGeometry ? settings.value(QStringLiteral("PreferencesDialog/Geometry"), QByteArray()).toByteArray() : QByteArray();
+
     if (!geometry.isEmpty())
         restoreGeometry(geometry);
     else
@@ -93,9 +107,13 @@ void PreferencesDialog::setDialogGeometry(const QByteArray &geometry)
 }
 
 
-QByteArray PreferencesDialog::dialogGeometry() const
+void PreferencesDialog::saveSettings()
 {
-    return saveGeometry();
+    QSettings settings;
+
+    const auto geometry = m_restoreGeometry ? saveGeometry() : QByteArray();
+
+    settings.setValue(QStringLiteral("PreferencesDialog/Geometry"), geometry);
 }
 
 

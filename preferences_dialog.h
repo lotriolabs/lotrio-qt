@@ -20,6 +20,7 @@
 #ifndef PREFERENCES_DIALOG_H
 #define PREFERENCES_DIALOG_H
 
+#include <QCloseEvent>
 #include <QDialog>
 #include <QPushButton>
 
@@ -35,13 +36,13 @@ class PreferencesDialog : public QDialog
     Q_OBJECT
 
 public:
-    explicit PreferencesDialog(QWidget *parent = nullptr);
-
-    void setDialogGeometry(const QByteArray &geometry = QByteArray());
-    QByteArray dialogGeometry() const;
+    explicit PreferencesDialog(const bool &restoreGeometry, QWidget *parent = nullptr);
 
     void setPreferences(const Preferences &preferences);
     Preferences preferences() const;
+
+protected:
+    void closeEvent(QCloseEvent *event) override;
 
 private slots:
     void onPreferencesChanged();
@@ -51,6 +52,11 @@ private slots:
     void onButtonApplyClicked();
 
 private:
+    bool m_restoreGeometry;
+
+    void loadSettings();
+    void saveSettings();
+
     Preferences m_preferences;
 
     void updatePreferences(bool isDefault = false);

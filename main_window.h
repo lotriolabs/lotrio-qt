@@ -71,7 +71,6 @@ private:
 
     QByteArray m_applicationState;
     QByteArray m_applicationGeometry;
-    QByteArray m_preferencesDialogGeometry;
 
     void loadSettings();
     void saveSettings();
