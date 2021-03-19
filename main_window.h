@@ -40,12 +40,6 @@ public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
 
-    void setApplicationState(const QByteArray &state = QByteArray());
-    QByteArray applicationState() const;
-
-    void setApplicationGeometry(const QByteArray &geometry = QByteArray());
-    QByteArray applicationGeometry() const;
-
     bool openDocument(const QString &canonicalName);
 
 protected:
@@ -68,9 +62,6 @@ private slots:
 
 private:
     Preferences m_preferences;
-
-    QByteArray m_applicationState;
-    QByteArray m_applicationGeometry;
 
     void loadSettings();
     void saveSettings();
