@@ -20,6 +20,7 @@
 #ifndef ABOUT_DIALOG_H
 #define ABOUT_DIALOG_H
 
+#include <QCloseEvent>
 #include <QDialog>
 
 
@@ -28,10 +29,16 @@ class AboutDialog : public QDialog
     Q_OBJECT
 
 public:
-    explicit AboutDialog(QWidget *parent = nullptr);
+    explicit AboutDialog(const bool &restoreGeometry, QWidget *parent = nullptr);
 
-    void setDialogGeometry(const QByteArray &geometry = QByteArray());
-    QByteArray dialogGeometry() const;
+protected:
+    void closeEvent(QCloseEvent *event) override;
+
+private:
+    bool m_restoreGeometry;
+
+    void loadSettings();
+    void saveSettings();
 };
 
 #endif // ABOUT_DIALOG_H

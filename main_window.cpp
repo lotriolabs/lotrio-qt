@@ -128,7 +128,6 @@ void MainWindow::loadSettings()
     // Application and dialog properties
     m_applicationState = m_preferences.restoreApplicationState() ? settings.value(QStringLiteral("Application/State"), QByteArray()).toByteArray() : QByteArray();
     m_applicationGeometry = m_preferences.restoreApplicationGeometry() ? settings.value(QStringLiteral("Application/Geometry"), QByteArray()).toByteArray() : QByteArray();
-    m_aboutDialogGeometry = settings.value(QStringLiteral("AboutDialog/Geometry"), QByteArray()).toByteArray();
     m_colophonDialogGeometry = settings.value(QStringLiteral("ColophonDialog/Geometry"), QByteArray()).toByteArray();
     m_preferencesDialogGeometry = settings.value(QStringLiteral("PreferencesDialog/Geometry"), QByteArray()).toByteArray();
 }
@@ -144,7 +143,6 @@ void MainWindow::saveSettings()
     // Application and dialog properties
     settings.setValue(QStringLiteral("Application/State"), m_applicationState);
     settings.setValue(QStringLiteral("Application/Geometry"), m_applicationGeometry);
-    settings.setValue(QStringLiteral("AboutDialog/Geometry"), m_aboutDialogGeometry);
     settings.setValue(QStringLiteral("ColophonDialog/Geometry"), m_colophonDialogGeometry);
     settings.setValue(QStringLiteral("PreferencesDialog/Geometry"), m_preferencesDialogGeometry);
 }
@@ -363,13 +361,8 @@ void MainWindow::updateTitleBar()
 
 void MainWindow::onActionAboutTriggered()
 {
-    const auto geometry = m_preferences.restoreDialogGeometry() ? m_aboutDialogGeometry : QByteArray();
-
-    AboutDialog dialog(this);
-    dialog.setDialogGeometry(geometry);
+    AboutDialog dialog(m_preferences.restoreDialogGeometry(), this);
     dialog.exec();
-
-    m_aboutDialogGeometry = m_preferences.restoreDialogGeometry() ? dialog.dialogGeometry() : QByteArray();
 }
 
 

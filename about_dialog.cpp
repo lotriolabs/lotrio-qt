@@ -21,17 +21,21 @@
 
 #include <QApplication>
 #include <QDialogButtonBox>
+#include <QSettings>
 #include <QVBoxLayout>
 
 #include "colophon_about_page.h"
 #include "dialog_title_box.h"
 
 
-AboutDialog::AboutDialog(QWidget *parent)
+AboutDialog::AboutDialog(const bool &restoreGeometry, QWidget *parent)
     : QDialog(parent)
+    , m_restoreGeometry(restoreGeometry)
 {
     setWindowFlags(windowFlags() & ~Qt::WindowContextHelpButtonHint);
     setWindowTitle(tr("About %1").arg(QApplication::applicationName()));
+
+    loadSettings();
 
     // Title box
     auto *titleBox = new DialogTitleBox;
@@ -52,8 +56,19 @@ AboutDialog::AboutDialog(QWidget *parent)
 }
 
 
-void AboutDialog::setDialogGeometry(const QByteArray &geometry)
+void AboutDialog::closeEvent(QCloseEvent *event)
 {
+    saveSettings();
+    event->accept();
+}
+
+
+void AboutDialog::loadSettings()
+{
+    QSettings settings;
+
+    const auto geometry = m_restoreGeometry ? settings.value(QStringLiteral("AboutDialog/Geometry"), QByteArray()).toByteArray() : QByteArray();
+
     if (!geometry.isEmpty())
         restoreGeometry(geometry);
     else
@@ -61,7 +76,11 @@ void AboutDialog::setDialogGeometry(const QByteArray &geometry)
 }
 
 
-QByteArray AboutDialog::dialogGeometry() const
+void AboutDialog::saveSettings()
 {
-    return saveGeometry();
+    QSettings settings;
+
+    const auto geometry = m_restoreGeometry ? saveGeometry() : QByteArray();
+
+    settings.setValue(QStringLiteral("AboutDialog/Geometry"), geometry);
 }

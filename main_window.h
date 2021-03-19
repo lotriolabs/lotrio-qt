@@ -71,7 +71,6 @@ private:
 
     QByteArray m_applicationState;
     QByteArray m_applicationGeometry;
-    QByteArray m_aboutDialogGeometry;
     QByteArray m_colophonDialogGeometry;
     QByteArray m_preferencesDialogGeometry;
 
