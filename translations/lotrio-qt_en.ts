@@ -4,7 +4,7 @@
 <context>
     <name>AboutDialog</name>
     <message>
-        <location filename="../about_dialog.cpp" line="34"/>
+        <location filename="../about_dialog.cpp" line="36"/>
         <source>About %1</source>
         <translation type="unfinished"></translation>
     </message>
@@ -51,7 +51,7 @@
 <context>
     <name>ColophonDialog</name>
     <message>
-        <location filename="../colophon_dialog.cpp" line="38"/>
+        <location filename="../colophon_dialog.cpp" line="40"/>
         <source>Colophon</source>
         <translation type="unfinished"></translation>
     </message>
@@ -106,219 +106,212 @@
 <context>
     <name>MainWindow</name>
     <message>
-        <location filename="../main_window.cpp" line="155"/>
+        <location filename="../main_window.cpp" line="121"/>
         <source>Eurojackpot</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../main_window.cpp" line="155"/>
+        <location filename="../main_window.cpp" line="121"/>
         <source>Eurojackpot is a transnational European lottery</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../main_window.cpp" line="156"/>
+        <location filename="../main_window.cpp" line="122"/>
         <source>EuroMillions</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../main_window.cpp" line="156"/>
+        <location filename="../main_window.cpp" line="122"/>
         <source>EuroMillions is a transnational European lottery</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../main_window.cpp" line="157"/>
+        <location filename="../main_window.cpp" line="123"/>
         <source>Vikinglotto</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../main_window.cpp" line="157"/>
+        <location filename="../main_window.cpp" line="123"/>
         <source>Vikinglotto is a transnational European lottery</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../main_window.cpp" line="164"/>
+        <location filename="../main_window.cpp" line="130"/>
         <source>About %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../main_window.cpp" line="167"/>
+        <location filename="../main_window.cpp" line="133"/>
         <source>About</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../main_window.cpp" line="168"/>
+        <location filename="../main_window.cpp" line="134"/>
         <source>Brief description of the application</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../main_window.cpp" line="171"/>
+        <location filename="../main_window.cpp" line="137"/>
         <source>Colophon</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../main_window.cpp" line="173"/>
+        <location filename="../main_window.cpp" line="139"/>
         <source>Lengthy description of the application</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../main_window.cpp" line="176"/>
+        <location filename="../main_window.cpp" line="142"/>
         <source>Preferences…</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../main_window.cpp" line="179"/>
-        <source>Preferences</source>
+        <location filename="../main_window.cpp" line="152"/>
+        <source>Quit the application</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../main_window.cpp" line="180"/>
+        <location filename="../main_window.cpp" line="175"/>
+        <source>Close document</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../main_window.cpp" line="186"/>
+        <source>Close all documents</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../main_window.cpp" line="308"/>
+        <source>Display the window in full screen</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../main_window.cpp" line="314"/>
+        <source>Exit the full screen mode</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../main_window.cpp" line="145"/>
         <source>Customize the appearance and behavior of the application</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../main_window.cpp" line="183"/>
-        <location filename="../main_window.cpp" line="186"/>
+        <location filename="../main_window.cpp" line="148"/>
         <source>Quit</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../main_window.cpp" line="188"/>
-        <source>Quit the application [%1]</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../main_window.cpp" line="207"/>
-        <location filename="../main_window.cpp" line="210"/>
+        <location filename="../main_window.cpp" line="171"/>
         <source>Close</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../main_window.cpp" line="212"/>
-        <source>Close document [%1]</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../main_window.cpp" line="215"/>
+        <location filename="../main_window.cpp" line="178"/>
         <source>Close Other</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../main_window.cpp" line="217"/>
+        <location filename="../main_window.cpp" line="180"/>
         <source>Close all other documents</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../main_window.cpp" line="220"/>
+        <location filename="../main_window.cpp" line="183"/>
         <source>Close All</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../main_window.cpp" line="223"/>
-        <source>Close all documents [%1]</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../main_window.cpp" line="229"/>
+        <location filename="../main_window.cpp" line="192"/>
         <source>Full Screen</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../main_window.cpp" line="234"/>
+        <location filename="../main_window.cpp" line="197"/>
         <source>Show Application Toolbar</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../main_window.cpp" line="237"/>
+        <location filename="../main_window.cpp" line="200"/>
         <source>Display the Application toolbar</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../main_window.cpp" line="240"/>
+        <location filename="../main_window.cpp" line="203"/>
         <source>Show Lotteries Toolbar</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../main_window.cpp" line="243"/>
+        <location filename="../main_window.cpp" line="206"/>
         <source>Display the Lotteries toolbar</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../main_window.cpp" line="246"/>
+        <location filename="../main_window.cpp" line="209"/>
         <source>Show View Toolbar</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../main_window.cpp" line="249"/>
+        <location filename="../main_window.cpp" line="212"/>
         <source>Display the View toolbar</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../main_window.cpp" line="252"/>
+        <location filename="../main_window.cpp" line="215"/>
         <source>Show Help Toolbar</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../main_window.cpp" line="255"/>
+        <location filename="../main_window.cpp" line="218"/>
         <source>Display the Help toolbar</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../main_window.cpp" line="292"/>
+        <location filename="../main_window.cpp" line="255"/>
         <source>Help</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../main_window.cpp" line="321"/>
+        <location filename="../main_window.cpp" line="284"/>
         <source>Help Toolbar</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../main_window.cpp" line="330"/>
+        <location filename="../main_window.cpp" line="305"/>
         <source>Full Screen Mode</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../main_window.cpp" line="333"/>
-        <source>Display the window in full screen [%1]</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../main_window.cpp" line="336"/>
+        <location filename="../main_window.cpp" line="311"/>
         <source>Exit Full Screen Mode</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../main_window.cpp" line="339"/>
-        <source>Exit the full screen mode [%1]</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../main_window.cpp" line="263"/>
+        <location filename="../main_window.cpp" line="226"/>
         <source>Application</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../main_window.cpp" line="273"/>
+        <location filename="../main_window.cpp" line="236"/>
         <source>Lotteries</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../main_window.cpp" line="282"/>
+        <location filename="../main_window.cpp" line="245"/>
         <source>View</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../main_window.cpp" line="300"/>
+        <location filename="../main_window.cpp" line="263"/>
         <source>Application Toolbar</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../main_window.cpp" line="309"/>
+        <location filename="../main_window.cpp" line="272"/>
         <source>Lotteries Toolbar</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../main_window.cpp" line="315"/>
+        <location filename="../main_window.cpp" line="278"/>
         <source>View Toolbar</source>
         <translation type="unfinished"></translation>
     </message>
@@ -326,7 +319,7 @@
 <context>
     <name>PreferencesDialog</name>
     <message>
-        <location filename="../preferences_dialog.cpp" line="31"/>
+        <location filename="../preferences_dialog.cpp" line="33"/>
         <source>Preferences</source>
         <translation type="unfinished"></translation>
     </message>
