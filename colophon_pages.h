@@ -39,4 +39,20 @@ private:
     QVBoxLayout *m_layout;
 };
 
+
+class ColophonAuthorsPage : public QWidget
+{
+    Q_OBJECT
+
+public:
+    explicit ColophonAuthorsPage(QWidget *parent = nullptr);
+
+    void setZeroMargins();
+
+    QString title() const;
+
+private:
+    QVBoxLayout *m_layout;
+};
+
 #endif // COLOPHON_PAGES_H
