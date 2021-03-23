@@ -17,32 +17,27 @@
  * along with Lotrio-Qt.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-#include "keyboard_shortcuts_dialog.h"
-
-#include <QDialogButtonBox>
-#include <QVBoxLayout>
-
 #include "keyboard_shortcuts_page.h"
 
 
-KeyboardShortcutsDialog::KeyboardShortcutsDialog(QWidget *parent)
-    : QDialog(parent)
+KeyboardShortcutsPage::KeyboardShortcutsPage(QWidget *parent)
+    : QWidget(parent)
 {
-    setWindowFlags(windowFlags() & ~Qt::WindowContextHelpButtonHint);
-    setWindowTitle(tr("Keyboard Shortcuts"));
 
-    resize(640, 480);
-
-    // Content
-    auto *keyboardShortcutsPage = new KeyboardShortcutsPage(this);
-    keyboardShortcutsPage->setZeroMargins();
-
-    // Button box
-    auto *buttonBox = new QDialogButtonBox(QDialogButtonBox::Close);
-    connect(buttonBox, &QDialogButtonBox::rejected, this, &KeyboardShortcutsDialog::close);
 
     // Main layout
-    auto *layout = new QVBoxLayout(this);
-    layout->addWidget(keyboardShortcutsPage);
-    layout->addWidget(buttonBox);
+    m_layout = new QVBoxLayout(this);
+    m_layout->addStretch(1);
+}
+
+
+void KeyboardShortcutsPage::setZeroMargins()
+{
+    m_layout->setContentsMargins(0, 0, 0, 0);
+}
+
+
+QString KeyboardShortcutsPage::title() const
+{
+    return tr("Keyboard Shortcuts");
 }

@@ -38,6 +38,7 @@ SOURCES += \
     dialog_title_box.cpp \
     document.cpp \
     keyboard_shortcuts_dialog.cpp \
+    keyboard_shortcuts_page.cpp \
     main.cpp \
     main_window.cpp \
     preferences.cpp \
@@ -58,6 +59,7 @@ HEADERS += \
     dialog_title_box.h \
     document.h \
     keyboard_shortcuts_dialog.h \
+    keyboard_shortcuts_page.h \
     main_window.h \
     preferences.h \
     preferences_dialog.h \
