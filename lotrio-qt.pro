@@ -29,12 +29,12 @@ CONFIG += c++17
 
 SOURCES += \
     about_dialog.cpp \
-    colophon_about_page.cpp \
     colophon_authors_page.cpp \
     colophon_credits_page.cpp \
     colophon_dialog.cpp \
     colophon_environment_page.cpp \
     colophon_license_page.cpp \
+    colophon_pages.cpp \
     dialog_title_box.cpp \
     document.cpp \
     keyboard_shortcuts_dialog.cpp \
@@ -50,12 +50,12 @@ SOURCES += \
 
 HEADERS += \
     about_dialog.h \
-    colophon_about_page.h \
     colophon_authors_page.h \
     colophon_credits_page.h \
     colophon_dialog.h \
     colophon_environment_page.h \
     colophon_license_page.h \
+    colophon_pages.h \
     dialog_title_box.h \
     document.h \
     keyboard_shortcuts_dialog.h \

@@ -17,7 +17,7 @@
  * along with Lotrio-Qt.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-#include "colophon_about_page.h"
+#include "colophon_pages.h"
 
 #include <QApplication>
 #include <QTextBrowser>

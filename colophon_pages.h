@@ -17,8 +17,8 @@
  * along with Lotrio-Qt.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-#ifndef COLOPHON_ABOUT_PAGE_H
-#define COLOPHON_ABOUT_PAGE_H
+#ifndef COLOPHON_PAGES_H
+#define COLOPHON_PAGES_H
 
 #include <QVBoxLayout>
 #include <QWidget>
@@ -39,4 +39,4 @@ private:
     QVBoxLayout *m_layout;
 };
 
-#endif // COLOPHON_ABOUT_PAGE_H
+#endif // COLOPHON_PAGES_H

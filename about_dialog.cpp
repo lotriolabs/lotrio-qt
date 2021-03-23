@@ -23,7 +23,7 @@
 #include <QDialogButtonBox>
 #include <QVBoxLayout>
 
-#include "colophon_about_page.h"
+#include "colophon_pages.h"
 #include "dialog_title_box.h"
 
 

@@ -23,11 +23,11 @@
 #include <QTabWidget>
 #include <QVBoxLayout>
 
-#include "colophon_about_page.h"
 #include "colophon_authors_page.h"
 #include "colophon_credits_page.h"
 #include "colophon_environment_page.h"
 #include "colophon_license_page.h"
+#include "colophon_pages.h"
 #include "dialog_title_box.h"
 
 
