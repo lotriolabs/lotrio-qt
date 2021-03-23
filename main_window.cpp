@@ -174,18 +174,18 @@ void MainWindow::createActions()
     m_actionClose->setObjectName(QStringLiteral("actionClose"));
     m_actionClose->setIcon(QIcon::fromTheme(QStringLiteral("document-close"), QIcon(QStringLiteral(":/icons/actions/16/document-close.svg"))));
     m_actionClose->setShortcut(QKeySequence::Close);
-    m_actionClose->setToolTip(tr("Close document"));
+    m_actionClose->setToolTip(tr("Close lottery"));
     connect(m_actionClose, &QAction::triggered, this, &MainWindow::onActionCloseTriggered);
 
     m_actionCloseOther = new QAction(tr("Close Other"), this);
     m_actionCloseOther->setObjectName(QStringLiteral("actionCloseOther"));
-    m_actionCloseOther->setToolTip(tr("Close all other documents"));
+    m_actionCloseOther->setToolTip(tr("Close all other lotteries"));
     connect(m_actionCloseOther, &QAction::triggered, this, &MainWindow::onActionCloseOtherTriggered);
 
     m_actionCloseAll = new QAction(tr("Close All"), this);
     m_actionCloseAll->setObjectName(QStringLiteral("actionCloseAll"));
     m_actionCloseAll->setShortcut(QKeySequence(Qt::CTRL + Qt::SHIFT + Qt::Key_W));
-    m_actionCloseAll->setToolTip(tr("Close all documents"));
+    m_actionCloseAll->setToolTip(tr("Close all lotteries"));
     connect(m_actionCloseAll, &QAction::triggered, this, &MainWindow::onActionCloseAllTriggered);
 
     // Actions: View
@@ -521,3 +521,4 @@ bool MainWindow::closeDocument(const QString &canonicalName)
 
     return succeeded;
 }
+
