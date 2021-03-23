@@ -23,7 +23,6 @@
 #include <QTabWidget>
 #include <QVBoxLayout>
 
-#include "colophon_license_page.h"
 #include "colophon_pages.h"
 #include "dialog_title_box.h"
 
