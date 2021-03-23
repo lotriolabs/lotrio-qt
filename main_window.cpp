@@ -346,7 +346,7 @@ void MainWindow::onActionAboutTriggered()
 
 void MainWindow::onActionColophonTriggered()
 {
-    ColophonDialog dialog(m_preferences.restoreDialogGeometry(), this);
+    ColophonDialog dialog(this);
     dialog.exec();
 }
 

@@ -20,7 +20,6 @@
 #include "colophon_dialog.h"
 
 #include <QDialogButtonBox>
-#include <QSettings>
 #include <QTabWidget>
 #include <QVBoxLayout>
 
@@ -32,14 +31,13 @@
 #include "dialog_title_box.h"
 
 
-ColophonDialog::ColophonDialog(const bool &restoreGeometry, QWidget *parent)
+ColophonDialog::ColophonDialog(QWidget *parent)
     : QDialog(parent)
-    , m_restoreGeometry(restoreGeometry)
 {
     setWindowFlags(windowFlags() & ~Qt::WindowContextHelpButtonHint);
     setWindowTitle(tr("Colophon"));
 
-    loadSettings();
+    resize(640, 480);
 
     // Title box
     auto *titleBox = new DialogTitleBox;
@@ -67,34 +65,4 @@ ColophonDialog::ColophonDialog(const bool &restoreGeometry, QWidget *parent)
     layout->addWidget(titleBox);
     layout->addWidget(tabBox);
     layout->addWidget(buttonBox);
-}
-
-
-void ColophonDialog::closeEvent(QCloseEvent *event)
-{
-    saveSettings();
-    event->accept();
-}
-
-
-void ColophonDialog::loadSettings()
-{
-    QSettings settings;
-
-    const auto geometry = m_restoreGeometry ? settings.value(QStringLiteral("ColophonDialog/Geometry"), QByteArray()).toByteArray() : QByteArray();
-
-    if (!geometry.isEmpty())
-        restoreGeometry(geometry);
-    else
-        resize(640, 480);
-}
-
-
-void ColophonDialog::saveSettings()
-{
-    QSettings settings;
-
-    const auto geometry = m_restoreGeometry ? saveGeometry() : QByteArray();
-
-    settings.setValue(QStringLiteral("ColophonDialog/Geometry"), geometry);
 }

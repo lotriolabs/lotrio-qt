@@ -20,7 +20,6 @@
 #ifndef COLOPHON_DIALOG_H
 #define COLOPHON_DIALOG_H
 
-#include <QCloseEvent>
 #include <QDialog>
 
 
@@ -29,16 +28,7 @@ class ColophonDialog : public QDialog
     Q_OBJECT
 
 public:
-    explicit ColophonDialog(const bool &restoreGeometry, QWidget *parent = nullptr);
-
-protected:
-    void closeEvent(QCloseEvent *event) override;
-
-private:
-    bool m_restoreGeometry;
-
-    void loadSettings();
-    void saveSettings();
+    explicit ColophonDialog(QWidget *parent = nullptr);
 };
 
 #endif // COLOPHON_DIALOG_H
