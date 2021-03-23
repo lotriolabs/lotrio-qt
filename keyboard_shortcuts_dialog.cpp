@@ -34,7 +34,7 @@ KeyboardShortcutsDialog::KeyboardShortcutsDialog(QWidget *parent)
     resize(640, 480);
 
     // Content
-    auto *keyboardShortcutsPage = new KeyboardShortcutsPage(this);
+    auto *keyboardShortcutsPage = new KeyboardShortcutsPage(parentWidget());
     keyboardShortcutsPage->setZeroMargins();
 
     // Button box

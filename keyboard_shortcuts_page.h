@@ -29,7 +29,7 @@ class KeyboardShortcutsPage : public QWidget
     Q_OBJECT
 
 public:
-    explicit KeyboardShortcutsPage(QWidget *parent = nullptr);
+    explicit KeyboardShortcutsPage(QWidget *mainWindow, QWidget *parent = nullptr);
 
     void setZeroMargins();
 

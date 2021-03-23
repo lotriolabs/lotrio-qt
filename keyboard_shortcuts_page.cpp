@@ -19,15 +19,42 @@
 
 #include "keyboard_shortcuts_page.h"
 
+#include <QAction>
+#include <QHeaderView>
+#include <QTableWidget>
 
-KeyboardShortcutsPage::KeyboardShortcutsPage(QWidget *parent)
+
+KeyboardShortcutsPage::KeyboardShortcutsPage(QWidget *mainWindow, QWidget *parent)
     : QWidget(parent)
 {
+    QStringList headerLabels = { tr("Name"), tr("Shortcut"), tr("Description") };
 
+    auto *tableBox = new QTableWidget(0, headerLabels.size(), this);
+    tableBox->setHorizontalHeaderLabels(headerLabels);
+    tableBox->horizontalHeader()->setDefaultAlignment(Qt::AlignLeft);
+    tableBox->horizontalHeader()->setStretchLastSection(true);
+    tableBox->verticalHeader()->setVisible(false);
+    tableBox->setEditTriggers(QAbstractItemView::NoEditTriggers);
+    tableBox->setSelectionMode(QAbstractItemView::NoSelection);
+    tableBox->setFocusPolicy(Qt::NoFocus);
+
+    QList<QAction *> actionItems = mainWindow->findChildren<QAction *> (QString(), Qt::FindDirectChildrenOnly);
+    for (auto *actionItem : actionItems) {
+
+        if (!actionItem->shortcut().isEmpty()) {
+            int idx = tableBox->rowCount();
+
+            tableBox->setRowCount(idx + 1);
+            tableBox->setItem(idx, 0, new QTableWidgetItem(actionItem->icon(), actionItem->text()));
+            tableBox->setItem(idx, 1, new QTableWidgetItem(actionItem->shortcut().toString(QKeySequence::NativeText)));
+            tableBox->setItem(idx, 2, new QTableWidgetItem(actionItem->toolTip()));
+        }
+    }
+    tableBox->resizeColumnsToContents();
 
     // Main layout
     m_layout = new QVBoxLayout(this);
-    m_layout->addStretch(1);
+    m_layout->addWidget(tableBox);
 }
 
 
