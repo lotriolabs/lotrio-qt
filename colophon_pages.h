@@ -55,4 +55,20 @@ private:
     QVBoxLayout *m_layout;
 };
 
+
+class ColophonCreditsPage : public QWidget
+{
+    Q_OBJECT
+
+public:
+    explicit ColophonCreditsPage(QWidget *parent = nullptr);
+
+    void setZeroMargins();
+
+    QString title() const;
+
+private:
+    QVBoxLayout *m_layout;
+};
+
 #endif // COLOPHON_PAGES_H

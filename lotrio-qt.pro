@@ -29,7 +29,6 @@ CONFIG += c++17
 
 SOURCES += \
     about_dialog.cpp \
-    colophon_credits_page.cpp \
     colophon_dialog.cpp \
     colophon_environment_page.cpp \
     colophon_license_page.cpp \
@@ -49,7 +48,6 @@ SOURCES += \
 
 HEADERS += \
     about_dialog.h \
-    colophon_credits_page.h \
     colophon_dialog.h \
     colophon_environment_page.h \
     colophon_license_page.h \
