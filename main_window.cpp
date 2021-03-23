@@ -353,7 +353,7 @@ void MainWindow::onActionColophonTriggered()
 
 void MainWindow::onActionPreferencesTriggered()
 {
-    PreferencesDialog dialog(m_preferences.restoreDialogGeometry(), this);
+    PreferencesDialog dialog(this);
     dialog.setPreferences(m_preferences);
     dialog.exec();
 

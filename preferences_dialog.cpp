@@ -21,18 +21,16 @@
 
 #include <QDialogButtonBox>
 #include <QListWidget>
-#include <QSettings>
 #include <QStackedWidget>
 #include <QVBoxLayout>
 
 
-PreferencesDialog::PreferencesDialog(const bool &restoreGeometry, QWidget *parent)
+PreferencesDialog::PreferencesDialog(QWidget *parent)
     : QDialog(parent)
-    , m_restoreGeometry(restoreGeometry)
 {
     setWindowTitle(tr("Preferences"));
 
-    loadSettings();
+    resize(800, 600);
 
     // Preferences box
     m_generalPage = new PreferencesGeneralPage(this);
@@ -85,36 +83,6 @@ PreferencesDialog::PreferencesDialog(const bool &restoreGeometry, QWidget *paren
 
     updatePreferences();
     m_buttonApply->setEnabled(false);
-}
-
-
-void PreferencesDialog::closeEvent(QCloseEvent *event)
-{
-    saveSettings();
-    event->accept();
-}
-
-
-void PreferencesDialog::loadSettings()
-{
-    QSettings settings;
-
-    const auto geometry = m_restoreGeometry ? settings.value(QStringLiteral("PreferencesDialog/Geometry"), QByteArray()).toByteArray() : QByteArray();
-
-    if (!geometry.isEmpty())
-        restoreGeometry(geometry);
-    else
-        resize(800, 600);
-}
-
-
-void PreferencesDialog::saveSettings()
-{
-    QSettings settings;
-
-    const auto geometry = m_restoreGeometry ? saveGeometry() : QByteArray();
-
-    settings.setValue(QStringLiteral("PreferencesDialog/Geometry"), geometry);
 }
 
 
