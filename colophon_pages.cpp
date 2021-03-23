@@ -118,3 +118,43 @@ QString ColophonCreditsPage::title() const
 {
     return tr("Credits");
 }
+
+
+ColophonEnvironmentPage::ColophonEnvironmentPage(QWidget *parent)
+    : QWidget(parent)
+{
+    const QString qtVersion = qVersion(); // Qt version used to run Qt for C++
+    const QString qtBuildVersion = QT_VERSION_STR; // Qt version used to compile Qt
+    const QString osName = QSysInfo::prettyProductName();
+    const QString osKernelVersion = QSysInfo::kernelVersion();
+    const QString osCpuArchitecture = QSysInfo::currentCpuArchitecture();
+
+    auto *textBox = new QTextBrowser;
+    textBox->setFrameStyle(QFrame::NoFrame);
+    textBox->setStyleSheet(QStringLiteral("background-color:transparent;"));
+    textBox->setOpenExternalLinks(true);
+    textBox->setHtml(tr("<html><body>"
+        "<dl><dt><strong>Application version</strong></dt>"
+            "<dd>%1</dd></dl>"
+        "<dl><dt><strong>Qt for C++ version</strong></dt>"
+            "<dd>Qt %2 (Built against %3)</dd></dl>"
+        "<dl><dt><strong>Operation System</strong></dt>"
+            "<dd>%4 (Kernel %5 on %6)</dd></dl>"
+        "</body></html>").arg(QApplication::applicationVersion(), qtVersion, qtBuildVersion, osName, osKernelVersion, osCpuArchitecture));
+
+    // Main layout
+    m_layout = new QVBoxLayout(this);
+    m_layout->addWidget(textBox);
+}
+
+
+void ColophonEnvironmentPage::setZeroMargins()
+{
+    m_layout->setContentsMargins(0, 0, 0, 0);
+}
+
+
+QString ColophonEnvironmentPage::title() const
+{
+    return tr("Environment");
+}
