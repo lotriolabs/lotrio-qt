@@ -339,7 +339,7 @@ void MainWindow::updateTitleBar()
 
 void MainWindow::onActionAboutTriggered()
 {
-    AboutDialog dialog(m_preferences.restoreDialogGeometry(), this);
+    AboutDialog dialog(this);
     dialog.exec();
 }
 
