@@ -29,19 +29,15 @@ public:
     void load();
     void save();
 
-    void setRestoreApplicationState(bool value);
-    bool restoreApplicationState(bool isDefault = false);
-
     void setRestoreApplicationGeometry(bool value);
     bool restoreApplicationGeometry(bool isDefault = false);
 
-    void setRestoreDialogGeometry(bool value);
-    bool restoreDialogGeometry(bool isDefault = false);
+    void setRestoreApplicationState(bool value);
+    bool restoreApplicationState(bool isDefault = false);
 
 private:
-    bool m_restoreApplicationState;
     bool m_restoreApplicationGeometry;
-    bool m_restoreDialogGeometry;
+    bool m_restoreApplicationState;
 };
 
 #endif // PREFERENCES_H

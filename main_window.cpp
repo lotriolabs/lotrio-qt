@@ -79,7 +79,18 @@ void MainWindow::loadSettings()
 {
     QSettings settings;
 
-    // Application properties
+    // Application properties: Geometry
+    const auto geometry = m_preferences.restoreApplicationGeometry() ? settings.value(QStringLiteral("Application/Geometry"), QByteArray()).toByteArray() : QByteArray();
+    if (!geometry.isEmpty()) {
+        restoreGeometry(geometry);
+    }
+    else {
+        const auto availableGeometry = screen()->availableGeometry();
+        resize(availableGeometry.width() * 2/3, availableGeometry.height() * 2/3);
+        move((availableGeometry.width() - width()) / 2, (availableGeometry.height() - height()) / 2);
+    }
+
+    // Application properties: State
     const auto state = m_preferences.restoreApplicationState() ? settings.value(QStringLiteral("Application/State"), QByteArray()).toByteArray() : QByteArray();
     if (!state.isEmpty()) {
         restoreState(state);
@@ -90,16 +101,6 @@ void MainWindow::loadSettings()
         m_toolbarView->setVisible(false);
         m_toolbarHelp->setVisible(false);
     }
-
-    const auto geometry = m_preferences.restoreApplicationGeometry() ? settings.value(QStringLiteral("Application/Geometry"), QByteArray()).toByteArray() : QByteArray();
-    if (!geometry.isEmpty()) {
-        restoreGeometry(geometry);
-    }
-    else {
-        const auto availableGeometry = screen()->availableGeometry();
-        resize(availableGeometry.width() * 2/3, availableGeometry.height() * 2/3);
-        move((availableGeometry.width() - width()) / 2, (availableGeometry.height() - height()) / 2);
-    }
 }
 
 
@@ -107,12 +108,13 @@ void MainWindow::saveSettings()
 {
     QSettings settings;
 
-    // Application properties
-    const auto state = m_preferences.restoreApplicationState() ? saveState() : QByteArray();
-    settings.setValue(QStringLiteral("Application/State"), state);
-
+    // Application properties: Geometry
     const auto geometry = m_preferences.restoreApplicationGeometry() ? saveGeometry() : QByteArray();
     settings.setValue(QStringLiteral("Application/Geometry"), geometry);
+
+    // Application properties: State
+    const auto state = m_preferences.restoreApplicationState() ? saveState() : QByteArray();
+    settings.setValue(QStringLiteral("Application/State"), state);
 }
 
 

@@ -36,14 +36,11 @@ public:
 
     QString title() const;
 
-    void setRestoreApplicationState(const bool checked);
-    bool restoreApplicationState() const;
-
     void setRestoreApplicationGeometry(const bool checked);
     bool restoreApplicationGeometry() const;
 
-    void setRestoreDialogGeometry(const bool checked);
-    bool restoreDialogGeometry() const;
+    void setRestoreApplicationState(const bool checked);
+    bool restoreApplicationState() const;
 
 signals:
     void preferencesChanged();
@@ -54,9 +51,8 @@ private slots:
 private:
     QVBoxLayout *m_layout;
 
-    QCheckBox *m_chkRestoreApplicationState;
     QCheckBox *m_chkRestoreApplicationGeometry;
-    QCheckBox *m_chkRestoreDialogGeometry;
+    QCheckBox *m_chkRestoreApplicationState;
 };
 
 #endif // PREFERENCES_GENERAL_PAGE_H

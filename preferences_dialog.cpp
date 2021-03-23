@@ -129,17 +129,15 @@ void PreferencesDialog::onButtonApplyClicked()
 
 void PreferencesDialog::updatePreferences(bool isDefault)
 {
-    // General: State & Geometries
-    m_generalPage->setRestoreApplicationState(m_preferences.restoreApplicationState(isDefault));
+    // General: Geometry & State
     m_generalPage->setRestoreApplicationGeometry(m_preferences.restoreApplicationGeometry(isDefault));
-    m_generalPage->setRestoreDialogGeometry(m_preferences.restoreDialogGeometry(isDefault));
+    m_generalPage->setRestoreApplicationState(m_preferences.restoreApplicationState(isDefault));
 }
 
 
 void PreferencesDialog::savePreferences()
 {
-    // General: State & Geometries
-    m_preferences.setRestoreApplicationState(m_generalPage->restoreApplicationState());
+    // General: Geometry & State
     m_preferences.setRestoreApplicationGeometry(m_generalPage->restoreApplicationGeometry());
-    m_preferences.setRestoreDialogGeometry(m_generalPage->restoreDialogGeometry());
+    m_preferences.setRestoreApplicationState(m_generalPage->restoreApplicationState());
 }

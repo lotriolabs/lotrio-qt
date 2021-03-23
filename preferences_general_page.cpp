@@ -29,28 +29,24 @@ PreferencesGeneralPage::PreferencesGeneralPage(QWidget *parent)
     // Title
     auto *title = new QLabel(tr("<strong style=\"font-size:large;\">General</strong>"));
 
-    // State & Geometries
-    m_chkRestoreApplicationState = new QCheckBox(tr("Save and restore the application state"));
-    connect(m_chkRestoreApplicationState, &QCheckBox::stateChanged, this, &PreferencesGeneralPage::onPreferencesChanged);
-
+    // Geometry & State
     m_chkRestoreApplicationGeometry = new QCheckBox(tr("Save and restore the application geometry"));
     connect(m_chkRestoreApplicationGeometry, &QCheckBox::stateChanged, this, &PreferencesGeneralPage::onPreferencesChanged);
 
-    m_chkRestoreDialogGeometry = new QCheckBox(tr("Save and restore dialog geometries"));
-    connect(m_chkRestoreDialogGeometry, &QCheckBox::stateChanged, this, &PreferencesGeneralPage::onPreferencesChanged);
+    m_chkRestoreApplicationState = new QCheckBox(tr("Save and restore the application state"));
+    connect(m_chkRestoreApplicationState, &QCheckBox::stateChanged, this, &PreferencesGeneralPage::onPreferencesChanged);
 
-    auto *stateGeometriesLayout = new QVBoxLayout;
-    stateGeometriesLayout->addWidget(m_chkRestoreApplicationState);
-    stateGeometriesLayout->addWidget(m_chkRestoreApplicationGeometry);
-    stateGeometriesLayout->addWidget(m_chkRestoreDialogGeometry);
+    auto *geometryStateLayout = new QVBoxLayout;
+    geometryStateLayout->addWidget(m_chkRestoreApplicationGeometry);
+    geometryStateLayout->addWidget(m_chkRestoreApplicationState);
 
-    auto *stateGeometriesGroup = new QGroupBox(tr("State && Geometries"));
-    stateGeometriesGroup->setLayout(stateGeometriesLayout);
+    auto *geometryStateGroup = new QGroupBox(tr("Geometry && State"));
+    geometryStateGroup->setLayout(geometryStateLayout);
 
     // Main layout
     m_layout = new QVBoxLayout(this);
     m_layout->addWidget(title);
-    m_layout->addWidget(stateGeometriesGroup);
+    m_layout->addWidget(geometryStateGroup);
     m_layout->addStretch();
 }
 
@@ -73,18 +69,6 @@ void PreferencesGeneralPage::onPreferencesChanged()
 }
 
 
-void PreferencesGeneralPage::setRestoreApplicationState(const bool checked)
-{
-    m_chkRestoreApplicationState->setChecked(checked);
-}
-
-
-bool PreferencesGeneralPage::restoreApplicationState() const
-{
-    return m_chkRestoreApplicationState->isChecked();
-}
-
-
 void PreferencesGeneralPage::setRestoreApplicationGeometry(const bool checked)
 {
     m_chkRestoreApplicationGeometry->setChecked(checked);
@@ -97,13 +81,13 @@ bool PreferencesGeneralPage::restoreApplicationGeometry() const
 }
 
 
-void PreferencesGeneralPage::setRestoreDialogGeometry(const bool checked)
+void PreferencesGeneralPage::setRestoreApplicationState(const bool checked)
 {
-    m_chkRestoreDialogGeometry->setChecked(checked);
+    m_chkRestoreApplicationState->setChecked(checked);
 }
 
 
-bool PreferencesGeneralPage::restoreDialogGeometry() const
+bool PreferencesGeneralPage::restoreApplicationState() const
 {
-    return m_chkRestoreDialogGeometry->isChecked();
+    return m_chkRestoreApplicationState->isChecked();
 }
