@@ -29,6 +29,7 @@
 #include <QToolBar>
 
 #include "document.h"
+#include "keyboard_shortcuts_dialog.h"
 #include "preferences.h"
 
 
@@ -63,6 +64,8 @@ private slots:
     void onDocumentAboutToClose(const QString &canonicalName);
 
 private:
+    KeyboardShortcutsDialog *m_keyboardShortcutsDialog;
+
     Preferences m_preferences;
 
     void loadSettings();
