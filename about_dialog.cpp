@@ -30,10 +30,9 @@
 AboutDialog::AboutDialog(QWidget *parent)
     : QDialog(parent)
 {
+    setMinimumSize(480, 320);
     setWindowFlags(windowFlags() & ~Qt::WindowContextHelpButtonHint);
     setWindowTitle(tr("About %1").arg(QApplication::applicationName()));
-
-    resize(480, 320);
 
     // Title box
     auto *titleBox = new DialogTitleBox;

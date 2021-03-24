@@ -30,10 +30,9 @@
 ColophonDialog::ColophonDialog(QWidget *parent)
     : QDialog(parent)
 {
+    setMinimumSize(640, 480);
     setWindowFlags(windowFlags() & ~Qt::WindowContextHelpButtonHint);
     setWindowTitle(tr("Colophon"));
-
-    resize(640, 480);
 
     // Title box
     auto *titleBox = new DialogTitleBox;

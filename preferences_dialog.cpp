@@ -28,9 +28,8 @@
 PreferencesDialog::PreferencesDialog(QWidget *parent)
     : QDialog(parent)
 {
+    setMinimumSize(800, 600);
     setWindowTitle(tr("Preferences"));
-
-    resize(800, 600);
 
     // Preferences box
     m_generalPage = new PreferencesGeneralPage(this);
