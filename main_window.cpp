@@ -36,7 +36,7 @@ MainWindow::MainWindow(QWidget *parent)
 {
     setWindowIcon(QIcon(QStringLiteral(":/icons/apps/512/lotrio.svg")));
 
-    m_preferences.load();
+    m_preferences.loadSettings();
 
     createLotteries();
 
@@ -66,7 +66,7 @@ void MainWindow::closeEvent(QCloseEvent *event)
 {
     if (true) {
         saveSettings();
-        m_preferences.save();
+        m_preferences.saveSettings();
         event->accept();
     }
     else {
@@ -521,4 +521,3 @@ bool MainWindow::closeDocument(const QString &canonicalName)
 
     return succeeded;
 }
-

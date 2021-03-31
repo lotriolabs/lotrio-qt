@@ -30,7 +30,7 @@ Preferences::Preferences()
 }
 
 
-void Preferences::load()
+void Preferences::loadSettings()
 {
     QSettings settings;
 
@@ -44,12 +44,12 @@ void Preferences::load()
 }
 
 
-void Preferences::save()
+void Preferences::saveSettings()
 {
     QSettings settings;
 
+    settings.remove(QStringLiteral("Preferences"));
     settings.beginGroup(QStringLiteral("Preferences"));
-    settings.remove("");
 
     // General: Geometry & State
     settings.setValue(QStringLiteral("RestoreApplicationGeometry"), m_restoreApplicationGeometry);

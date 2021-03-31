@@ -26,8 +26,8 @@ class Preferences
 public:
     Preferences();
 
-    void load();
-    void save();
+    void loadSettings();
+    void saveSettings();
 
     void setRestoreApplicationGeometry(bool value);
     bool restoreApplicationGeometry(bool isDefault = false);
