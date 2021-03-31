@@ -66,6 +66,7 @@ private slots:
 private:
     KeyboardShortcutsDialog *m_keyboardShortcutsDialog;
 
+    QMdiArea *m_documentArea;
     Preferences m_preferences;
 
     void loadSettings();
@@ -105,8 +106,6 @@ private:
     QAction *m_actionToolbarHelp;
 
     QAction *m_actionKeyboardShortcuts;
-
-    QMdiArea *m_documentArea;
 
     Document *createDocument();
     QMdiSubWindow *findDocumentWindow(const QString &canonicalName) const;

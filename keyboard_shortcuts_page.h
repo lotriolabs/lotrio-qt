@@ -20,8 +20,8 @@
 #ifndef KEYBOARD_SHORTCUTS_PAGE_H
 #define KEYBOARD_SHORTCUTS_PAGE_H
 
-#include <QWidget>
 #include <QVBoxLayout>
+#include <QWidget>
 
 
 class KeyboardShortcutsPage : public QWidget

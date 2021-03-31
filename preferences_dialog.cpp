@@ -31,7 +31,7 @@ PreferencesDialog::PreferencesDialog(QWidget *parent)
     setMinimumSize(800, 600);
     setWindowTitle(tr("Preferences"));
 
-    // Preferences box
+    // Content
     m_generalPage = new PreferencesGeneralPage(this);
     m_generalPage->setZeroMargins();
     connect(m_generalPage, &PreferencesGeneralPage::preferencesChanged, this, &PreferencesDialog::onPreferencesChanged);

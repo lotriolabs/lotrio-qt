@@ -24,6 +24,10 @@
 #include <QWidget>
 
 
+//
+// Colophon page: About
+//
+
 class ColophonAboutPage : public QWidget
 {
     Q_OBJECT
@@ -39,6 +43,10 @@ private:
     QVBoxLayout *m_layout;
 };
 
+
+//
+// Colophon page: Authors
+//
 
 class ColophonAuthorsPage : public QWidget
 {
@@ -56,6 +64,10 @@ private:
 };
 
 
+//
+// Colophon page: Credits
+//
+
 class ColophonCreditsPage : public QWidget
 {
     Q_OBJECT
@@ -72,6 +84,10 @@ private:
 };
 
 
+//
+// Colophon page: Environment
+//
+
 class ColophonEnvironmentPage : public QWidget
 {
     Q_OBJECT
@@ -87,6 +103,10 @@ private:
     QVBoxLayout *m_layout;
 };
 
+
+//
+// Colophon page: License
+//
 
 class ColophonLicensePage : public QWidget
 {

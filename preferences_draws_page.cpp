@@ -32,7 +32,7 @@ PreferencesDrawsPage::PreferencesDrawsPage(QWidget *parent)
     // Main layout
     m_layout = new QVBoxLayout(this);
     m_layout->addWidget(title);
-    m_layout->addStretch();
+    m_layout->addStretch(1);
 }
 
 
