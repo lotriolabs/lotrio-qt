@@ -433,6 +433,12 @@ void MainWindow::onDocumentWindowActivated(const QMdiSubWindow *window)
 
 void MainWindow::onDocumentAboutToClose(const QString &canonicalName)
 {
+    // Workaround to show subwindows always maximized
+    const QList<QMdiSubWindow *> windows = m_documentArea->subWindowList();
+    for (auto *window : windows)
+        if (!window->isMaximized())
+            window->showMaximized();
+
     // Update menu items; delete the emitter from the list
     updateActions(m_documentArea->subWindowList().count() - 1);
 
