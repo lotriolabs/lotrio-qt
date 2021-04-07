@@ -100,6 +100,7 @@ void MainWindow::loadSettings()
     else {
         m_toolbarApplication->setVisible(true);
         m_toolbarLotteries->setVisible(true);
+        m_toolbarTools->setVisible(true);
         m_toolbarView->setVisible(false);
         m_toolbarHelp->setVisible(false);
     }
@@ -213,6 +214,12 @@ void MainWindow::createActions()
     m_actionToolbarLotteries->setToolTip(tr("Display the Lotteries toolbar"));
     connect(m_actionToolbarLotteries, &QAction::toggled, [=](bool checked) { m_toolbarLotteries->setVisible(checked); });
 
+    m_actionToolbarTools = new QAction(tr("Show Tools Toolbar"), this);
+    m_actionToolbarTools->setObjectName(QStringLiteral("actionToolbarTools"));
+    m_actionToolbarTools->setCheckable(true);
+    m_actionToolbarTools->setToolTip(tr("Display the Tools toolbar"));
+    connect(m_actionToolbarTools, &QAction::toggled, [=](bool checked) { m_toolbarTools->setVisible(checked); });
+
     m_actionToolbarView = new QAction(tr("Show View Toolbar"), this);
     m_actionToolbarView->setObjectName(QStringLiteral("actionToolbarView"));
     m_actionToolbarView->setCheckable(true);
@@ -257,6 +264,10 @@ void MainWindow::createMenus()
     menuLotteries->addAction(m_actionCloseOther);
     menuLotteries->addAction(m_actionCloseAll);
 
+    // Menu: Tools
+    auto *menuTools = menuBar()->addMenu(tr("Tools"));
+    menuTools->setObjectName(QStringLiteral("menuTools"));
+
     // Menu: View
     auto *menuView = menuBar()->addMenu(tr("View"));
     menuView->setObjectName(QStringLiteral("menuView"));
@@ -264,6 +275,7 @@ void MainWindow::createMenus()
     menuView->addSeparator();
     menuView->addAction(m_actionToolbarApplication);
     menuView->addAction(m_actionToolbarLotteries);
+    menuView->addAction(m_actionToolbarTools);
     menuView->addAction(m_actionToolbarView);
     menuView->addAction(m_actionToolbarHelp);
 
@@ -290,6 +302,11 @@ void MainWindow::createToolBars()
     m_toolbarLotteries->setObjectName(QStringLiteral("toolbarLotteries"));
     m_toolbarLotteries->addActions(m_actionLotteries);
     connect(m_toolbarLotteries, &QToolBar::visibilityChanged, [=](bool visible) { m_actionToolbarLotteries->setChecked(visible); });
+
+    // Toolbar: Tools
+    m_toolbarTools = addToolBar(tr("Tools Toolbar"));
+    m_toolbarTools->setObjectName(QStringLiteral("toolbarTools"));
+    connect(m_toolbarTools, &QToolBar::visibilityChanged, [=](bool visible) { m_actionToolbarTools->setChecked(visible); });
 
     // Toolbar: View
     m_toolbarView = addToolBar(tr("View Toolbar"));

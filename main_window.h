@@ -78,6 +78,7 @@ private:
 
     QToolBar *m_toolbarApplication;
     QToolBar *m_toolbarLotteries;
+    QToolBar *m_toolbarTools;
     QToolBar *m_toolbarView;
     QToolBar *m_toolbarHelp;
 
@@ -102,6 +103,7 @@ private:
     QAction *m_actionFullScreen;
     QAction *m_actionToolbarApplication;
     QAction *m_actionToolbarLotteries;
+    QAction *m_actionToolbarTools;
     QAction *m_actionToolbarView;
     QAction *m_actionToolbarHelp;
 
