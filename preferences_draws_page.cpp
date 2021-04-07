@@ -28,6 +28,8 @@ PreferencesDrawsPage::PreferencesDrawsPage(QWidget *parent)
     // Title
     auto *title = new QLabel(tr("<strong style=\"font-size:large;\">Draws</strong>"));
 
+    // Content
+
 
     // Main layout
     m_layout = new QVBoxLayout(this);

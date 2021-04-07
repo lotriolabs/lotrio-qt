@@ -32,19 +32,20 @@ PreferencesDialog::PreferencesDialog(QWidget *parent)
     setWindowTitle(tr("Preferences"));
 
     // Content
-    m_generalPage = new PreferencesGeneralPage(this);
+
+    m_generalPage = new PreferencesGeneralPage;
     m_generalPage->setZeroMargins();
     connect(m_generalPage, &PreferencesGeneralPage::preferencesChanged, this, &PreferencesDialog::onPreferencesChanged);
 
-    m_lotteriesPage = new PreferencesLotteriesPage(this);
+    m_lotteriesPage = new PreferencesLotteriesPage;
     m_lotteriesPage->setZeroMargins();
     connect(m_lotteriesPage, &PreferencesLotteriesPage::preferencesChanged, this, &PreferencesDialog::onPreferencesChanged);
 
-    m_drawsPage = new PreferencesDrawsPage(this);
+    m_drawsPage = new PreferencesDrawsPage;
     m_drawsPage->setZeroMargins();
     connect(m_drawsPage, &PreferencesDrawsPage::preferencesChanged, this, &PreferencesDialog::onPreferencesChanged);
 
-    m_playsPage = new PreferencesPlaysPage(this);
+    m_playsPage = new PreferencesPlaysPage;
     m_playsPage->setZeroMargins();
     connect(m_playsPage, &PreferencesPlaysPage::preferencesChanged, this, &PreferencesDialog::onPreferencesChanged);
 

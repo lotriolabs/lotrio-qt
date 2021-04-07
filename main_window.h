@@ -51,7 +51,7 @@ private slots:
     void onActionColophonTriggered();
     void onActionPreferencesTriggered();
 
-    void onActionLotteriesToggled(const QString &lottery, bool checked);
+    void onActionLotteriesToggled(bool checked, const QString &lottery);
     void onActionCloseTriggered();
     void onActionCloseOtherTriggered();
     void onActionCloseAllTriggered();
@@ -60,7 +60,7 @@ private slots:
 
     void onActionKeyboardShortcutsTriggered();
 
-    void onDocumentWindowActivated(const QMdiSubWindow *window);
+    void onDocumentWindowActivated(const QMdiSubWindow *subWindow);
     void onDocumentAboutToClose(const QString &canonicalName);
 
 private:
@@ -85,7 +85,7 @@ private:
     void createMenus();
     void createToolBars();
 
-    void updateActions(const int windowCount = 0);
+    void updateActions(const int subWindowCount = 0);
     void updateActionFullScreen();
     void updateTitleBar();
 

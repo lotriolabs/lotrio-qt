@@ -28,6 +28,8 @@ PreferencesLotteriesPage::PreferencesLotteriesPage(QWidget *parent)
     // Title
     auto *title = new QLabel(tr("<strong style=\"font-size:large;\">Lotteries</strong>"));
 
+    // Content
+
 
     // Main layout
     m_layout = new QVBoxLayout(this);

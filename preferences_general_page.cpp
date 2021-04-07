@@ -30,6 +30,7 @@ PreferencesGeneralPage::PreferencesGeneralPage(QWidget *parent)
     auto *title = new QLabel(tr("<strong style=\"font-size:large;\">General</strong>"));
 
     // Content: Geometry & State
+
     m_chkRestoreApplicationGeometry = new QCheckBox(tr("Save and restore the application geometry"));
     connect(m_chkRestoreApplicationGeometry, &QCheckBox::stateChanged, this, &PreferencesGeneralPage::onPreferencesChanged);
 

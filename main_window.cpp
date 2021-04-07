@@ -65,8 +65,10 @@ MainWindow::~MainWindow()
 void MainWindow::closeEvent(QCloseEvent *event)
 {
     if (true) {
+        // Store application properties and preferences
         saveSettings();
         m_preferences.saveSettings();
+
         event->accept();
     }
     else {
@@ -167,7 +169,7 @@ void MainWindow::createActions()
         actionLottery->setCheckable(true);
         actionLottery->setToolTip(it.value()[2]);
         actionLottery->setData(QStringLiteral("%1/%2").arg(it.key(), it.value()[1]));
-        connect(actionLottery, &QAction::toggled, [=](bool checked) { onActionLotteriesToggled(actionLottery->data().toString(), checked); });
+        connect(actionLottery, &QAction::toggled, [=](bool checked) { onActionLotteriesToggled(checked, actionLottery->data().toString()); });
 
         m_actionLotteries << actionLottery;
     }
@@ -303,10 +305,10 @@ void MainWindow::createToolBars()
 }
 
 
-void MainWindow::updateActions(const int windowCount)
+void MainWindow::updateActions(const int subWindowCount)
 {
-    bool hasDocument = windowCount >= 1;
-    bool hasDocuments = windowCount >= 2;
+    const bool hasDocument = subWindowCount >= 1;
+    const bool hasDocuments = subWindowCount >= 2;
 
     // Actions: Lotteries
     m_actionClose->setEnabled(hasDocument);
@@ -367,7 +369,7 @@ void MainWindow::onActionPreferencesTriggered()
 }
 
 
-void MainWindow::onActionLotteriesToggled(const QString &lottery, bool checked)
+void MainWindow::onActionLotteriesToggled(bool checked, const QString &lottery)
 {
     if (checked)
         openDocument(lottery);
@@ -384,10 +386,11 @@ void MainWindow::onActionCloseTriggered()
 
 void MainWindow::onActionCloseOtherTriggered()
 {
-    const QList<QMdiSubWindow *> windows = m_documentArea->subWindowList();
-    for (auto *window : windows)
-        if (window != m_documentArea->activeSubWindow())
-            window->close();
+    const QList<QMdiSubWindow *> subWindows = m_documentArea->subWindowList();
+    for (auto *subWindow : subWindows) {
+        if (subWindow != m_documentArea->activeSubWindow())
+            subWindow->close();
+    }
 }
 
 
@@ -419,31 +422,32 @@ void MainWindow::onActionKeyboardShortcutsTriggered()
 }
 
 
-void MainWindow::onDocumentWindowActivated(const QMdiSubWindow *window)
+void MainWindow::onDocumentWindowActivated(const QMdiSubWindow *subWindow)
 {
+    // Update the application window
     updateActions(m_documentArea->subWindowList().count());
     updateTitleBar();
 
-    if (!window)
+    if (!subWindow)
         return;
-
-
 }
 
 
 void MainWindow::onDocumentAboutToClose(const QString &canonicalName)
 {
     // Workaround to show subwindows always maximized
-    const QList<QMdiSubWindow *> windows = m_documentArea->subWindowList();
-    for (auto *window : windows)
-        if (!window->isMaximized())
-            window->showMaximized();
+    const QList<QMdiSubWindow *> subWindows = m_documentArea->subWindowList();
+    for (auto *subWindow : subWindows) {
+        if (!subWindow->isMaximized())
+            subWindow->showMaximized();
+    }
 
-    // Update menu items; delete the emitter from the list
+    // Update menu items without the emitter
     updateActions(m_documentArea->subWindowList().count() - 1);
 
-    // Update lottery button
-    foreach (auto *actionLottery, m_actionLotteries) {
+    // Disable the Lottery action
+    const QList<QAction *> actionLotteries = m_actionLotteries;
+    for (auto *actionLottery : actionLotteries) {
         if (actionLottery->data().toString() == canonicalName) {
             actionLottery->setChecked(false);
             return;
@@ -458,9 +462,9 @@ Document *MainWindow::createDocument()
     document->setPreferences(m_preferences);
     connect(document, &Document::aboutToClose, this, &MainWindow::onDocumentAboutToClose);
 
-    auto *window = m_documentArea->addSubWindow(document);
-    window->setWindowIcon(QIcon());
-    window->showMaximized();
+    auto *subWindow = m_documentArea->addSubWindow(document);
+    subWindow->setWindowIcon(QIcon());
+    subWindow->showMaximized();
 
     return document;
 }
@@ -468,12 +472,12 @@ Document *MainWindow::createDocument()
 
 QMdiSubWindow *MainWindow::findDocumentWindow(const QString &canonicalName) const
 {
-    const QList<QMdiSubWindow *> windows = m_documentArea->subWindowList();
-    for (auto *window : windows) {
+    const QList<QMdiSubWindow *> subWindows = m_documentArea->subWindowList();
+    for (auto *subWindow : subWindows) {
 
-        auto *document = qobject_cast<Document *>(window->widget());
+        auto *document = qobject_cast<Document *>(subWindow->widget());
         if (document->canonicalName() == canonicalName)
-            return window;
+            return subWindow;
     }
 
     return nullptr;
@@ -482,8 +486,8 @@ QMdiSubWindow *MainWindow::findDocumentWindow(const QString &canonicalName) cons
 
 Document *MainWindow::activeDocument() const
 {
-    if (auto *window = m_documentArea->activeSubWindow())
-           return qobject_cast<Document *>(window->widget());
+    if (auto *subWindow = m_documentArea->activeSubWindow())
+        return qobject_cast<Document *>(subWindow->widget());
 
     return nullptr;
 }
@@ -491,9 +495,9 @@ Document *MainWindow::activeDocument() const
 
 bool MainWindow::openDocument(const QString &canonicalName)
 {
-    if (auto *window = findDocumentWindow(canonicalName)) {
-        // Given document is already open; activate the window
-        m_documentArea->setActiveSubWindow(window);
+    if (auto *subWindow = findDocumentWindow(canonicalName)) {
+        // Given document is already loaded; activate the subwindow
+        m_documentArea->setActiveSubWindow(subWindow);
         return true;
     }
 
@@ -510,7 +514,7 @@ bool MainWindow::loadDocument(const QString &canonicalName)
         document->updateDocumentTitle();
         document->show();
 
-        // Update application
+        // Update the application window
         updateActions(m_documentArea->subWindowList().count());
         updateTitleBar();
     }
@@ -524,10 +528,10 @@ bool MainWindow::loadDocument(const QString &canonicalName)
 
 bool MainWindow::closeDocument(const QString &canonicalName)
 {
-    bool succeeded = false;
+    bool succeeded{ false };
 
-    if (auto *window = findDocumentWindow(canonicalName))
-        succeeded = window->close();
+    if (auto *subWindow = findDocumentWindow(canonicalName))
+        succeeded = subWindow->close();
 
     return succeeded;
 }

@@ -29,7 +29,7 @@ KeyboardShortcutsPage::KeyboardShortcutsPage(QWidget *mainWindow, QWidget *paren
 {
     QStringList headerLabels = { tr("Name"), tr("Shortcut"), tr("Description") };
 
-    auto *tableBox = new QTableWidget(0, headerLabels.size(), this);
+    auto *tableBox = new QTableWidget(0, headerLabels.size());
     tableBox->setHorizontalHeaderLabels(headerLabels);
     tableBox->horizontalHeader()->setDefaultAlignment(Qt::AlignLeft);
     tableBox->horizontalHeader()->setStretchLastSection(true);
