@@ -61,6 +61,7 @@ HEADERS += \
     preferences_plays_page.h
 
 TRANSLATIONS += \
+    translations/lotrio-qt_de.ts \
     translations/lotrio-qt_en.ts
 
 # Default rules for deployment.
