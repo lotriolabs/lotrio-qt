@@ -62,7 +62,8 @@ HEADERS += \
 
 TRANSLATIONS += \
     translations/lotrio-qt_de.ts \
-    translations/lotrio-qt_en.ts
+    translations/lotrio-qt_en.ts \
+    translations/lotrio-qt_he.ts
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
