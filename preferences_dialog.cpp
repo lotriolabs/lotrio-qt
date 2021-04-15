@@ -31,6 +31,7 @@ PreferencesDialog::PreferencesDialog(QWidget *parent)
     setMinimumSize(800, 600);
     setWindowTitle(tr("Preferences"));
 
+    //
     // Content
 
     m_generalPage = new PreferencesGeneralPage;

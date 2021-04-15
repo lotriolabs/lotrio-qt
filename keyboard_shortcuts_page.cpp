@@ -27,7 +27,7 @@
 KeyboardShortcutsPage::KeyboardShortcutsPage(QWidget *mainWindow, QWidget *parent)
     : QWidget(parent)
 {
-    QStringList headerLabels = { tr("Name"), tr("Shortcut"), tr("Description") };
+    QStringList headerLabels = {tr("Name"), tr("Shortcut"), tr("Description")};
 
     auto *tableBox = new QTableWidget(0, headerLabels.size());
     tableBox->setHorizontalHeaderLabels(headerLabels);

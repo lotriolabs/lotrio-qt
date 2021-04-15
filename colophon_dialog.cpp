@@ -37,6 +37,7 @@ ColophonDialog::ColophonDialog(QWidget *parent)
     // Title box
     auto *titleBox = new DialogTitleBox;
 
+    //
     // Content
 
     auto *aboutPage = new ColophonAboutPage;

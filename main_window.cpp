@@ -131,6 +131,7 @@ void MainWindow::createLotteries()
 
 void MainWindow::createActions()
 {
+    //
     // Actions: Application
 
     m_actionAbout = new QAction(tr("About %1").arg(QApplication::applicationName()), this);
@@ -158,6 +159,7 @@ void MainWindow::createActions()
     m_actionQuit->setToolTip(tr("Quit the application"));
     connect(m_actionQuit, &QAction::triggered, this, &MainWindow::close);
 
+    //
     // Actions: Lotteries
 
     QMapIterator<QString, QStringList> it(m_listLotteries);
@@ -193,6 +195,7 @@ void MainWindow::createActions()
     m_actionCloseAll->setToolTip(tr("Close all lotteries"));
     connect(m_actionCloseAll, &QAction::triggered, this, &MainWindow::onActionCloseAllTriggered);
 
+    //
     // Actions: View
 
     m_actionFullScreen = new QAction(this);
@@ -232,6 +235,7 @@ void MainWindow::createActions()
     m_actionToolbarHelp->setToolTip(tr("Display the Help toolbar"));
     connect(m_actionToolbarHelp, &QAction::toggled, [=](bool checked) { m_toolbarHelp->setVisible(checked); });
 
+    //
     // Actions: Help
 
     m_actionKeyboardShortcuts = new QAction(tr("Keyboard Shortcuts"), this);

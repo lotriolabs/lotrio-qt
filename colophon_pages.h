@@ -25,6 +25,7 @@
 
 
 //
+//
 // Colophon page: About
 //
 
@@ -44,6 +45,7 @@ private:
 };
 
 
+//
 //
 // Colophon page: Authors
 //
@@ -65,6 +67,7 @@ private:
 
 
 //
+//
 // Colophon page: Credits
 //
 
@@ -85,6 +88,7 @@ private:
 
 
 //
+//
 // Colophon page: Environment
 //
 
@@ -104,6 +108,7 @@ private:
 };
 
 
+//
 //
 // Colophon page: License
 //

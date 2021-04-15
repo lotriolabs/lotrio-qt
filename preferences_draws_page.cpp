@@ -26,8 +26,9 @@ PreferencesDrawsPage::PreferencesDrawsPage(QWidget *parent)
     : QWidget(parent)
 {
     // Title
-    auto *title = new QLabel(tr("<strong style=\"font-size:large;\">Draws</strong>"));
+    auto *title = new QLabel(tr("<strong style=\"font-size:large;\">%1</strong>").arg(this->title()));
 
+    //
     // Content
 
 
