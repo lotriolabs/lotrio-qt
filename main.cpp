@@ -81,16 +81,30 @@ int main(int argc, char *argv[])
     app.setApplicationVersion(QStringLiteral("0.1.0"));
 
     QCommandLineOption languageListOption(QStringLiteral("language-list"), QCoreApplication::translate("main", "Lists available application languages."));
+    QCommandLineOption languageOption(QStringLiteral("language"), QCoreApplication::translate("main", "Adjusts application language."), QStringLiteral("language"));
 
     QCommandLineParser parser;
     parser.setApplicationDescription(QCoreApplication::translate("main", "%1 - A visualization tool for lottery data").arg(app.applicationName()));
     parser.addHelpOption();
     parser.addVersionOption();
     parser.addOption(languageListOption);
+    parser.addOption(languageOption);
     parser.process(app);
 
     if (parser.isSet(languageListOption))
         return showLanguageList();
+
+    QString language = parser.value(languageOption);
+    if (!language.isEmpty()) {
+        QStringList languageCodes;
+
+        const QStringList translations = findTranslations();
+        for (const QString &translation : translations)
+            languageCodes << languageCode(translation);
+
+        if (!languageCodes.contains(language))
+            language.clear();
+    }
 
     MainWindow window;
     window.show();
