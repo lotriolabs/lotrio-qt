@@ -22,6 +22,35 @@
 #include <QApplication>
 #include <QCommandLineOption>
 #include <QCommandLineParser>
+#include <QDir>
+#include <QTranslator>
+
+
+QStringList findTranslations()
+{
+    QDir dir(":/translations");
+    QStringList fileNames = dir.entryList(QStringList("*"), QDir::Files, QDir::Name);
+    for (QString &fileName : fileNames)
+        fileName = dir.filePath(fileName);
+
+    return fileNames;
+}
+
+
+QString languageCode(const QString &translation)
+{
+    return QFileInfo(translation).fileName();
+}
+
+
+QString languageDescription(const QString &translation)
+{
+    QTranslator translator;
+    translator.load(translation);
+
+    QLocale locale(translator.language());
+    return QCoreApplication::translate("main", "%1 (%2)").arg(locale.languageToString(locale.language()), locale.nativeLanguageName());
+}
 
 
 int showLanguageList()
@@ -32,6 +61,11 @@ int showLanguageList()
     usage += QLatin1Char(' ') + QCoreApplication::translate("main", "[Language code]");
 
     printf("%s\n\n", qPrintable(QCoreApplication::translate("main", "Usage: %1").arg(usage)));
+    printf("%s\n", qPrintable(QCoreApplication::translate("main", "Languages:")));
+
+    const QStringList translations = findTranslations();
+    for (const QString &translation : translations)
+        printf("  %s  %s\n", qPrintable(languageCode(translation)), qPrintable(languageDescription(translation)));
 
     return EXIT_SUCCESS;
 }
