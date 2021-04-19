@@ -20,7 +20,21 @@
 #include "main_window.h"
 
 #include <QApplication>
+#include <QCommandLineOption>
 #include <QCommandLineParser>
+
+
+int showLanguageList()
+{
+    QString usage;
+    usage += QCoreApplication::instance()->arguments().constFirst();
+    usage += QLatin1Char(' ') + QStringLiteral("--language");
+    usage += QLatin1Char(' ') + QCoreApplication::translate("main", "[Language code]");
+
+    printf("%s\n\n", qPrintable(QCoreApplication::translate("main", "Usage: %1").arg(usage)));
+
+    return EXIT_SUCCESS;
+}
 
 
 int main(int argc, char *argv[])
@@ -32,11 +46,17 @@ int main(int argc, char *argv[])
     app.setApplicationDisplayName(QStringLiteral("Lotrio-Qt"));
     app.setApplicationVersion(QStringLiteral("0.1.0"));
 
+    QCommandLineOption languageListOption(QStringLiteral("language-list"), QCoreApplication::translate("main", "Lists available application languages."));
+
     QCommandLineParser parser;
     parser.setApplicationDescription(QCoreApplication::translate("main", "%1 - A visualization tool for lottery data").arg(app.applicationName()));
     parser.addHelpOption();
     parser.addVersionOption();
+    parser.addOption(languageListOption);
     parser.process(app);
+
+    if (parser.isSet(languageListOption))
+        return showLanguageList();
 
     MainWindow window;
     window.show();
