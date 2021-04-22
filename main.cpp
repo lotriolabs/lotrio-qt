@@ -57,10 +57,8 @@ QString languageDescription(const QString &translation)
 
 int showLanguageList()
 {
-    QString usage;
-    usage += QCoreApplication::instance()->arguments().constFirst();
-    usage += QLatin1Char(' ') + QStringLiteral("--language");
-    usage += QLatin1Char(' ') + QCoreApplication::translate("main", "[Language code]");
+    QString usage = QCoreApplication::instance()->arguments().constFirst();
+    usage += QStringLiteral(" --language <") + QCoreApplication::translate("main", "language code") + QStringLiteral(">");
 
     printf("%s\n\n", qPrintable(QCoreApplication::translate("main", "Usage: %1").arg(usage)));
     printf("%s\n", qPrintable(QCoreApplication::translate("main", "Languages:")));
@@ -82,7 +80,7 @@ int main(int argc, char *argv[])
     app.setApplicationVersion(QStringLiteral("0.1.0"));
 
     QCommandLineOption languageListOption(QStringLiteral("language-list"), QCoreApplication::translate("main", "Lists available application languages."));
-    QCommandLineOption languageOption(QStringLiteral("language"), QCoreApplication::translate("main", "Adjusts application language."), QStringLiteral("language"));
+    QCommandLineOption languageOption(QStringLiteral("language"), QCoreApplication::translate("main", "Adjusts application language."), QCoreApplication::translate("main", "language code"));
 
     QCommandLineParser parser;
     parser.setApplicationDescription(QCoreApplication::translate("main", "%1 - A visualization tool for lottery data").arg(app.applicationName()));
