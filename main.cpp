@@ -24,6 +24,7 @@
 #include <QCommandLineParser>
 #include <QDir>
 #include <QTranslator>
+#include <QLibraryInfo>
 
 
 QStringList findTranslations()
@@ -94,17 +95,20 @@ int main(int argc, char *argv[])
     if (parser.isSet(languageListOption))
         return showLanguageList();
 
-    QString language = parser.value(languageOption);
-    if (!language.isEmpty()) {
-        QStringList languageCodes;
+    //
+    // Translations
 
-        const QStringList translations = findTranslations();
-        for (const QString &translation : translations)
-            languageCodes << languageCode(translation);
+    const QString &language = parser.value(languageOption);
+    QLocale locale = !language.isEmpty() ? QLocale(language) : QLocale::system();
 
-        if (!languageCodes.contains(language))
-            language.clear();
-    }
+    QTranslator translator;
+    if (translator.load(locale, QStringLiteral(":/translations/")))
+        app.installTranslator(&translator);
+
+    QTranslator translatorQtBase;
+    if (translatorQtBase.load(locale, QStringLiteral("qtbase_"), QString(), QLibraryInfo::location(QLibraryInfo::TranslationsPath)))
+        app.installTranslator(&translatorQtBase);
+
 
     MainWindow window;
     window.show();
