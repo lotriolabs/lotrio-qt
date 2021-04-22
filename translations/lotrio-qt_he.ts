@@ -441,7 +441,7 @@
     <message>
         <location filename="../preferences_lotteries_page.cpp" line="50"/>
         <source>Lotteries</source>
-        <translation type="unfinished">הגרלות</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -465,32 +465,33 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="63"/>
-        <source>[Language code]</source>
+        <location filename="../main.cpp" line="61"/>
+        <location filename="../main.cpp" line="83"/>
+        <source>language code</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="65"/>
+        <location filename="../main.cpp" line="63"/>
         <source>Usage: %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="66"/>
+        <location filename="../main.cpp" line="64"/>
         <source>Languages:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="84"/>
+        <location filename="../main.cpp" line="82"/>
         <source>Lists available application languages.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="85"/>
+        <location filename="../main.cpp" line="83"/>
         <source>Adjusts application language.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="88"/>
+        <location filename="../main.cpp" line="86"/>
         <source>%1 - A visualization tool for lottery data</source>
         <translation type="unfinished"></translation>
     </message>
