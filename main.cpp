@@ -79,8 +79,16 @@ int main(int argc, char *argv[])
     app.setApplicationDisplayName(QStringLiteral("Lotrio-Qt"));
     app.setApplicationVersion(QStringLiteral("0.1.0"));
 
-    QCommandLineOption languageListOption(QStringLiteral("language-list"), QCoreApplication::translate("main", "Lists available application languages."));
-    QCommandLineOption languageOption(QStringLiteral("language"), QCoreApplication::translate("main", "Adjusts application language."), QCoreApplication::translate("main", "language code"));
+
+    //
+    // Command line
+
+    QCommandLineOption languageListOption(QStringLiteral("language-list"),
+        QCoreApplication::translate("main", "Lists available application languages."));
+
+    QCommandLineOption languageOption(QStringLiteral("language"),
+        QCoreApplication::translate("main", "Adjusts application language."),
+        QCoreApplication::translate("main", "language code"));
 
     QCommandLineParser parser;
     parser.setApplicationDescription(QCoreApplication::translate("main", "%1 - A visualization tool for lottery data").arg(app.applicationName()));
@@ -90,22 +98,25 @@ int main(int argc, char *argv[])
     parser.addOption(languageOption);
     parser.process(app);
 
-    // Language list
+    // Command line: Language list
     if (parser.isSet(languageListOption))
         return showLanguageList();
+
+    // Command line: Language
+    const QString &language = parser.value(languageOption);
+
 
     //
     // Translations
 
-    const QString &language = parser.value(languageOption);
     QLocale locale = !language.isEmpty() ? QLocale(language) : QLocale::system();
 
     QTranslator translator;
-    if (translator.load(locale, QStringLiteral(":/translations/")))
+    if (translator.load(locale, QString(), QString(), QStringLiteral(":/translations")))
         app.installTranslator(&translator);
 
     QTranslator translatorQtBase;
-    if (translatorQtBase.load(locale, QStringLiteral("qtbase_"), QString(), QLibraryInfo::location(QLibraryInfo::TranslationsPath)))
+    if (translatorQtBase.load(locale, QStringLiteral("qtbase"), QString("_"), QLibraryInfo::location(QLibraryInfo::TranslationsPath)))
         app.installTranslator(&translatorQtBase);
 
 
