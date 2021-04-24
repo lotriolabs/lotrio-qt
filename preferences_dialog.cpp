@@ -38,9 +38,9 @@ PreferencesDialog::PreferencesDialog(QWidget *parent)
     m_generalPage->setZeroMargins();
     connect(m_generalPage, &PreferencesGeneralPage::preferencesChanged, this, &PreferencesDialog::onPreferencesChanged);
 
-    m_lotteriesPage = new PreferencesLotteriesPage;
-    m_lotteriesPage->setZeroMargins();
-    connect(m_lotteriesPage, &PreferencesLotteriesPage::preferencesChanged, this, &PreferencesDialog::onPreferencesChanged);
+    m_pageLotteries = new PreferencesPageLotteries;
+    m_pageLotteries->setZeroMargins();
+    connect(m_pageLotteries, &PreferencesPageLotteries::preferencesChanged, this, &PreferencesDialog::onPreferencesChanged);
 
     m_pageDraws = new PreferencesPageDraws;
     m_pageDraws->setZeroMargins();
@@ -52,14 +52,14 @@ PreferencesDialog::PreferencesDialog(QWidget *parent)
 
     auto *stackedBox = new QStackedWidget;
     stackedBox->addWidget(m_generalPage);
-    stackedBox->addWidget(m_lotteriesPage);
+    stackedBox->addWidget(m_pageLotteries);
     stackedBox->addWidget(m_pageDraws);
     stackedBox->addWidget(m_pagePlays);
     stackedBox->setCurrentIndex(0);
 
     auto *listBox = new QListWidget;
     listBox->addItem(m_generalPage->title());
-    listBox->addItem(m_lotteriesPage->title());
+    listBox->addItem(m_pageLotteries->title());
     listBox->addItem(m_pageDraws->title());
     listBox->addItem(m_pagePlays->title());
     listBox->setCurrentRow(stackedBox->currentIndex());

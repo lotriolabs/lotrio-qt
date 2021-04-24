@@ -40,8 +40,8 @@ SOURCES += \
     preferences.cpp \
     preferences_dialog.cpp \
     preferences_general_page.cpp \
-    preferences_lotteries_page.cpp \
     preferences_page_draws.cpp \
+    preferences_page_lotteries.cpp \
     preferences_page_plays.cpp
 
 HEADERS += \
@@ -56,8 +56,8 @@ HEADERS += \
     preferences.h \
     preferences_dialog.h \
     preferences_general_page.h \
-    preferences_lotteries_page.h \
     preferences_page_draws.h \
+    preferences_page_lotteries.h \
     preferences_page_plays.h
 
 TRANSLATIONS += \

@@ -17,19 +17,19 @@
  * along with Lotrio-Qt.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-#ifndef PREFERENCES_LOTTERIES_PAGE_H
-#define PREFERENCES_LOTTERIES_PAGE_H
+#ifndef PREFERENCES_PAGE_LOTTERIES_H
+#define PREFERENCES_PAGE_LOTTERIES_H
 
 #include <QVBoxLayout>
 #include <QWidget>
 
 
-class PreferencesLotteriesPage : public QWidget
+class PreferencesPageLotteries : public QWidget
 {
     Q_OBJECT
 
 public:
-    explicit PreferencesLotteriesPage(QWidget *parent = nullptr);
+    explicit PreferencesPageLotteries(QWidget *parent = nullptr);
 
     void setZeroMargins();
 
@@ -45,4 +45,4 @@ private:
     QVBoxLayout *m_layout;
 };
 
-#endif // PREFERENCES_LOTTERIES_PAGE_H
+#endif // PREFERENCES_PAGE_LOTTERIES_H

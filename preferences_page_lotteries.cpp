@@ -17,12 +17,12 @@
  * along with Lotrio-Qt.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-#include "preferences_lotteries_page.h"
+#include "preferences_page_lotteries.h"
 
 #include <QLabel>
 
 
-PreferencesLotteriesPage::PreferencesLotteriesPage(QWidget *parent)
+PreferencesPageLotteries::PreferencesPageLotteries(QWidget *parent)
     : QWidget(parent)
 {
     // Title
@@ -39,19 +39,19 @@ PreferencesLotteriesPage::PreferencesLotteriesPage(QWidget *parent)
 }
 
 
-void PreferencesLotteriesPage::setZeroMargins()
+void PreferencesPageLotteries::setZeroMargins()
 {
     m_layout->setContentsMargins(0, 0, 0, 0);
 }
 
 
-QString PreferencesLotteriesPage::title() const
+QString PreferencesPageLotteries::title() const
 {
     return tr("Lotteries");
 }
 
 
-void PreferencesLotteriesPage::onPreferencesChanged()
+void PreferencesPageLotteries::onPreferencesChanged()
 {
     emit preferencesChanged();
 }
