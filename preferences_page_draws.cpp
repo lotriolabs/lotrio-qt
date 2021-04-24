@@ -17,12 +17,12 @@
  * along with Lotrio-Qt.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-#include "preferences_draws_page.h"
+#include "preferences_page_draws.h"
 
 #include <QLabel>
 
 
-PreferencesDrawsPage::PreferencesDrawsPage(QWidget *parent)
+PreferencesPageDraws::PreferencesPageDraws(QWidget *parent)
     : QWidget(parent)
 {
     // Title
@@ -39,19 +39,19 @@ PreferencesDrawsPage::PreferencesDrawsPage(QWidget *parent)
 }
 
 
-void PreferencesDrawsPage::setZeroMargins()
+void PreferencesPageDraws::setZeroMargins()
 {
     m_layout->setContentsMargins(0, 0, 0, 0);
 }
 
 
-QString PreferencesDrawsPage::title() const
+QString PreferencesPageDraws::title() const
 {
     return tr("Draws");
 }
 
 
-void PreferencesDrawsPage::onPreferencesChanged()
+void PreferencesPageDraws::onPreferencesChanged()
 {
     emit preferencesChanged();
 }

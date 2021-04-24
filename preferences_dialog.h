@@ -24,7 +24,7 @@
 #include <QPushButton>
 
 #include "preferences.h"
-#include "preferences_draws_page.h"
+#include "preferences_page_draws.h"
 #include "preferences_general_page.h"
 #include "preferences_lotteries_page.h"
 #include "preferences_page_plays.h"
@@ -57,7 +57,7 @@ private:
 
     PreferencesGeneralPage *m_generalPage;
     PreferencesLotteriesPage *m_lotteriesPage;
-    PreferencesDrawsPage *m_drawsPage;
+    PreferencesPageDraws *m_pageDraws;
     PreferencesPagePlays *m_pagePlays;
 };
 
