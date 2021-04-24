@@ -30,6 +30,7 @@ Preferences::Preferences()
 
     // General: Tab Bars
     m_defaultTabPositionLotteries = QTabWidget::North;
+    m_defaultTabPositionSheets = QTabWidget::South;
 }
 
 
@@ -45,6 +46,7 @@ void Preferences::loadSettings()
 
     // General: Tab Bars
     setDefaultTabPositionLotteries(static_cast<QTabWidget::TabPosition> (settings.value(QStringLiteral("DefaultTabPositionLotteries"), (int) QTabWidget::North).toInt()));
+    setDefaultTabPositionSheets(static_cast<QTabWidget::TabPosition> (settings.value(QStringLiteral("DefaultTabPositionSheets"), (int) QTabWidget::South).toInt()));
 
     settings.endGroup();
 }
@@ -63,6 +65,7 @@ void Preferences::saveSettings()
 
     // General: Tab Bars
     settings.setValue(QStringLiteral("DefaultTabPositionLotteries"), (int) m_defaultTabPositionLotteries);
+    settings.setValue(QStringLiteral("DefaultTabPositionSheets"), (int) m_defaultTabPositionSheets);
 
     settings.endGroup();
 }
@@ -101,4 +104,16 @@ void Preferences::setDefaultTabPositionLotteries(QTabWidget::TabPosition value)
 QTabWidget::TabPosition Preferences::defaultTabPositionLotteries(bool isDefault)
 {
     return !isDefault ? m_defaultTabPositionLotteries : QTabWidget::North;
+}
+
+
+void Preferences::setDefaultTabPositionSheets(QTabWidget::TabPosition value)
+{
+    m_defaultTabPositionSheets = value;
+}
+
+
+QTabWidget::TabPosition Preferences::defaultTabPositionSheets(bool isDefault)
+{
+    return !isDefault ? m_defaultTabPositionSheets : QTabWidget::South;
 }

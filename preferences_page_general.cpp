@@ -63,15 +63,31 @@ PreferencesPageGeneral::PreferencesPageGeneral(QWidget *parent)
     m_grpDefaultTabPositionLotteries->addButton(rdbDefaultTabPositionLotteriesBottom, (int) QTabWidget::South);
     connect(m_grpDefaultTabPositionLotteries, QOverload<QAbstractButton *>::of(&QButtonGroup::buttonClicked), this, &PreferencesPageGeneral::onPreferencesChanged);
 
+    auto *rdbDefaultTabPositionSheetsTop = new QRadioButton(tr("Top"));
+    rdbDefaultTabPositionSheetsTop->setToolTip(tr("The sheet tabs are drawn above the pages."));
+
+    auto *rdbDefaultTabPositionSheetsBottom = new QRadioButton(tr("Bottom"));
+    rdbDefaultTabPositionSheetsBottom->setToolTip(tr("The sheet tabs are drawn below the pages."));
+
+    m_grpDefaultTabPositionSheets = new QButtonGroup(this);
+    m_grpDefaultTabPositionSheets->addButton(rdbDefaultTabPositionSheetsTop, (int) QTabWidget::North);
+    m_grpDefaultTabPositionSheets->addButton(rdbDefaultTabPositionSheetsBottom, (int) QTabWidget::South);
+    connect(m_grpDefaultTabPositionSheets, QOverload<QAbstractButton *>::of(&QButtonGroup::buttonClicked), this, &PreferencesPageGeneral::onPreferencesChanged);
+
     auto *defaultTabPositionLotteriesBox = new QHBoxLayout;
     defaultTabPositionLotteriesBox->addWidget(rdbDefaultTabPositionLotteriesTop);
     defaultTabPositionLotteriesBox->addWidget(rdbDefaultTabPositionLotteriesBottom);
 
-    auto *defaultTabPositionLotteriesLayout = new QFormLayout;
-    defaultTabPositionLotteriesLayout->addRow(tr("Position of the lottery tabs"), defaultTabPositionLotteriesBox);
+    auto *defaultTabPositionSheetsBox = new QHBoxLayout;
+    defaultTabPositionSheetsBox->addWidget(rdbDefaultTabPositionSheetsTop);
+    defaultTabPositionSheetsBox->addWidget(rdbDefaultTabPositionSheetsBottom);
+
+    auto *defaultTabPositionLayout = new QFormLayout;
+    defaultTabPositionLayout->addRow(tr("Position of the lottery tabs"), defaultTabPositionLotteriesBox);
+    defaultTabPositionLayout->addRow(tr("Position of the sheet tabs"), defaultTabPositionSheetsBox);
 
     auto *tabBarsGroup = new QGroupBox(tr("Tab Bars"));
-    tabBarsGroup->setLayout(defaultTabPositionLotteriesLayout);
+    tabBarsGroup->setLayout(defaultTabPositionLayout);
 
 
     // Main layout
@@ -141,4 +157,23 @@ void PreferencesPageGeneral::setDefaultTabPositionLotteries(const QTabWidget::Ta
 QTabWidget::TabPosition PreferencesPageGeneral::defaultTabPositionLotteries() const
 {
     return static_cast<QTabWidget::TabPosition> (m_grpDefaultTabPositionLotteries->checkedId());
+}
+
+
+void PreferencesPageGeneral::setDefaultTabPositionSheets(const QTabWidget::TabPosition type)
+{
+    if (type != defaultTabPositionSheets())
+        onPreferencesChanged();
+
+    const QList<QAbstractButton *> buttons = m_grpDefaultTabPositionSheets->buttons();
+    for (auto *button : buttons) {
+        if (m_grpDefaultTabPositionSheets->id(button) == (int) type)
+            button->setChecked(true);
+    }
+}
+
+
+QTabWidget::TabPosition PreferencesPageGeneral::defaultTabPositionSheets() const
+{
+    return static_cast<QTabWidget::TabPosition> (m_grpDefaultTabPositionSheets->checkedId());
 }

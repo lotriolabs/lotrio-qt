@@ -47,6 +47,9 @@ public:
     void setDefaultTabPositionLotteries(const QTabWidget::TabPosition type);
     QTabWidget::TabPosition defaultTabPositionLotteries() const;
 
+    void setDefaultTabPositionSheets(const QTabWidget::TabPosition type);
+    QTabWidget::TabPosition defaultTabPositionSheets() const;
+
 signals:
     void preferencesChanged();
 
@@ -60,6 +63,7 @@ private:
     QCheckBox *m_chkRestoreApplicationState;
 
     QButtonGroup *m_grpDefaultTabPositionLotteries;
+    QButtonGroup *m_grpDefaultTabPositionSheets;
 };
 
 #endif // PREFERENCES_PAGE_GENERAL_H

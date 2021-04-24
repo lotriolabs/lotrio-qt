@@ -40,11 +40,15 @@ public:
     void setDefaultTabPositionLotteries(QTabWidget::TabPosition value);
     QTabWidget::TabPosition defaultTabPositionLotteries(bool isDefault = false);
 
+    void setDefaultTabPositionSheets(QTabWidget::TabPosition value);
+    QTabWidget::TabPosition defaultTabPositionSheets(bool isDefault = false);
+
 private:
     bool m_restoreApplicationGeometry;
     bool m_restoreApplicationState;
 
     QTabWidget::TabPosition m_defaultTabPositionLotteries;
+    QTabWidget::TabPosition m_defaultTabPositionSheets;
 };
 
 #endif // PREFERENCES_H

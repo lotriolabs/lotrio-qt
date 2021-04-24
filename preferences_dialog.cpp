@@ -136,6 +136,7 @@ void PreferencesDialog::updatePreferences(bool isDefault)
 
     // General: Tab Bars
     m_pageGeneral->setDefaultTabPositionLotteries(m_preferences.defaultTabPositionLotteries(isDefault));
+    m_pageGeneral->setDefaultTabPositionSheets(m_preferences.defaultTabPositionSheets(isDefault));
 }
 
 
@@ -147,4 +148,5 @@ void PreferencesDialog::savePreferences()
 
     // General: Tab Bars
     m_preferences.setDefaultTabPositionLotteries((m_pageGeneral->defaultTabPositionLotteries()));
+    m_preferences.setDefaultTabPositionSheets((m_pageGeneral->defaultTabPositionSheets()));
 }
