@@ -27,6 +27,9 @@ Preferences::Preferences()
     // General: Geometry & State
     m_restoreApplicationGeometry = true;
     m_restoreApplicationState = true;
+
+    // General: Tab Bars
+    m_defaultTabPositionLotteries = QTabWidget::North;
 }
 
 
@@ -39,6 +42,9 @@ void Preferences::loadSettings()
     // General: Geometry & State
     setRestoreApplicationGeometry(settings.value(QStringLiteral("RestoreApplicationGeometry"), true).toBool());
     setRestoreApplicationState(settings.value(QStringLiteral("RestoreApplicationState"), true).toBool());
+
+    // General: Tab Bars
+    setDefaultTabPositionLotteries(static_cast<QTabWidget::TabPosition> (settings.value(QStringLiteral("DefaultTabPositionLotteries"), (int) QTabWidget::North).toInt()));
 
     settings.endGroup();
 }
@@ -54,6 +60,9 @@ void Preferences::saveSettings()
     // General: Geometry & State
     settings.setValue(QStringLiteral("RestoreApplicationGeometry"), m_restoreApplicationGeometry);
     settings.setValue(QStringLiteral("RestoreApplicationState"), m_restoreApplicationState);
+
+    // General: Tab Bars
+    settings.setValue(QStringLiteral("DefaultTabPositionLotteries"), (int) m_defaultTabPositionLotteries);
 
     settings.endGroup();
 }
@@ -80,4 +89,16 @@ void Preferences::setRestoreApplicationState(bool value)
 bool Preferences::restoreApplicationState(bool isDefault)
 {
     return !isDefault ? m_restoreApplicationState : true;
+}
+
+
+void Preferences::setDefaultTabPositionLotteries(QTabWidget::TabPosition value)
+{
+    m_defaultTabPositionLotteries = value;
+}
+
+
+QTabWidget::TabPosition Preferences::defaultTabPositionLotteries(bool isDefault)
+{
+    return !isDefault ? m_defaultTabPositionLotteries : QTabWidget::North;
 }

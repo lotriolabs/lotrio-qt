@@ -133,6 +133,9 @@ void PreferencesDialog::updatePreferences(bool isDefault)
     // General: Geometry & State
     m_pageGeneral->setRestoreApplicationGeometry(m_preferences.restoreApplicationGeometry(isDefault));
     m_pageGeneral->setRestoreApplicationState(m_preferences.restoreApplicationState(isDefault));
+
+    // General: Tab Bars
+    m_pageGeneral->setDefaultTabPositionLotteries(m_preferences.defaultTabPositionLotteries(isDefault));
 }
 
 
@@ -141,4 +144,7 @@ void PreferencesDialog::savePreferences()
     // General: Geometry & State
     m_preferences.setRestoreApplicationGeometry(m_pageGeneral->restoreApplicationGeometry());
     m_preferences.setRestoreApplicationState(m_pageGeneral->restoreApplicationState());
+
+    // General: Tab Bars
+    m_preferences.setDefaultTabPositionLotteries((m_pageGeneral->defaultTabPositionLotteries()));
 }

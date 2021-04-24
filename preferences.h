@@ -20,6 +20,8 @@
 #ifndef PREFERENCES_H
 #define PREFERENCES_H
 
+#include <QTabWidget>
+
 
 class Preferences
 {
@@ -35,9 +37,14 @@ public:
     void setRestoreApplicationState(bool value);
     bool restoreApplicationState(bool isDefault = false);
 
+    void setDefaultTabPositionLotteries(QTabWidget::TabPosition value);
+    QTabWidget::TabPosition defaultTabPositionLotteries(bool isDefault = false);
+
 private:
     bool m_restoreApplicationGeometry;
     bool m_restoreApplicationState;
+
+    QTabWidget::TabPosition m_defaultTabPositionLotteries;
 };
 
 #endif // PREFERENCES_H

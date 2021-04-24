@@ -20,7 +20,9 @@
 #ifndef PREFERENCES_PAGE_GENERAL_H
 #define PREFERENCES_PAGE_GENERAL_H
 
+#include <QButtonGroup>
 #include <QCheckBox>
+#include <QTabWidget>
 #include <QVBoxLayout>
 #include <QWidget>
 
@@ -42,6 +44,9 @@ public:
     void setRestoreApplicationState(const bool checked);
     bool restoreApplicationState() const;
 
+    void setDefaultTabPositionLotteries(const QTabWidget::TabPosition type);
+    QTabWidget::TabPosition defaultTabPositionLotteries() const;
+
 signals:
     void preferencesChanged();
 
@@ -53,6 +58,8 @@ private:
 
     QCheckBox *m_chkRestoreApplicationGeometry;
     QCheckBox *m_chkRestoreApplicationState;
+
+    QButtonGroup *m_grpDefaultTabPositionLotteries;
 };
 
 #endif // PREFERENCES_PAGE_GENERAL_H

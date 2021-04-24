@@ -20,7 +20,9 @@
 #include "preferences_page_general.h"
 
 #include <QGroupBox>
+#include <QFormLayout>
 #include <QLabel>
+#include <QRadioButton>
 
 
 PreferencesPageGeneral::PreferencesPageGeneral(QWidget *parent)
@@ -28,6 +30,7 @@ PreferencesPageGeneral::PreferencesPageGeneral(QWidget *parent)
 {
     // Title
     auto *title = new QLabel(tr("<strong style=\"font-size:large;\">%1</strong>").arg(this->title()));
+
 
     //
     // Content: Geometry & State
@@ -45,10 +48,37 @@ PreferencesPageGeneral::PreferencesPageGeneral(QWidget *parent)
     auto *geometryStateGroup = new QGroupBox(tr("Geometry && State"));
     geometryStateGroup->setLayout(geometryStateLayout);
 
+
+    //
+    // Content: Tab Bars
+
+    auto *rdbDefaultTabPositionLotteriesTop = new QRadioButton(tr("Top"));
+    rdbDefaultTabPositionLotteriesTop->setToolTip(tr("The lottery tabs are drawn above the pages."));
+
+    auto *rdbDefaultTabPositionLotteriesBottom = new QRadioButton(tr("Bottom"));
+    rdbDefaultTabPositionLotteriesBottom->setToolTip(tr("The lottery tabs are drawn below the pages."));
+
+    m_grpDefaultTabPositionLotteries = new QButtonGroup(this);
+    m_grpDefaultTabPositionLotteries->addButton(rdbDefaultTabPositionLotteriesTop, (int) QTabWidget::North);
+    m_grpDefaultTabPositionLotteries->addButton(rdbDefaultTabPositionLotteriesBottom, (int) QTabWidget::South);
+    connect(m_grpDefaultTabPositionLotteries, QOverload<QAbstractButton *>::of(&QButtonGroup::buttonClicked), this, &PreferencesPageGeneral::onPreferencesChanged);
+
+    auto *defaultTabPositionLotteriesBox = new QHBoxLayout;
+    defaultTabPositionLotteriesBox->addWidget(rdbDefaultTabPositionLotteriesTop);
+    defaultTabPositionLotteriesBox->addWidget(rdbDefaultTabPositionLotteriesBottom);
+
+    auto *defaultTabPositionLotteriesLayout = new QFormLayout;
+    defaultTabPositionLotteriesLayout->addRow(tr("Position of the lottery tabs"), defaultTabPositionLotteriesBox);
+
+    auto *tabBarsGroup = new QGroupBox(tr("Tab Bars"));
+    tabBarsGroup->setLayout(defaultTabPositionLotteriesLayout);
+
+
     // Main layout
     m_layout = new QVBoxLayout(this);
     m_layout->addWidget(title);
     m_layout->addWidget(geometryStateGroup);
+    m_layout->addWidget(tabBarsGroup);
     m_layout->addStretch(1);
 }
 
@@ -92,4 +122,23 @@ void PreferencesPageGeneral::setRestoreApplicationState(const bool checked)
 bool PreferencesPageGeneral::restoreApplicationState() const
 {
     return m_chkRestoreApplicationState->isChecked();
+}
+
+
+void PreferencesPageGeneral::setDefaultTabPositionLotteries(const QTabWidget::TabPosition type)
+{
+    if (type != defaultTabPositionLotteries())
+        onPreferencesChanged();
+
+    const QList<QAbstractButton *> buttons = m_grpDefaultTabPositionLotteries->buttons();
+    for (auto *button : buttons) {
+        if (m_grpDefaultTabPositionLotteries->id(button) == (int) type)
+            button->setChecked(true);
+    }
+}
+
+
+QTabWidget::TabPosition PreferencesPageGeneral::defaultTabPositionLotteries() const
+{
+    return static_cast<QTabWidget::TabPosition> (m_grpDefaultTabPositionLotteries->checkedId());
 }
