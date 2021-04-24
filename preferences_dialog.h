@@ -27,7 +27,7 @@
 #include "preferences_draws_page.h"
 #include "preferences_general_page.h"
 #include "preferences_lotteries_page.h"
-#include "preferences_plays_page.h"
+#include "preferences_page_plays.h"
 
 
 class PreferencesDialog : public QDialog
@@ -58,7 +58,7 @@ private:
     PreferencesGeneralPage *m_generalPage;
     PreferencesLotteriesPage *m_lotteriesPage;
     PreferencesDrawsPage *m_drawsPage;
-    PreferencesPlaysPage *m_playsPage;
+    PreferencesPagePlays *m_pagePlays;
 };
 
 #endif // PREFERENCES_DIALOG_H

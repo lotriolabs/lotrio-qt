@@ -17,19 +17,19 @@
  * along with Lotrio-Qt.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-#ifndef PREFERENCES_PLAYS_PAGE_H
-#define PREFERENCES_PLAYS_PAGE_H
+#ifndef PREFERENCES_PAGE_PLAYS_H
+#define PREFERENCES_PAGE_PLAYS_H
 
 #include <QVBoxLayout>
 #include <QWidget>
 
 
-class PreferencesPlaysPage : public QWidget
+class PreferencesPagePlays : public QWidget
 {
     Q_OBJECT
 
 public:
-    explicit PreferencesPlaysPage(QWidget *parent = nullptr);
+    explicit PreferencesPagePlays(QWidget *parent = nullptr);
 
     void setZeroMargins();
 
@@ -45,4 +45,4 @@ private:
     QVBoxLayout *m_layout;
 };
 
-#endif // PREFERENCES_PLAYS_PAGE_H
+#endif // PREFERENCES_PAGE_PLAYS_H

@@ -17,12 +17,12 @@
  * along with Lotrio-Qt.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-#include "preferences_plays_page.h"
+#include "preferences_page_plays.h"
 
 #include <QLabel>
 
 
-PreferencesPlaysPage::PreferencesPlaysPage(QWidget *parent)
+PreferencesPagePlays::PreferencesPagePlays(QWidget *parent)
     : QWidget(parent)
 {
     // Title
@@ -39,19 +39,19 @@ PreferencesPlaysPage::PreferencesPlaysPage(QWidget *parent)
 }
 
 
-void PreferencesPlaysPage::setZeroMargins()
+void PreferencesPagePlays::setZeroMargins()
 {
     m_layout->setContentsMargins(0, 0, 0, 0);
 }
 
 
-QString PreferencesPlaysPage::title() const
+QString PreferencesPagePlays::title() const
 {
     return tr("Plays");
 }
 
 
-void PreferencesPlaysPage::onPreferencesChanged()
+void PreferencesPagePlays::onPreferencesChanged()
 {
     emit preferencesChanged();
 }
