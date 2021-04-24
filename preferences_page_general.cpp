@@ -53,10 +53,10 @@ PreferencesPageGeneral::PreferencesPageGeneral(QWidget *parent)
     // Content: Tab Bars
 
     auto *rdbDefaultTabPositionLotteriesTop = new QRadioButton(tr("Top"));
-    rdbDefaultTabPositionLotteriesTop->setToolTip(tr("The lottery tabs are drawn above the pages."));
+    rdbDefaultTabPositionLotteriesTop->setToolTip(tr("The lottery tabs are displayed above the pages"));
 
     auto *rdbDefaultTabPositionLotteriesBottom = new QRadioButton(tr("Bottom"));
-    rdbDefaultTabPositionLotteriesBottom->setToolTip(tr("The lottery tabs are drawn below the pages."));
+    rdbDefaultTabPositionLotteriesBottom->setToolTip(tr("The lottery tabs are displayed below the pages"));
 
     m_grpDefaultTabPositionLotteries = new QButtonGroup(this);
     m_grpDefaultTabPositionLotteries->addButton(rdbDefaultTabPositionLotteriesTop, (int) QTabWidget::North);
@@ -64,10 +64,10 @@ PreferencesPageGeneral::PreferencesPageGeneral(QWidget *parent)
     connect(m_grpDefaultTabPositionLotteries, QOverload<QAbstractButton *>::of(&QButtonGroup::buttonClicked), this, &PreferencesPageGeneral::onPreferencesChanged);
 
     auto *rdbDefaultTabPositionSheetsTop = new QRadioButton(tr("Top"));
-    rdbDefaultTabPositionSheetsTop->setToolTip(tr("The sheet tabs are drawn above the pages."));
+    rdbDefaultTabPositionSheetsTop->setToolTip(tr("The sheet tabs are displayed above the pages"));
 
     auto *rdbDefaultTabPositionSheetsBottom = new QRadioButton(tr("Bottom"));
-    rdbDefaultTabPositionSheetsBottom->setToolTip(tr("The sheet tabs are drawn below the pages."));
+    rdbDefaultTabPositionSheetsBottom->setToolTip(tr("The sheet tabs are displayed below the pages"));
 
     m_grpDefaultTabPositionSheets = new QButtonGroup(this);
     m_grpDefaultTabPositionSheets->addButton(rdbDefaultTabPositionSheetsTop, (int) QTabWidget::North);
