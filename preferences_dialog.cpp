@@ -34,9 +34,9 @@ PreferencesDialog::PreferencesDialog(QWidget *parent)
     //
     // Content
 
-    m_generalPage = new PreferencesGeneralPage;
-    m_generalPage->setZeroMargins();
-    connect(m_generalPage, &PreferencesGeneralPage::preferencesChanged, this, &PreferencesDialog::onPreferencesChanged);
+    m_pageGeneral = new PreferencesPageGeneral;
+    m_pageGeneral->setZeroMargins();
+    connect(m_pageGeneral, &PreferencesPageGeneral::preferencesChanged, this, &PreferencesDialog::onPreferencesChanged);
 
     m_pageLotteries = new PreferencesPageLotteries;
     m_pageLotteries->setZeroMargins();
@@ -51,14 +51,14 @@ PreferencesDialog::PreferencesDialog(QWidget *parent)
     connect(m_pagePlays, &PreferencesPagePlays::preferencesChanged, this, &PreferencesDialog::onPreferencesChanged);
 
     auto *stackedBox = new QStackedWidget;
-    stackedBox->addWidget(m_generalPage);
+    stackedBox->addWidget(m_pageGeneral);
     stackedBox->addWidget(m_pageLotteries);
     stackedBox->addWidget(m_pageDraws);
     stackedBox->addWidget(m_pagePlays);
     stackedBox->setCurrentIndex(0);
 
     auto *listBox = new QListWidget;
-    listBox->addItem(m_generalPage->title());
+    listBox->addItem(m_pageGeneral->title());
     listBox->addItem(m_pageLotteries->title());
     listBox->addItem(m_pageDraws->title());
     listBox->addItem(m_pagePlays->title());
@@ -131,14 +131,14 @@ void PreferencesDialog::onButtonApplyClicked()
 void PreferencesDialog::updatePreferences(bool isDefault)
 {
     // General: Geometry & State
-    m_generalPage->setRestoreApplicationGeometry(m_preferences.restoreApplicationGeometry(isDefault));
-    m_generalPage->setRestoreApplicationState(m_preferences.restoreApplicationState(isDefault));
+    m_pageGeneral->setRestoreApplicationGeometry(m_preferences.restoreApplicationGeometry(isDefault));
+    m_pageGeneral->setRestoreApplicationState(m_preferences.restoreApplicationState(isDefault));
 }
 
 
 void PreferencesDialog::savePreferences()
 {
     // General: Geometry & State
-    m_preferences.setRestoreApplicationGeometry(m_generalPage->restoreApplicationGeometry());
-    m_preferences.setRestoreApplicationState(m_generalPage->restoreApplicationState());
+    m_preferences.setRestoreApplicationGeometry(m_pageGeneral->restoreApplicationGeometry());
+    m_preferences.setRestoreApplicationState(m_pageGeneral->restoreApplicationState());
 }

@@ -17,20 +17,20 @@
  * along with Lotrio-Qt.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-#ifndef PREFERENCES_GENERAL_PAGE_H
-#define PREFERENCES_GENERAL_PAGE_H
+#ifndef PREFERENCES_PAGE_GENERAL_H
+#define PREFERENCES_PAGE_GENERAL_H
 
 #include <QCheckBox>
 #include <QVBoxLayout>
 #include <QWidget>
 
 
-class PreferencesGeneralPage : public QWidget
+class PreferencesPageGeneral : public QWidget
 {
     Q_OBJECT
 
 public:
-    explicit PreferencesGeneralPage(QWidget *parent = nullptr);
+    explicit PreferencesPageGeneral(QWidget *parent = nullptr);
 
     void setZeroMargins();
 
@@ -55,4 +55,4 @@ private:
     QCheckBox *m_chkRestoreApplicationState;
 };
 
-#endif // PREFERENCES_GENERAL_PAGE_H
+#endif // PREFERENCES_PAGE_GENERAL_H

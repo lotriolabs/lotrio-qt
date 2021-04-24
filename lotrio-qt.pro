@@ -39,8 +39,8 @@ SOURCES += \
     main_window.cpp \
     preferences.cpp \
     preferences_dialog.cpp \
-    preferences_general_page.cpp \
     preferences_page_draws.cpp \
+    preferences_page_general.cpp \
     preferences_page_lotteries.cpp \
     preferences_page_plays.cpp
 
@@ -55,8 +55,8 @@ HEADERS += \
     main_window.h \
     preferences.h \
     preferences_dialog.h \
-    preferences_general_page.h \
     preferences_page_draws.h \
+    preferences_page_general.h \
     preferences_page_lotteries.h \
     preferences_page_plays.h
 

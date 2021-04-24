@@ -17,13 +17,13 @@
  * along with Lotrio-Qt.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-#include "preferences_general_page.h"
+#include "preferences_page_general.h"
 
 #include <QGroupBox>
 #include <QLabel>
 
 
-PreferencesGeneralPage::PreferencesGeneralPage(QWidget *parent)
+PreferencesPageGeneral::PreferencesPageGeneral(QWidget *parent)
     : QWidget(parent)
 {
     // Title
@@ -33,10 +33,10 @@ PreferencesGeneralPage::PreferencesGeneralPage(QWidget *parent)
     // Content: Geometry & State
 
     m_chkRestoreApplicationGeometry = new QCheckBox(tr("Save and restore the application geometry"));
-    connect(m_chkRestoreApplicationGeometry, &QCheckBox::stateChanged, this, &PreferencesGeneralPage::onPreferencesChanged);
+    connect(m_chkRestoreApplicationGeometry, &QCheckBox::stateChanged, this, &PreferencesPageGeneral::onPreferencesChanged);
 
     m_chkRestoreApplicationState = new QCheckBox(tr("Save and restore the application state"));
-    connect(m_chkRestoreApplicationState, &QCheckBox::stateChanged, this, &PreferencesGeneralPage::onPreferencesChanged);
+    connect(m_chkRestoreApplicationState, &QCheckBox::stateChanged, this, &PreferencesPageGeneral::onPreferencesChanged);
 
     auto *geometryStateLayout = new QVBoxLayout;
     geometryStateLayout->addWidget(m_chkRestoreApplicationGeometry);
@@ -53,43 +53,43 @@ PreferencesGeneralPage::PreferencesGeneralPage(QWidget *parent)
 }
 
 
-void PreferencesGeneralPage::setZeroMargins()
+void PreferencesPageGeneral::setZeroMargins()
 {
     m_layout->setContentsMargins(0, 0, 0, 0);
 }
 
 
-QString PreferencesGeneralPage::title() const
+QString PreferencesPageGeneral::title() const
 {
     return tr("General");
 }
 
 
-void PreferencesGeneralPage::onPreferencesChanged()
+void PreferencesPageGeneral::onPreferencesChanged()
 {
     emit preferencesChanged();
 }
 
 
-void PreferencesGeneralPage::setRestoreApplicationGeometry(const bool checked)
+void PreferencesPageGeneral::setRestoreApplicationGeometry(const bool checked)
 {
     m_chkRestoreApplicationGeometry->setChecked(checked);
 }
 
 
-bool PreferencesGeneralPage::restoreApplicationGeometry() const
+bool PreferencesPageGeneral::restoreApplicationGeometry() const
 {
     return m_chkRestoreApplicationGeometry->isChecked();
 }
 
 
-void PreferencesGeneralPage::setRestoreApplicationState(const bool checked)
+void PreferencesPageGeneral::setRestoreApplicationState(const bool checked)
 {
     m_chkRestoreApplicationState->setChecked(checked);
 }
 
 
-bool PreferencesGeneralPage::restoreApplicationState() const
+bool PreferencesPageGeneral::restoreApplicationState() const
 {
     return m_chkRestoreApplicationState->isChecked();
 }
