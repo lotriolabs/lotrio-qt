@@ -391,68 +391,115 @@
     </message>
 </context>
 <context>
-    <name>PreferencesDrawsPage</name>
+    <name>PreferencesPageDraws</name>
     <message>
-        <location filename="../preferences_draws_page.cpp" line="29"/>
+        <location filename="../preferences_page_draws.cpp" line="29"/>
         <source>&lt;strong style=&quot;font-size:large;&quot;&gt;%1&lt;/strong&gt;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../preferences_draws_page.cpp" line="50"/>
+        <location filename="../preferences_page_draws.cpp" line="50"/>
         <source>Draws</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
-    <name>PreferencesGeneralPage</name>
+    <name>PreferencesPageGeneral</name>
     <message>
-        <location filename="../preferences_general_page.cpp" line="30"/>
+        <location filename="../preferences_page_general.cpp" line="32"/>
         <source>&lt;strong style=&quot;font-size:large;&quot;&gt;%1&lt;/strong&gt;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../preferences_general_page.cpp" line="35"/>
+        <location filename="../preferences_page_general.cpp" line="38"/>
         <source>Save and restore the application geometry</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../preferences_general_page.cpp" line="38"/>
+        <location filename="../preferences_page_general.cpp" line="41"/>
         <source>Save and restore the application state</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../preferences_general_page.cpp" line="45"/>
+        <location filename="../preferences_page_general.cpp" line="48"/>
         <source>Geometry &amp;&amp; State</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../preferences_general_page.cpp" line="64"/>
+        <location filename="../preferences_page_general.cpp" line="55"/>
+        <location filename="../preferences_page_general.cpp" line="66"/>
+        <source>Top</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../preferences_page_general.cpp" line="56"/>
+        <source>The lottery tabs are displayed above the pages</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../preferences_page_general.cpp" line="58"/>
+        <location filename="../preferences_page_general.cpp" line="69"/>
+        <source>Bottom</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../preferences_page_general.cpp" line="59"/>
+        <source>The lottery tabs are displayed below the pages</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../preferences_page_general.cpp" line="67"/>
+        <source>The sheet tabs are displayed above the pages</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../preferences_page_general.cpp" line="70"/>
+        <source>The sheet tabs are displayed below the pages</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../preferences_page_general.cpp" line="86"/>
+        <source>Position of the lottery tabs</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../preferences_page_general.cpp" line="87"/>
+        <source>Position of the sheet tabs</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../preferences_page_general.cpp" line="89"/>
+        <source>Tab Bars</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../preferences_page_general.cpp" line="110"/>
         <source>General</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
-    <name>PreferencesLotteriesPage</name>
+    <name>PreferencesPageLotteries</name>
     <message>
-        <location filename="../preferences_lotteries_page.cpp" line="29"/>
+        <location filename="../preferences_page_lotteries.cpp" line="29"/>
         <source>&lt;strong style=&quot;font-size:large;&quot;&gt;%1&lt;/strong&gt;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../preferences_lotteries_page.cpp" line="50"/>
+        <location filename="../preferences_page_lotteries.cpp" line="50"/>
         <source>Lotteries</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">הגרלות</translation>
     </message>
 </context>
 <context>
-    <name>PreferencesPlaysPage</name>
+    <name>PreferencesPagePlays</name>
     <message>
-        <location filename="../preferences_plays_page.cpp" line="29"/>
+        <location filename="../preferences_page_plays.cpp" line="29"/>
         <source>&lt;strong style=&quot;font-size:large;&quot;&gt;%1&lt;/strong&gt;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../preferences_plays_page.cpp" line="50"/>
+        <location filename="../preferences_page_plays.cpp" line="50"/>
         <source>Plays</source>
         <translation type="unfinished"></translation>
     </message>
@@ -466,7 +513,7 @@
     </message>
     <message>
         <location filename="../main.cpp" line="61"/>
-        <location filename="../main.cpp" line="83"/>
+        <location filename="../main.cpp" line="91"/>
         <source>language code</source>
         <translation type="unfinished"></translation>
     </message>
@@ -481,17 +528,17 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="82"/>
+        <location filename="../main.cpp" line="87"/>
         <source>Lists available application languages.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="83"/>
+        <location filename="../main.cpp" line="90"/>
         <source>Adjusts application language.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="86"/>
+        <location filename="../main.cpp" line="94"/>
         <source>%1 - A visualization tool for lottery data</source>
         <translation type="unfinished"></translation>
     </message>
