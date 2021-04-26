@@ -22,6 +22,8 @@
 #include <QFileInfo>
 #include <QVBoxLayout>
 
+#include "lottery_page_about.h"
+
 
 Document::Document(QWidget *parent)
     : QWidget(parent)
@@ -100,6 +102,11 @@ bool Document::load(const QString &canonicalName)
     setCanonicalName(canonicalName);
 
     m_tabBox->setTabPosition(m_preferences.defaultTabPositionSheets());
+
+    // Content
+    auto *pageAbout = new LotteryPageAbout(canonicalName);
+
+    m_tabBox->addTab(pageAbout, pageAbout->title());
 
     return true;
 }
