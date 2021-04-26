@@ -645,6 +645,7 @@ bool MainWindow::loadDocument(const QString &canonicalName)
 
         // Update the application window
         updateActions(m_documentArea->subWindowList().count());
+        updateActionTabPositionSheets(document->documentTabPosition());
         updateMenus(m_documentArea->subWindowList().count());
         updateTitleBar();
     }
