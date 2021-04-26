@@ -41,6 +41,9 @@ public:
     QString documentTitle() const;
     void updateDocumentTitle();
 
+    void setDocumentTabPosition(const QTabWidget::TabPosition tabPosition);
+    QTabWidget::TabPosition documentTabPosition() const;
+
     bool load(const QString &canonicalName);
 
 signals:

@@ -27,6 +27,7 @@
 #include <QMainWindow>
 #include <QMdiArea>
 #include <QMdiSubWindow>
+#include <QMenu>
 #include <QToolBar>
 
 #include "document.h"
@@ -59,6 +60,7 @@ private slots:
 
     void onActionFullScreenTriggered();
     void onActionTabPositionLotteriesTriggered(const QAction *actionTabPositionLotteries);
+    void onActionTabPositionSheetsTriggered(const QAction *actionTabPositionSheets);
 
     void onActionKeyboardShortcutsTriggered();
 
@@ -91,6 +93,8 @@ private:
     void updateActions(const int subWindowCount = 0);
     void updateActionFullScreen();
     void updateActionTabPositionLotteries();
+    void updateActionTabPositionSheets(const QTabWidget::TabPosition tabPosition);
+    void updateMenus(const int subWindowCount = 0);
     void updateTitleBar();
 
     QAction *m_actionAbout;
@@ -105,6 +109,7 @@ private:
 
     QAction *m_actionFullScreen;
     QActionGroup *m_actionTabPositionLotteries;
+    QActionGroup *m_actionTabPositionSheets;
     QAction *m_actionToolbarApplication;
     QAction *m_actionToolbarLotteries;
     QAction *m_actionToolbarTools;
@@ -112,6 +117,8 @@ private:
     QAction *m_actionToolbarHelp;
 
     QAction *m_actionKeyboardShortcuts;
+
+    QMenu *m_menuSheetTabs;
 
     Document *createDocument();
     QMdiSubWindow *findDocumentWindow(const QString &canonicalName) const;

@@ -49,6 +49,8 @@ MainWindow::MainWindow(QWidget *parent)
     updateActions();
     updateActionFullScreen();
     updateActionTabPositionLotteries();
+    updateActionTabPositionSheets(m_preferences.defaultTabPositionSheets());
+    updateMenus();
 
     // Central widget
     m_documentArea->setViewMode(QMdiArea::TabbedView);
@@ -224,6 +226,24 @@ void MainWindow::createActions()
     m_actionTabPositionLotteries->addAction(actionTabPositionLotteriesBottom);
     connect(m_actionTabPositionLotteries, &QActionGroup::triggered, this, &MainWindow::onActionTabPositionLotteriesTriggered);
 
+    auto *actionTabPositionSheetsTop = new QAction(tr("Top"), this);
+    actionTabPositionSheetsTop->setObjectName(QStringLiteral("actionTabPositionSheetsTop"));
+    actionTabPositionSheetsTop->setCheckable(true);
+    actionTabPositionSheetsTop->setToolTip(tr("The sheet tabs are displayed above the pages"));
+    actionTabPositionSheetsTop->setData((int) QTabWidget::North);
+
+    auto *actionTabPositionSheetsBottom = new QAction(tr("Bottom"), this);
+    actionTabPositionSheetsBottom->setObjectName(QStringLiteral("actionTabPositionSheetsBottom"));
+    actionTabPositionSheetsBottom->setCheckable(true);
+    actionTabPositionSheetsBottom->setToolTip(tr("The sheet tabs are displayed below the pages"));
+    actionTabPositionSheetsBottom->setData((int) QTabWidget::South);
+
+    m_actionTabPositionSheets = new QActionGroup(this);
+    m_actionTabPositionSheets->setObjectName(QStringLiteral("actionTabPositionSheets"));
+    m_actionTabPositionSheets->addAction(actionTabPositionSheetsTop);
+    m_actionTabPositionSheets->addAction(actionTabPositionSheetsBottom);
+    connect(m_actionTabPositionSheets, &QActionGroup::triggered, this, &MainWindow::onActionTabPositionSheetsTriggered);
+
     m_actionToolbarApplication = new QAction(tr("Show Application Toolbar"), this);
     m_actionToolbarApplication->setObjectName(QStringLiteral("actionToolbarApplication"));
     m_actionToolbarApplication->setCheckable(true);
@@ -298,11 +318,16 @@ void MainWindow::createMenus()
     menuLotteryTabs->setObjectName(QStringLiteral("menuLotteryTabs"));
     menuLotteryTabs->addActions(m_actionTabPositionLotteries->actions());
 
+    m_menuSheetTabs = new QMenu(tr("Sheet Tabs…"), this);
+    m_menuSheetTabs->setObjectName(QStringLiteral("menuSheetTabs"));
+    m_menuSheetTabs->addActions(m_actionTabPositionSheets->actions());
+
     auto *menuView = menuBar()->addMenu(tr("View"));
     menuView->setObjectName(QStringLiteral("menuView"));
     menuView->addAction(m_actionFullScreen);
     menuView->addSeparator();
     menuView->addMenu(menuLotteryTabs);
+    menuView->addMenu(m_menuSheetTabs);
     menuView->addSeparator();
     menuView->addAction(m_actionToolbarApplication);
     menuView->addAction(m_actionToolbarLotteries);
@@ -394,6 +419,27 @@ void MainWindow::updateActionTabPositionLotteries()
 }
 
 
+void MainWindow::updateActionTabPositionSheets(const QTabWidget::TabPosition tabPosition)
+{
+    const QList<QAction *> actions = m_actionTabPositionSheets->actions();
+    for (auto *action : actions) {
+        if (action->data() == tabPosition) {
+            action->setChecked(true);
+            break;
+        }
+    }
+}
+
+
+void MainWindow::updateMenus(const int subWindowCount)
+{
+    const bool hasDocument = subWindowCount >= 1;
+
+    // Menu: View
+    m_menuSheetTabs->setEnabled(hasDocument);
+}
+
+
 void MainWindow::updateTitleBar()
 {
     QString title;
@@ -479,6 +525,15 @@ void MainWindow::onActionTabPositionLotteriesTriggered(const QAction *actionTabP
 }
 
 
+void MainWindow::onActionTabPositionSheetsTriggered(const QAction *actionTabPositionSheets)
+{
+    auto tabPosition = static_cast<QTabWidget::TabPosition> (actionTabPositionSheets->data().toInt());
+
+    if (auto *document = activeDocument())
+        document->setDocumentTabPosition(tabPosition);
+}
+
+
 void MainWindow::onActionKeyboardShortcutsTriggered()
 {
     if (!m_keyboardShortcutsDialog)
@@ -494,10 +549,15 @@ void MainWindow::onDocumentWindowActivated(const QMdiSubWindow *subWindow)
 {
     // Update the application window
     updateActions(m_documentArea->subWindowList().count());
+    updateMenus(m_documentArea->subWindowList().count());
     updateTitleBar();
 
     if (!subWindow)
         return;
+
+    auto *document = qobject_cast<Document *>(subWindow->widget());
+
+    updateActionTabPositionSheets(document->documentTabPosition());
 }
 
 
@@ -512,6 +572,7 @@ void MainWindow::onDocumentAboutToClose(const QString &canonicalName)
 
     // Update menu items without the emitter
     updateActions(m_documentArea->subWindowList().count() - 1);
+    updateMenus(m_documentArea->subWindowList().count() - 1);
 
     // Disable the Lottery action
     const QList<QAction *> actionLotteries = m_actionLotteries;
@@ -584,6 +645,7 @@ bool MainWindow::loadDocument(const QString &canonicalName)
 
         // Update the application window
         updateActions(m_documentArea->subWindowList().count());
+        updateMenus(m_documentArea->subWindowList().count());
         updateTitleBar();
     }
     else {

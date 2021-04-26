@@ -63,6 +63,18 @@ void Document::updateDocumentTitle()
 }
 
 
+void Document::setDocumentTabPosition(const QTabWidget::TabPosition tabPosition)
+{
+    Q_UNUSED(tabPosition);
+}
+
+
+QTabWidget::TabPosition Document::documentTabPosition() const
+{
+    return QTabWidget::South;
+}
+
+
 void Document::closeEvent(QCloseEvent *event)
 {
     if (true) {
