@@ -56,6 +56,7 @@ MainWindow::MainWindow(QWidget *parent)
     m_documentArea->setViewMode(QMdiArea::TabbedView);
     m_documentArea->setTabsMovable(true);
     m_documentArea->setTabsClosable(true);
+    m_documentArea->setTabPosition(m_preferences.defaultTabPositionLotteries());
     setCentralWidget(m_documentArea);
     connect(m_documentArea, &QMdiArea::subWindowActivated, this, &MainWindow::onDocumentWindowActivated);
 }
