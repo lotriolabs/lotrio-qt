@@ -37,6 +37,7 @@ SOURCES += \
     keyboard_shortcuts_page.cpp \
     lottery_page_about.cpp \
     lottery_page_draws.cpp \
+    lottery_page_plays.cpp \
     main.cpp \
     main_window.cpp \
     preferences.cpp \
@@ -56,6 +57,7 @@ HEADERS += \
     keyboard_shortcuts_page.h \
     lottery_page_about.h \
     lottery_page_draws.h \
+    lottery_page_plays.h \
     main_window.h \
     preferences.h \
     preferences_dialog.h \

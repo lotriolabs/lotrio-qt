@@ -24,6 +24,7 @@
 
 #include "lottery_page_about.h"
 #include "lottery_page_draws.h"
+#include "lottery_page_plays.h"
 
 
 Document::Document(QWidget *parent)
@@ -107,9 +108,11 @@ bool Document::load(const QString &canonicalName)
     // Content
     auto *pageAbout = new LotteryPageAbout(canonicalName);
     auto *pageDraws = new LotteryPageDraws(canonicalName);
+    auto *pagePlays = new LotteryPagePlays(canonicalName);
 
     m_tabBox->addTab(pageAbout, pageAbout->title());
     m_tabBox->addTab(pageDraws, pageDraws->title());
+    m_tabBox->addTab(pagePlays, pagePlays->title());
 
     return true;
 }
