@@ -20,6 +20,7 @@
 #include "document.h"
 
 #include <QFileInfo>
+#include <QVBoxLayout>
 
 
 Document::Document(QWidget *parent)
@@ -27,7 +28,13 @@ Document::Document(QWidget *parent)
 {
     setAttribute(Qt::WA_DeleteOnClose);
 
+    // Content
+    m_tabBox = new QTabWidget;
+    m_tabBox->setTabPosition(QTabWidget::South);
 
+    // Main layout
+    auto *layout = new QVBoxLayout(this);
+    layout->addWidget(m_tabBox);
 }
 
 
@@ -65,13 +72,13 @@ void Document::updateDocumentTitle()
 
 void Document::setDocumentTabPosition(const QTabWidget::TabPosition tabPosition)
 {
-    Q_UNUSED(tabPosition);
+    m_tabBox->setTabPosition(tabPosition);
 }
 
 
 QTabWidget::TabPosition Document::documentTabPosition() const
 {
-    return QTabWidget::South;
+    return m_tabBox->tabPosition();
 }
 
 
@@ -92,6 +99,7 @@ bool Document::load(const QString &canonicalName)
 {
     setCanonicalName(canonicalName);
 
+    m_tabBox->setTabPosition(m_preferences.defaultTabPositionSheets());
 
     return true;
 }

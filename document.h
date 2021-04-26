@@ -21,6 +21,7 @@
 #define DOCUMENT_H
 
 #include <QCloseEvent>
+#include <QTabWidget>
 #include <QWidget>
 
 #include "preferences.h"
@@ -53,6 +54,7 @@ protected:
     void closeEvent(QCloseEvent *event) override;
 
 private:
+    QTabWidget *m_tabBox;
     Preferences m_preferences;
 
     QString m_canonicalName;
