@@ -21,6 +21,7 @@
 #define MAIN_WINDOW_H
 
 #include <QAction>
+#include <QActionGroup>
 #include <QByteArray>
 #include <QCloseEvent>
 #include <QMainWindow>
@@ -57,6 +58,7 @@ private slots:
     void onActionCloseAllTriggered();
 
     void onActionFullScreenTriggered();
+    void onActionTabPositionLotteriesTriggered(const QAction *actionTabPositionLotteries);
 
     void onActionKeyboardShortcutsTriggered();
 
@@ -88,6 +90,7 @@ private:
 
     void updateActions(const int subWindowCount = 0);
     void updateActionFullScreen();
+    void updateActionTabPositionLotteries();
     void updateTitleBar();
 
     QAction *m_actionAbout;
@@ -101,6 +104,7 @@ private:
     QAction *m_actionCloseAll;
 
     QAction *m_actionFullScreen;
+    QActionGroup *m_actionTabPositionLotteries;
     QAction *m_actionToolbarApplication;
     QAction *m_actionToolbarLotteries;
     QAction *m_actionToolbarTools;
