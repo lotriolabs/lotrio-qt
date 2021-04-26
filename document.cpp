@@ -23,6 +23,7 @@
 #include <QVBoxLayout>
 
 #include "lottery_page_about.h"
+#include "lottery_page_draws.h"
 
 
 Document::Document(QWidget *parent)
@@ -105,8 +106,10 @@ bool Document::load(const QString &canonicalName)
 
     // Content
     auto *pageAbout = new LotteryPageAbout(canonicalName);
+    auto *pageDraws = new LotteryPageDraws(canonicalName);
 
     m_tabBox->addTab(pageAbout, pageAbout->title());
+    m_tabBox->addTab(pageDraws, pageDraws->title());
 
     return true;
 }
