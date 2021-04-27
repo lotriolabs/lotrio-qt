@@ -64,7 +64,7 @@ QString ColophonPageAbout::title() const
 // Colophon page: Authors
 //
 
-ColophonAuthorsPage::ColophonAuthorsPage(QWidget *parent)
+ColophonPageAuthors::ColophonPageAuthors(QWidget *parent)
     : QWidget(parent)
 {
     auto *textBox = new QTextBrowser;
@@ -82,13 +82,13 @@ ColophonAuthorsPage::ColophonAuthorsPage(QWidget *parent)
 }
 
 
-void ColophonAuthorsPage::setZeroMargins()
+void ColophonPageAuthors::setZeroMargins()
 {
     m_layout->setContentsMargins(0, 0, 0, 0);
 }
 
 
-QString ColophonAuthorsPage::title() const
+QString ColophonPageAuthors::title() const
 {
     return tr("Authors");
 }

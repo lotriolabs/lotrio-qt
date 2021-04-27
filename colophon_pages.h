@@ -50,12 +50,12 @@ private:
 // Colophon page: Authors
 //
 
-class ColophonAuthorsPage : public QWidget
+class ColophonPageAuthors : public QWidget
 {
     Q_OBJECT
 
 public:
-    explicit ColophonAuthorsPage(QWidget *parent = nullptr);
+    explicit ColophonPageAuthors(QWidget *parent = nullptr);
 
     void setZeroMargins();
 
