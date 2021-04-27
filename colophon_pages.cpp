@@ -185,7 +185,7 @@ QString ColophonPageEnvironment::title() const
 // Colophon page: License
 //
 
-ColophonLicensePage::ColophonLicensePage(QWidget *parent)
+ColophonPageLicense::ColophonPageLicense(QWidget *parent)
     : QWidget(parent)
 {
     auto *textBox = new QTextBrowser;
@@ -204,13 +204,13 @@ ColophonLicensePage::ColophonLicensePage(QWidget *parent)
 }
 
 
-void ColophonLicensePage::setZeroMargins()
+void ColophonPageLicense::setZeroMargins()
 {
     m_layout->setContentsMargins(0, 0, 0, 0);
 }
 
 
-QString ColophonLicensePage::title() const
+QString ColophonPageLicense::title() const
 {
     return tr("License");
 }

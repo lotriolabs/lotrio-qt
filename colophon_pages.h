@@ -113,12 +113,12 @@ private:
 // Colophon page: License
 //
 
-class ColophonLicensePage : public QWidget
+class ColophonPageLicense : public QWidget
 {
     Q_OBJECT
 
 public:
-    explicit ColophonLicensePage(QWidget *parent = nullptr);
+    explicit ColophonPageLicense(QWidget *parent = nullptr);
 
     void setZeroMargins();
 

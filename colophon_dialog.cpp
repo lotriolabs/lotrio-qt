@@ -37,21 +37,23 @@ ColophonDialog::ColophonDialog(QWidget *parent)
     // Title box
     auto *titleBox = new DialogTitleBox;
 
+
     //
     // Content
 
     auto *pageAbout = new ColophonPageAbout;
     auto *pageEnvironment = new ColophonPageEnvironment;
-    auto *licensePage = new ColophonLicensePage;
+    auto *pageLicense = new ColophonPageLicense;
     auto *pageAuthors = new ColophonPageAuthors;
     auto *pageCredits = new ColophonPageCredits;
 
     auto *tabBox = new QTabWidget;
     tabBox->addTab(pageAbout, pageAbout->title());
     tabBox->addTab(pageEnvironment, pageEnvironment->title());
-    tabBox->addTab(licensePage, licensePage->title());
+    tabBox->addTab(pageLicense, pageLicense->title());
     tabBox->addTab(pageAuthors, pageAuthors->title());
     tabBox->addTab(pageCredits, pageCredits->title());
+
 
     // Button box
     auto *buttonBox = new QDialogButtonBox(QDialogButtonBox::Close);
