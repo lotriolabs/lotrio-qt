@@ -119,6 +119,7 @@ private:
     QAction *m_actionToolbarTools;
     QAction *m_actionToolbarView;
     QAction *m_actionToolbarHelp;
+    QAction *m_actionStatusbar;
 
     QAction *m_actionKeyboardShortcuts;
 

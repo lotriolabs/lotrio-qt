@@ -276,6 +276,13 @@ void MainWindow::createActions()
     m_actionToolbarHelp->setToolTip(tr("Display the Help toolbar"));
     connect(m_actionToolbarHelp, &QAction::toggled, [=](bool checked) { m_toolbarHelp->setVisible(checked); });
 
+    m_actionStatusbar = new QAction(tr("Show Statusbar"), this);
+    m_actionStatusbar->setObjectName(QStringLiteral("actionStatusbar"));
+    m_actionStatusbar->setCheckable(true);
+    m_actionStatusbar->setChecked(true);
+    m_actionStatusbar->setToolTip(tr("Display the statusbar"));
+    connect(m_actionStatusbar, &QAction::toggled, [=](bool checked) { m_statusbar->setVisible(checked); });
+
     //
     // Actions: Help
 
@@ -336,6 +343,8 @@ void MainWindow::createMenus()
     menuView->addAction(m_actionToolbarTools);
     menuView->addAction(m_actionToolbarView);
     menuView->addAction(m_actionToolbarHelp);
+    menuView->addSeparator();
+    menuView->addAction(m_actionStatusbar);
 
     // Menu: Help
     auto *menuHelp = menuBar()->addMenu(tr("Help"));
