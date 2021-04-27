@@ -323,11 +323,11 @@ void MainWindow::createMenus()
     //
     // Menu: View
 
-    auto *menuLotteryTabs = new QMenu(tr("Lottery Tabs…"), this);
+    auto *menuLotteryTabs = new QMenu(tr("Show Lottery Tabs…"), this);
     menuLotteryTabs->setObjectName(QStringLiteral("menuLotteryTabs"));
     menuLotteryTabs->addActions(m_actionTabPositionLotteries->actions());
 
-    m_menuSheetTabs = new QMenu(tr("Sheet Tabs…"), this);
+    m_menuSheetTabs = new QMenu(tr("Show Sheet Tabs…"), this);
     m_menuSheetTabs->setObjectName(QStringLiteral("menuSheetTabs"));
     m_menuSheetTabs->addActions(m_actionTabPositionSheets->actions());
 
