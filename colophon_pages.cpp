@@ -99,7 +99,7 @@ QString ColophonPageAuthors::title() const
 // Colophon page: Credits
 //
 
-ColophonCreditsPage::ColophonCreditsPage(QWidget *parent)
+ColophonPageCredits::ColophonPageCredits(QWidget *parent)
     : QWidget(parent)
 {
     auto *textBox = new QTextBrowser;
@@ -123,13 +123,13 @@ ColophonCreditsPage::ColophonCreditsPage(QWidget *parent)
 }
 
 
-void ColophonCreditsPage::setZeroMargins()
+void ColophonPageCredits::setZeroMargins()
 {
     m_layout->setContentsMargins(0, 0, 0, 0);
 }
 
 
-QString ColophonCreditsPage::title() const
+QString ColophonPageCredits::title() const
 {
     return tr("Credits");
 }

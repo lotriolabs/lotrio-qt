@@ -71,12 +71,12 @@ private:
 // Colophon page: Credits
 //
 
-class ColophonCreditsPage : public QWidget
+class ColophonPageCredits : public QWidget
 {
     Q_OBJECT
 
 public:
-    explicit ColophonCreditsPage(QWidget *parent = nullptr);
+    explicit ColophonPageCredits(QWidget *parent = nullptr);
 
     void setZeroMargins();
 

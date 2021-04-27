@@ -44,14 +44,14 @@ ColophonDialog::ColophonDialog(QWidget *parent)
     auto *environmentPage = new ColophonEnvironmentPage;
     auto *licensePage = new ColophonLicensePage;
     auto *pageAuthors = new ColophonPageAuthors;
-    auto *creditsPage = new ColophonCreditsPage;
+    auto *pageCredits = new ColophonPageCredits;
 
     auto *tabBox = new QTabWidget;
     tabBox->addTab(pageAbout, pageAbout->title());
     tabBox->addTab(environmentPage, environmentPage->title());
     tabBox->addTab(licensePage, licensePage->title());
     tabBox->addTab(pageAuthors, pageAuthors->title());
-    tabBox->addTab(creditsPage, creditsPage->title());
+    tabBox->addTab(pageCredits, pageCredits->title());
 
     // Button box
     auto *buttonBox = new QDialogButtonBox(QDialogButtonBox::Close);
