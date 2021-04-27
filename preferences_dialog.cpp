@@ -135,8 +135,8 @@ void PreferencesDialog::updatePreferences(bool isDefault)
     m_pageGeneral->setRestoreApplicationState(m_preferences.restoreApplicationState(isDefault));
 
     // General: Tab Bars
-    m_pageGeneral->setDefaultTabPositionLotteries(m_preferences.defaultTabPositionLotteries(isDefault));
-    m_pageGeneral->setDefaultTabPositionSheets(m_preferences.defaultTabPositionSheets(isDefault));
+    m_pageGeneral->setDefaultTabbarLotteriesPosition(m_preferences.defaultTabbarLotteriesPosition(isDefault));
+    m_pageGeneral->setDefaultTabbarSheetsPosition(m_preferences.defaultTabbarSheetsPosition(isDefault));
 }
 
 
@@ -147,6 +147,6 @@ void PreferencesDialog::savePreferences()
     m_preferences.setRestoreApplicationState(m_pageGeneral->restoreApplicationState());
 
     // General: Tab Bars
-    m_preferences.setDefaultTabPositionLotteries((m_pageGeneral->defaultTabPositionLotteries()));
-    m_preferences.setDefaultTabPositionSheets((m_pageGeneral->defaultTabPositionSheets()));
+    m_preferences.setDefaultTabbarLotteriesPosition((m_pageGeneral->defaultTabbarLotteriesPosition()));
+    m_preferences.setDefaultTabbarSheetsPosition((m_pageGeneral->defaultTabbarSheetsPosition()));
 }

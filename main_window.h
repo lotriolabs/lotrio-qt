@@ -60,8 +60,8 @@ private slots:
     void onActionCloseAllTriggered();
 
     void onActionFullScreenTriggered();
-    void onActionTabPositionLotteriesTriggered(const QAction *actionTabPositionLotteries);
-    void onActionTabPositionSheetsTriggered(const QAction *actionTabPositionSheets);
+    void onActionTabbarLotteriesPositionTriggered(const QAction *actionTabbarLotteriesPosition);
+    void onActionTabbarSheetsPositionTriggered(const QAction *actionTabbarSheetsPosition);
 
     void onActionKeyboardShortcutsTriggered();
 
@@ -96,8 +96,8 @@ private:
 
     void updateActions(const int subWindowCount = 0);
     void updateActionFullScreen();
-    void updateActionTabPositionLotteries();
-    void updateActionTabPositionSheets(const QTabWidget::TabPosition tabPosition);
+    void updateActionTabbarLotteriesPosition();
+    void updateActionTabbarSheetsPosition(const QTabWidget::TabPosition tabPosition);
     void updateMenus(const int subWindowCount = 0);
     void updateTitleBar();
 
@@ -112,8 +112,8 @@ private:
     QAction *m_actionCloseAll;
 
     QAction *m_actionFullScreen;
-    QActionGroup *m_actionTabPositionLotteries;
-    QActionGroup *m_actionTabPositionSheets;
+    QActionGroup *m_actionTabbarLotteriesPosition;
+    QActionGroup *m_actionTabbarSheetsPosition;
     QAction *m_actionToolbarApplication;
     QAction *m_actionToolbarLotteries;
     QAction *m_actionToolbarTools;

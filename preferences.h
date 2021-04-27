@@ -37,18 +37,18 @@ public:
     void setRestoreApplicationState(bool value);
     bool restoreApplicationState(bool isDefault = false);
 
-    void setDefaultTabPositionLotteries(QTabWidget::TabPosition value);
-    QTabWidget::TabPosition defaultTabPositionLotteries(bool isDefault = false);
+    void setDefaultTabbarLotteriesPosition(QTabWidget::TabPosition value);
+    QTabWidget::TabPosition defaultTabbarLotteriesPosition(bool isDefault = false);
 
-    void setDefaultTabPositionSheets(QTabWidget::TabPosition value);
-    QTabWidget::TabPosition defaultTabPositionSheets(bool isDefault = false);
+    void setDefaultTabbarSheetsPosition(QTabWidget::TabPosition value);
+    QTabWidget::TabPosition defaultTabbarSheetsPosition(bool isDefault = false);
 
 private:
     bool m_restoreApplicationGeometry;
     bool m_restoreApplicationState;
 
-    QTabWidget::TabPosition m_defaultTabPositionLotteries;
-    QTabWidget::TabPosition m_defaultTabPositionSheets;
+    QTabWidget::TabPosition m_defaultTabbarLotteriesPosition;
+    QTabWidget::TabPosition m_defaultTabbarSheetsPosition;
 };
 
 #endif // PREFERENCES_H

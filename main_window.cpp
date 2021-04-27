@@ -49,15 +49,15 @@ MainWindow::MainWindow(QWidget *parent)
 
     updateActions();
     updateActionFullScreen();
-    updateActionTabPositionLotteries();
-    updateActionTabPositionSheets(m_preferences.defaultTabPositionSheets());
+    updateActionTabbarLotteriesPosition();
+    updateActionTabbarSheetsPosition(m_preferences.defaultTabbarSheetsPosition());
     updateMenus();
 
     // Central widget
     m_documentArea->setViewMode(QMdiArea::TabbedView);
     m_documentArea->setTabsMovable(true);
     m_documentArea->setTabsClosable(true);
-    m_documentArea->setTabPosition(m_preferences.defaultTabPositionLotteries());
+    m_documentArea->setTabPosition(m_preferences.defaultTabbarLotteriesPosition());
     setCentralWidget(m_documentArea);
     connect(m_documentArea, &QMdiArea::subWindowActivated, this, &MainWindow::onDocumentWindowActivated);
 }
@@ -164,6 +164,7 @@ void MainWindow::createActions()
     m_actionQuit->setToolTip(tr("Quit the application"));
     connect(m_actionQuit, &QAction::triggered, this, &MainWindow::close);
 
+
     //
     // Actions: Lotteries
 
@@ -200,6 +201,7 @@ void MainWindow::createActions()
     m_actionCloseAll->setToolTip(tr("Close all lotteries"));
     connect(m_actionCloseAll, &QAction::triggered, this, &MainWindow::onActionCloseAllTriggered);
 
+
     //
     // Actions: View
 
@@ -210,41 +212,41 @@ void MainWindow::createActions()
     m_actionFullScreen->setShortcuts(QList<QKeySequence>() << QKeySequence(Qt::Key_F11) << QKeySequence::FullScreen);
     connect(m_actionFullScreen, &QAction::triggered, this, &MainWindow::onActionFullScreenTriggered);
 
-    auto *actionTabPositionLotteriesTop = new QAction(tr("Top"), this);
-    actionTabPositionLotteriesTop->setObjectName(QStringLiteral("actionTabPositionLotteriesTop"));
-    actionTabPositionLotteriesTop->setCheckable(true);
-    actionTabPositionLotteriesTop->setToolTip(tr("The lottery tabs are displayed above the pages"));
-    actionTabPositionLotteriesTop->setData((int) QTabWidget::North);
+    auto *actionTabbarLotteriesPositionTop = new QAction(tr("Top"), this);
+    actionTabbarLotteriesPositionTop->setObjectName(QStringLiteral("actionTabbarLotteriesPositionTop"));
+    actionTabbarLotteriesPositionTop->setCheckable(true);
+    actionTabbarLotteriesPositionTop->setToolTip(tr("The lottery tabs are displayed above the pages"));
+    actionTabbarLotteriesPositionTop->setData((int) QTabWidget::North);
 
-    auto *actionTabPositionLotteriesBottom = new QAction(tr("Bottom"), this);
-    actionTabPositionLotteriesBottom->setObjectName(QStringLiteral("actionTabPositionLotteriesBottom"));
-    actionTabPositionLotteriesBottom->setCheckable(true);
-    actionTabPositionLotteriesBottom->setToolTip(tr("The lottery tabs are displayed below the pages"));
-    actionTabPositionLotteriesBottom->setData((int) QTabWidget::South);
+    auto *actionTabbarLotteriesPositionBottom = new QAction(tr("Bottom"), this);
+    actionTabbarLotteriesPositionBottom->setObjectName(QStringLiteral("actionTabbarLotteriesPositionBottom"));
+    actionTabbarLotteriesPositionBottom->setCheckable(true);
+    actionTabbarLotteriesPositionBottom->setToolTip(tr("The lottery tabs are displayed below the pages"));
+    actionTabbarLotteriesPositionBottom->setData((int) QTabWidget::South);
 
-    m_actionTabPositionLotteries = new QActionGroup(this);
-    m_actionTabPositionLotteries->setObjectName(QStringLiteral("actionTabPositionLotteries"));
-    m_actionTabPositionLotteries->addAction(actionTabPositionLotteriesTop);
-    m_actionTabPositionLotteries->addAction(actionTabPositionLotteriesBottom);
-    connect(m_actionTabPositionLotteries, &QActionGroup::triggered, this, &MainWindow::onActionTabPositionLotteriesTriggered);
+    m_actionTabbarLotteriesPosition = new QActionGroup(this);
+    m_actionTabbarLotteriesPosition->setObjectName(QStringLiteral("actionTabbarLotteriesPosition"));
+    m_actionTabbarLotteriesPosition->addAction(actionTabbarLotteriesPositionTop);
+    m_actionTabbarLotteriesPosition->addAction(actionTabbarLotteriesPositionBottom);
+    connect(m_actionTabbarLotteriesPosition, &QActionGroup::triggered, this, &MainWindow::onActionTabbarLotteriesPositionTriggered);
 
-    auto *actionTabPositionSheetsTop = new QAction(tr("Top"), this);
-    actionTabPositionSheetsTop->setObjectName(QStringLiteral("actionTabPositionSheetsTop"));
-    actionTabPositionSheetsTop->setCheckable(true);
-    actionTabPositionSheetsTop->setToolTip(tr("The sheet tabs are displayed above the pages"));
-    actionTabPositionSheetsTop->setData((int) QTabWidget::North);
+    auto *actionTabbarSheetsPositionTop = new QAction(tr("Top"), this);
+    actionTabbarSheetsPositionTop->setObjectName(QStringLiteral("actionTabbarSheetsPositionTop"));
+    actionTabbarSheetsPositionTop->setCheckable(true);
+    actionTabbarSheetsPositionTop->setToolTip(tr("The sheet tabs are displayed above the pages"));
+    actionTabbarSheetsPositionTop->setData((int) QTabWidget::North);
 
-    auto *actionTabPositionSheetsBottom = new QAction(tr("Bottom"), this);
-    actionTabPositionSheetsBottom->setObjectName(QStringLiteral("actionTabPositionSheetsBottom"));
-    actionTabPositionSheetsBottom->setCheckable(true);
-    actionTabPositionSheetsBottom->setToolTip(tr("The sheet tabs are displayed below the pages"));
-    actionTabPositionSheetsBottom->setData((int) QTabWidget::South);
+    auto *actionTabbarSheetsPositionBottom = new QAction(tr("Bottom"), this);
+    actionTabbarSheetsPositionBottom->setObjectName(QStringLiteral("actionTabbarSheetsPositionBottom"));
+    actionTabbarSheetsPositionBottom->setCheckable(true);
+    actionTabbarSheetsPositionBottom->setToolTip(tr("The sheet tabs are displayed below the pages"));
+    actionTabbarSheetsPositionBottom->setData((int) QTabWidget::South);
 
-    m_actionTabPositionSheets = new QActionGroup(this);
-    m_actionTabPositionSheets->setObjectName(QStringLiteral("actionTabPositionSheets"));
-    m_actionTabPositionSheets->addAction(actionTabPositionSheetsTop);
-    m_actionTabPositionSheets->addAction(actionTabPositionSheetsBottom);
-    connect(m_actionTabPositionSheets, &QActionGroup::triggered, this, &MainWindow::onActionTabPositionSheetsTriggered);
+    m_actionTabbarSheetsPosition = new QActionGroup(this);
+    m_actionTabbarSheetsPosition->setObjectName(QStringLiteral("actionTabbarSheetsPosition"));
+    m_actionTabbarSheetsPosition->addAction(actionTabbarSheetsPositionTop);
+    m_actionTabbarSheetsPosition->addAction(actionTabbarSheetsPositionBottom);
+    connect(m_actionTabbarSheetsPosition, &QActionGroup::triggered, this, &MainWindow::onActionTabbarSheetsPositionTriggered);
 
     m_actionToolbarApplication = new QAction(tr("Show Application Toolbar"), this);
     m_actionToolbarApplication->setObjectName(QStringLiteral("actionToolbarApplication"));
@@ -283,6 +285,7 @@ void MainWindow::createActions()
     m_actionStatusbar->setToolTip(tr("Display the statusbar"));
     connect(m_actionStatusbar, &QAction::toggled, [=](bool checked) { m_statusbar->setVisible(checked); });
 
+
     //
     // Actions: Help
 
@@ -320,16 +323,17 @@ void MainWindow::createMenus()
     auto *menuTools = menuBar()->addMenu(tr("Tools"));
     menuTools->setObjectName(QStringLiteral("menuTools"));
 
+
     //
     // Menu: View
 
     auto *menuLotteryTabs = new QMenu(tr("Show Lottery Tabs…"), this);
     menuLotteryTabs->setObjectName(QStringLiteral("menuLotteryTabs"));
-    menuLotteryTabs->addActions(m_actionTabPositionLotteries->actions());
+    menuLotteryTabs->addActions(m_actionTabbarLotteriesPosition->actions());
 
     m_menuSheetTabs = new QMenu(tr("Show Sheet Tabs…"), this);
     m_menuSheetTabs->setObjectName(QStringLiteral("menuSheetTabs"));
-    m_menuSheetTabs->addActions(m_actionTabPositionSheets->actions());
+    m_menuSheetTabs->addActions(m_actionTabbarSheetsPosition->actions());
 
     auto *menuView = menuBar()->addMenu(tr("View"));
     menuView->setObjectName(QStringLiteral("menuView"));
@@ -345,6 +349,7 @@ void MainWindow::createMenus()
     menuView->addAction(m_actionToolbarHelp);
     menuView->addSeparator();
     menuView->addAction(m_actionStatusbar);
+
 
     // Menu: Help
     auto *menuHelp = menuBar()->addMenu(tr("Help"));
@@ -424,11 +429,11 @@ void MainWindow::updateActionFullScreen()
 }
 
 
-void MainWindow::updateActionTabPositionLotteries()
+void MainWindow::updateActionTabbarLotteriesPosition()
 {
-    const QList<QAction *> actions = m_actionTabPositionLotteries->actions();
+    const QList<QAction *> actions = m_actionTabbarLotteriesPosition->actions();
     for (auto *action : actions) {
-        if (action->data() == m_preferences.defaultTabPositionLotteries()) {
+        if (action->data() == m_preferences.defaultTabbarLotteriesPosition()) {
             action->setChecked(true);
             break;
         }
@@ -436,9 +441,9 @@ void MainWindow::updateActionTabPositionLotteries()
 }
 
 
-void MainWindow::updateActionTabPositionSheets(const QTabWidget::TabPosition tabPosition)
+void MainWindow::updateActionTabbarSheetsPosition(const QTabWidget::TabPosition tabPosition)
 {
-    const QList<QAction *> actions = m_actionTabPositionSheets->actions();
+    const QList<QAction *> actions = m_actionTabbarSheetsPosition->actions();
     for (auto *action : actions) {
         if (action->data() == tabPosition) {
             action->setChecked(true);
@@ -534,17 +539,17 @@ void MainWindow::onActionFullScreenTriggered()
 }
 
 
-void MainWindow::onActionTabPositionLotteriesTriggered(const QAction *actionTabPositionLotteries)
+void MainWindow::onActionTabbarLotteriesPositionTriggered(const QAction *actionTabbarLotteriesPosition)
 {
-    auto tabPosition = static_cast<QTabWidget::TabPosition> (actionTabPositionLotteries->data().toInt());
+    auto tabPosition = static_cast<QTabWidget::TabPosition> (actionTabbarLotteriesPosition->data().toInt());
 
     m_documentArea->setTabPosition(tabPosition);
 }
 
 
-void MainWindow::onActionTabPositionSheetsTriggered(const QAction *actionTabPositionSheets)
+void MainWindow::onActionTabbarSheetsPositionTriggered(const QAction *actionTabbarSheetsPosition)
 {
-    auto tabPosition = static_cast<QTabWidget::TabPosition> (actionTabPositionSheets->data().toInt());
+    auto tabPosition = static_cast<QTabWidget::TabPosition> (actionTabbarSheetsPosition->data().toInt());
 
     if (auto *document = activeDocument())
         document->setDocumentTabPosition(tabPosition);
@@ -574,7 +579,7 @@ void MainWindow::onDocumentWindowActivated(const QMdiSubWindow *subWindow)
 
     auto *document = qobject_cast<Document *>(subWindow->widget());
 
-    updateActionTabPositionSheets(document->documentTabPosition());
+    updateActionTabbarSheetsPosition(document->documentTabPosition());
 }
 
 
@@ -662,7 +667,7 @@ bool MainWindow::loadDocument(const QString &canonicalName)
 
         // Update the application window
         updateActions(m_documentArea->subWindowList().count());
-        updateActionTabPositionSheets(document->documentTabPosition());
+        updateActionTabbarSheetsPosition(document->documentTabPosition());
         updateMenus(m_documentArea->subWindowList().count());
         updateTitleBar();
     }

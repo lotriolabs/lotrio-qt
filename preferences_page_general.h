@@ -44,11 +44,11 @@ public:
     void setRestoreApplicationState(const bool checked);
     bool restoreApplicationState() const;
 
-    void setDefaultTabPositionLotteries(const QTabWidget::TabPosition type);
-    QTabWidget::TabPosition defaultTabPositionLotteries() const;
+    void setDefaultTabbarLotteriesPosition(const QTabWidget::TabPosition tabPosition);
+    QTabWidget::TabPosition defaultTabbarLotteriesPosition() const;
 
-    void setDefaultTabPositionSheets(const QTabWidget::TabPosition type);
-    QTabWidget::TabPosition defaultTabPositionSheets() const;
+    void setDefaultTabbarSheetsPosition(const QTabWidget::TabPosition tabPosition);
+    QTabWidget::TabPosition defaultTabbarSheetsPosition() const;
 
 signals:
     void preferencesChanged();
@@ -62,8 +62,8 @@ private:
     QCheckBox *m_chkRestoreApplicationGeometry;
     QCheckBox *m_chkRestoreApplicationState;
 
-    QButtonGroup *m_grpDefaultTabPositionLotteries;
-    QButtonGroup *m_grpDefaultTabPositionSheets;
+    QButtonGroup *m_grpDefaultTabbarLotteriesPosition;
+    QButtonGroup *m_grpDefaultTabbarSheetsPosition;
 };
 
 #endif // PREFERENCES_PAGE_GENERAL_H

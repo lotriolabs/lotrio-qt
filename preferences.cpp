@@ -29,8 +29,8 @@ Preferences::Preferences()
     m_restoreApplicationState = true;
 
     // General: Tab Bars
-    m_defaultTabPositionLotteries = QTabWidget::North;
-    m_defaultTabPositionSheets = QTabWidget::South;
+    m_defaultTabbarLotteriesPosition = QTabWidget::North;
+    m_defaultTabbarSheetsPosition = QTabWidget::South;
 }
 
 
@@ -45,8 +45,8 @@ void Preferences::loadSettings()
     setRestoreApplicationState(settings.value(QStringLiteral("RestoreApplicationState"), true).toBool());
 
     // General: Tab Bars
-    setDefaultTabPositionLotteries(static_cast<QTabWidget::TabPosition> (settings.value(QStringLiteral("DefaultTabPositionLotteries"), (int) QTabWidget::North).toInt()));
-    setDefaultTabPositionSheets(static_cast<QTabWidget::TabPosition> (settings.value(QStringLiteral("DefaultTabPositionSheets"), (int) QTabWidget::South).toInt()));
+    setDefaultTabbarLotteriesPosition(static_cast<QTabWidget::TabPosition> (settings.value(QStringLiteral("DefaultTabbarLotteriesPosition"), (int) QTabWidget::North).toInt()));
+    setDefaultTabbarSheetsPosition(static_cast<QTabWidget::TabPosition> (settings.value(QStringLiteral("DefaultTabbarSheetsPosition"), (int) QTabWidget::South).toInt()));
 
     settings.endGroup();
 }
@@ -64,8 +64,8 @@ void Preferences::saveSettings()
     settings.setValue(QStringLiteral("RestoreApplicationState"), m_restoreApplicationState);
 
     // General: Tab Bars
-    settings.setValue(QStringLiteral("DefaultTabPositionLotteries"), (int) m_defaultTabPositionLotteries);
-    settings.setValue(QStringLiteral("DefaultTabPositionSheets"), (int) m_defaultTabPositionSheets);
+    settings.setValue(QStringLiteral("DefaultTabbarLotteriesPosition"), (int) m_defaultTabbarLotteriesPosition);
+    settings.setValue(QStringLiteral("DefaultTabbarSheetsPosition"), (int) m_defaultTabbarSheetsPosition);
 
     settings.endGroup();
 }
@@ -95,25 +95,25 @@ bool Preferences::restoreApplicationState(bool isDefault)
 }
 
 
-void Preferences::setDefaultTabPositionLotteries(QTabWidget::TabPosition value)
+void Preferences::setDefaultTabbarLotteriesPosition(QTabWidget::TabPosition value)
 {
-    m_defaultTabPositionLotteries = value;
+    m_defaultTabbarLotteriesPosition = value;
 }
 
 
-QTabWidget::TabPosition Preferences::defaultTabPositionLotteries(bool isDefault)
+QTabWidget::TabPosition Preferences::defaultTabbarLotteriesPosition(bool isDefault)
 {
-    return !isDefault ? m_defaultTabPositionLotteries : QTabWidget::North;
+    return !isDefault ? m_defaultTabbarLotteriesPosition : QTabWidget::North;
 }
 
 
-void Preferences::setDefaultTabPositionSheets(QTabWidget::TabPosition value)
+void Preferences::setDefaultTabbarSheetsPosition(QTabWidget::TabPosition value)
 {
-    m_defaultTabPositionSheets = value;
+    m_defaultTabbarSheetsPosition = value;
 }
 
 
-QTabWidget::TabPosition Preferences::defaultTabPositionSheets(bool isDefault)
+QTabWidget::TabPosition Preferences::defaultTabbarSheetsPosition(bool isDefault)
 {
-    return !isDefault ? m_defaultTabPositionSheets : QTabWidget::South;
+    return !isDefault ? m_defaultTabbarSheetsPosition : QTabWidget::South;
 }

@@ -52,42 +52,42 @@ PreferencesPageGeneral::PreferencesPageGeneral(QWidget *parent)
     //
     // Content: Tab Bars
 
-    auto *rdbDefaultTabPositionLotteriesTop = new QRadioButton(tr("Top"));
-    rdbDefaultTabPositionLotteriesTop->setToolTip(tr("The lottery tabs are displayed above the pages"));
+    auto *rdbDefaultTabbarLotteriesPositionTop = new QRadioButton(tr("Top"));
+    rdbDefaultTabbarLotteriesPositionTop->setToolTip(tr("The lottery tabs are displayed above the pages"));
 
-    auto *rdbDefaultTabPositionLotteriesBottom = new QRadioButton(tr("Bottom"));
-    rdbDefaultTabPositionLotteriesBottom->setToolTip(tr("The lottery tabs are displayed below the pages"));
+    auto *rdbDefaultTabbarLotteriesPositionBottom = new QRadioButton(tr("Bottom"));
+    rdbDefaultTabbarLotteriesPositionBottom->setToolTip(tr("The lottery tabs are displayed below the pages"));
 
-    m_grpDefaultTabPositionLotteries = new QButtonGroup(this);
-    m_grpDefaultTabPositionLotteries->addButton(rdbDefaultTabPositionLotteriesTop, (int) QTabWidget::North);
-    m_grpDefaultTabPositionLotteries->addButton(rdbDefaultTabPositionLotteriesBottom, (int) QTabWidget::South);
-    connect(m_grpDefaultTabPositionLotteries, QOverload<QAbstractButton *>::of(&QButtonGroup::buttonClicked), this, &PreferencesPageGeneral::onPreferencesChanged);
+    m_grpDefaultTabbarLotteriesPosition = new QButtonGroup(this);
+    m_grpDefaultTabbarLotteriesPosition->addButton(rdbDefaultTabbarLotteriesPositionTop, (int) QTabWidget::North);
+    m_grpDefaultTabbarLotteriesPosition->addButton(rdbDefaultTabbarLotteriesPositionBottom, (int) QTabWidget::South);
+    connect(m_grpDefaultTabbarLotteriesPosition, QOverload<QAbstractButton *>::of(&QButtonGroup::buttonClicked), this, &PreferencesPageGeneral::onPreferencesChanged);
 
-    auto *rdbDefaultTabPositionSheetsTop = new QRadioButton(tr("Top"));
-    rdbDefaultTabPositionSheetsTop->setToolTip(tr("The sheet tabs are displayed above the pages"));
+    auto *rdbDefaultTabbarSheetsPositionTop = new QRadioButton(tr("Top"));
+    rdbDefaultTabbarSheetsPositionTop->setToolTip(tr("The sheet tabs are displayed above the pages"));
 
-    auto *rdbDefaultTabPositionSheetsBottom = new QRadioButton(tr("Bottom"));
-    rdbDefaultTabPositionSheetsBottom->setToolTip(tr("The sheet tabs are displayed below the pages"));
+    auto *rdbDefaultTabbarSheetsPositionBottom = new QRadioButton(tr("Bottom"));
+    rdbDefaultTabbarSheetsPositionBottom->setToolTip(tr("The sheet tabs are displayed below the pages"));
 
-    m_grpDefaultTabPositionSheets = new QButtonGroup(this);
-    m_grpDefaultTabPositionSheets->addButton(rdbDefaultTabPositionSheetsTop, (int) QTabWidget::North);
-    m_grpDefaultTabPositionSheets->addButton(rdbDefaultTabPositionSheetsBottom, (int) QTabWidget::South);
-    connect(m_grpDefaultTabPositionSheets, QOverload<QAbstractButton *>::of(&QButtonGroup::buttonClicked), this, &PreferencesPageGeneral::onPreferencesChanged);
+    m_grpDefaultTabbarSheetsPosition = new QButtonGroup(this);
+    m_grpDefaultTabbarSheetsPosition->addButton(rdbDefaultTabbarSheetsPositionTop, (int) QTabWidget::North);
+    m_grpDefaultTabbarSheetsPosition->addButton(rdbDefaultTabbarSheetsPositionBottom, (int) QTabWidget::South);
+    connect(m_grpDefaultTabbarSheetsPosition, QOverload<QAbstractButton *>::of(&QButtonGroup::buttonClicked), this, &PreferencesPageGeneral::onPreferencesChanged);
 
-    auto *defaultTabPositionLotteriesBox = new QHBoxLayout;
-    defaultTabPositionLotteriesBox->addWidget(rdbDefaultTabPositionLotteriesTop);
-    defaultTabPositionLotteriesBox->addWidget(rdbDefaultTabPositionLotteriesBottom);
+    auto *defaultTabbarLotteriesPositionBox = new QHBoxLayout;
+    defaultTabbarLotteriesPositionBox->addWidget(rdbDefaultTabbarLotteriesPositionTop);
+    defaultTabbarLotteriesPositionBox->addWidget(rdbDefaultTabbarLotteriesPositionBottom);
 
-    auto *defaultTabPositionSheetsBox = new QHBoxLayout;
-    defaultTabPositionSheetsBox->addWidget(rdbDefaultTabPositionSheetsTop);
-    defaultTabPositionSheetsBox->addWidget(rdbDefaultTabPositionSheetsBottom);
+    auto *defaultTabbarSheetsPositionBox = new QHBoxLayout;
+    defaultTabbarSheetsPositionBox->addWidget(rdbDefaultTabbarSheetsPositionTop);
+    defaultTabbarSheetsPositionBox->addWidget(rdbDefaultTabbarSheetsPositionBottom);
 
-    auto *defaultTabPositionLayout = new QFormLayout;
-    defaultTabPositionLayout->addRow(tr("Position of the lottery tabs"), defaultTabPositionLotteriesBox);
-    defaultTabPositionLayout->addRow(tr("Position of the sheet tabs"), defaultTabPositionSheetsBox);
+    auto *defaultTabbarPositionLayout = new QFormLayout;
+    defaultTabbarPositionLayout->addRow(tr("Position of the lottery tabs"), defaultTabbarLotteriesPositionBox);
+    defaultTabbarPositionLayout->addRow(tr("Position of the sheet tabs"), defaultTabbarSheetsPositionBox);
 
     auto *tabBarsGroup = new QGroupBox(tr("Tab Bars"));
-    tabBarsGroup->setLayout(defaultTabPositionLayout);
+    tabBarsGroup->setLayout(defaultTabbarPositionLayout);
 
 
     // Main layout
@@ -141,39 +141,43 @@ bool PreferencesPageGeneral::restoreApplicationState() const
 }
 
 
-void PreferencesPageGeneral::setDefaultTabPositionLotteries(const QTabWidget::TabPosition type)
+void PreferencesPageGeneral::setDefaultTabbarLotteriesPosition(const QTabWidget::TabPosition tabPosition)
 {
-    if (type != defaultTabPositionLotteries())
+    if (tabPosition != defaultTabbarLotteriesPosition())
         onPreferencesChanged();
 
-    const QList<QAbstractButton *> buttons = m_grpDefaultTabPositionLotteries->buttons();
+    const QList<QAbstractButton *> buttons = m_grpDefaultTabbarLotteriesPosition->buttons();
     for (auto *button : buttons) {
-        if (m_grpDefaultTabPositionLotteries->id(button) == (int) type)
+        if (m_grpDefaultTabbarLotteriesPosition->id(button) == (int) tabPosition) {
             button->setChecked(true);
+            break;
+        }
     }
 }
 
 
-QTabWidget::TabPosition PreferencesPageGeneral::defaultTabPositionLotteries() const
+QTabWidget::TabPosition PreferencesPageGeneral::defaultTabbarLotteriesPosition() const
 {
-    return static_cast<QTabWidget::TabPosition> (m_grpDefaultTabPositionLotteries->checkedId());
+    return static_cast<QTabWidget::TabPosition> (m_grpDefaultTabbarLotteriesPosition->checkedId());
 }
 
 
-void PreferencesPageGeneral::setDefaultTabPositionSheets(const QTabWidget::TabPosition type)
+void PreferencesPageGeneral::setDefaultTabbarSheetsPosition(const QTabWidget::TabPosition tabPosition)
 {
-    if (type != defaultTabPositionSheets())
+    if (tabPosition != defaultTabbarSheetsPosition())
         onPreferencesChanged();
 
-    const QList<QAbstractButton *> buttons = m_grpDefaultTabPositionSheets->buttons();
+    const QList<QAbstractButton *> buttons = m_grpDefaultTabbarSheetsPosition->buttons();
     for (auto *button : buttons) {
-        if (m_grpDefaultTabPositionSheets->id(button) == (int) type)
+        if (m_grpDefaultTabbarSheetsPosition->id(button) == (int) tabPosition) {
             button->setChecked(true);
+            break;
+        }
     }
 }
 
 
-QTabWidget::TabPosition PreferencesPageGeneral::defaultTabPositionSheets() const
+QTabWidget::TabPosition PreferencesPageGeneral::defaultTabbarSheetsPosition() const
 {
-    return static_cast<QTabWidget::TabPosition> (m_grpDefaultTabPositionSheets->checkedId());
+    return static_cast<QTabWidget::TabPosition> (m_grpDefaultTabbarSheetsPosition->checkedId());
 }

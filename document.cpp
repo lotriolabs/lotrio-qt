@@ -103,7 +103,7 @@ bool Document::load(const QString &canonicalName)
 {
     setCanonicalName(canonicalName);
 
-    m_tabBox->setTabPosition(m_preferences.defaultTabPositionSheets());
+    m_tabBox->setTabPosition(m_preferences.defaultTabbarSheetsPosition());
 
     // Content
     auto *pageAbout = new LotteryPageAbout(canonicalName);
