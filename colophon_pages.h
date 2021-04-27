@@ -92,12 +92,12 @@ private:
 // Colophon page: Environment
 //
 
-class ColophonEnvironmentPage : public QWidget
+class ColophonPageEnvironment : public QWidget
 {
     Q_OBJECT
 
 public:
-    explicit ColophonEnvironmentPage(QWidget *parent = nullptr);
+    explicit ColophonPageEnvironment(QWidget *parent = nullptr);
 
     void setZeroMargins();
 

@@ -140,7 +140,7 @@ QString ColophonPageCredits::title() const
 // Colophon page: Environment
 //
 
-ColophonEnvironmentPage::ColophonEnvironmentPage(QWidget *parent)
+ColophonPageEnvironment::ColophonPageEnvironment(QWidget *parent)
     : QWidget(parent)
 {
     const QString qtVersion = qVersion(); // Qt version used to run Qt for C++
@@ -168,13 +168,13 @@ ColophonEnvironmentPage::ColophonEnvironmentPage(QWidget *parent)
 }
 
 
-void ColophonEnvironmentPage::setZeroMargins()
+void ColophonPageEnvironment::setZeroMargins()
 {
     m_layout->setContentsMargins(0, 0, 0, 0);
 }
 
 
-QString ColophonEnvironmentPage::title() const
+QString ColophonPageEnvironment::title() const
 {
     return tr("Environment");
 }
