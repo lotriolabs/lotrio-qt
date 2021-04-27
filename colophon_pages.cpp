@@ -28,7 +28,7 @@
 // Colophon page: About
 //
 
-ColophonAboutPage::ColophonAboutPage(QWidget *parent)
+ColophonPageAbout::ColophonPageAbout(QWidget *parent)
     : QWidget(parent)
 {
     auto *textBox = new QTextBrowser;
@@ -47,13 +47,13 @@ ColophonAboutPage::ColophonAboutPage(QWidget *parent)
 }
 
 
-void ColophonAboutPage::setZeroMargins()
+void ColophonPageAbout::setZeroMargins()
 {
     m_layout->setContentsMargins(0, 0, 0, 0);
 }
 
 
-QString ColophonAboutPage::title() const
+QString ColophonPageAbout::title() const
 {
     return tr("About");
 }

@@ -29,12 +29,12 @@
 // Colophon page: About
 //
 
-class ColophonAboutPage : public QWidget
+class ColophonPageAbout : public QWidget
 {
     Q_OBJECT
 
 public:
-    explicit ColophonAboutPage(QWidget *parent = nullptr);
+    explicit ColophonPageAbout(QWidget *parent = nullptr);
 
     void setZeroMargins();
 

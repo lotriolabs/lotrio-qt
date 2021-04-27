@@ -38,8 +38,8 @@ AboutDialog::AboutDialog(QWidget *parent)
     auto *titleBox = new DialogTitleBox;
 
     // Content
-    auto *aboutPage = new ColophonAboutPage;
-    aboutPage->setZeroMargins();
+    auto *pageAbout = new ColophonPageAbout;
+    pageAbout->setZeroMargins();
 
     // Button box
     auto *buttonBox = new QDialogButtonBox(QDialogButtonBox::Close);
@@ -48,6 +48,6 @@ AboutDialog::AboutDialog(QWidget *parent)
     // Main layout
     auto *layout = new QVBoxLayout(this);
     layout->addWidget(titleBox);
-    layout->addWidget(aboutPage);
+    layout->addWidget(pageAbout);
     layout->addWidget(buttonBox);
 }

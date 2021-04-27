@@ -40,14 +40,14 @@ ColophonDialog::ColophonDialog(QWidget *parent)
     //
     // Content
 
-    auto *aboutPage = new ColophonAboutPage;
+    auto *pageAbout = new ColophonPageAbout;
     auto *environmentPage = new ColophonEnvironmentPage;
     auto *licensePage = new ColophonLicensePage;
     auto *authorsPage = new ColophonAuthorsPage;
     auto *creditsPage = new ColophonCreditsPage;
 
     auto *tabBox = new QTabWidget;
-    tabBox->addTab(aboutPage, aboutPage->title());
+    tabBox->addTab(pageAbout, pageAbout->title());
     tabBox->addTab(environmentPage, environmentPage->title());
     tabBox->addTab(licensePage, licensePage->title());
     tabBox->addTab(authorsPage, authorsPage->title());
