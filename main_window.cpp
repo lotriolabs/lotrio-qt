@@ -43,6 +43,7 @@ MainWindow::MainWindow(QWidget *parent)
     createActions();
     createMenus();
     createToolBars();
+    createStatusBar();
 
     loadSettings();
 
@@ -376,6 +377,12 @@ void MainWindow::createToolBars()
     m_toolbarHelp->setObjectName(QStringLiteral("toolbarHelp"));
     m_toolbarHelp->addAction(m_actionKeyboardShortcuts);
     connect(m_toolbarHelp, &QToolBar::visibilityChanged, [=](bool visible) { m_actionToolbarHelp->setChecked(visible); });
+}
+
+
+void MainWindow::createStatusBar()
+{
+    m_statusbar = statusBar();
 }
 
 

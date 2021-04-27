@@ -28,6 +28,7 @@
 #include <QMdiArea>
 #include <QMdiSubWindow>
 #include <QMenu>
+#include <QStatusBar>
 #include <QToolBar>
 
 #include "document.h"
@@ -86,9 +87,12 @@ private:
     QToolBar *m_toolbarView;
     QToolBar *m_toolbarHelp;
 
+    QStatusBar *m_statusbar;
+
     void createActions();
     void createMenus();
     void createToolBars();
+    void createStatusBar();
 
     void updateActions(const int subWindowCount = 0);
     void updateActionFullScreen();
