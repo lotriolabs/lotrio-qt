@@ -17,8 +17,8 @@
  * along with Lotrio-Qt.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-#ifndef DOCUMENT_H
-#define DOCUMENT_H
+#ifndef LOTTERY_DOCUMENT_H
+#define LOTTERY_DOCUMENT_H
 
 #include <QCloseEvent>
 #include <QTabWidget>
@@ -27,12 +27,12 @@
 #include "preferences.h"
 
 
-class Document : public QWidget
+class LotteryDocument : public QWidget
 {
     Q_OBJECT
 
 public:
-    explicit Document(QWidget *parent = nullptr);
+    explicit LotteryDocument(QWidget *parent = nullptr);
 
     void setPreferences(const Preferences &preferences);
 
@@ -60,4 +60,4 @@ private:
     QString m_canonicalName;
 };
 
-#endif // DOCUMENT_H
+#endif // LOTTERY_DOCUMENT_H

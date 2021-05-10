@@ -551,7 +551,7 @@ void MainWindow::onDocumentWindowActivated(const QMdiSubWindow *subWindow)
     if (!subWindow)
         return;
 
-    auto *document = qobject_cast<Document *>(subWindow->widget());
+    auto *document = qobject_cast<LotteryDocument *>(subWindow->widget());
 
     updateActionsTabPositionSheets(document->tabPosition());
 }
@@ -580,12 +580,12 @@ void MainWindow::onDocumentAboutToClose(const QString &canonicalName)
 }
 
 
-Document *MainWindow::createDocument()
+LotteryDocument *MainWindow::createDocument()
 {
-    auto *document = new Document;
+    auto *document = new LotteryDocument;
     document->setPreferences(m_preferences);
     document->setTabPosition(m_preferences.defaultTabbarSheetsPosition());
-    connect(document, &Document::aboutToClose, this, &MainWindow::onDocumentAboutToClose);
+    connect(document, &LotteryDocument::aboutToClose, this, &MainWindow::onDocumentAboutToClose);
 
     auto *subWindow = m_windowArea->addSubWindow(document);
     subWindow->setWindowIcon(QIcon());
@@ -600,7 +600,7 @@ QMdiSubWindow *MainWindow::findDocumentWindow(const QString &canonicalName) cons
     const QList<QMdiSubWindow *> subWindows = m_windowArea->subWindowList();
     for (auto *subWindow : subWindows) {
 
-        auto *document = qobject_cast<Document *>(subWindow->widget());
+        auto *document = qobject_cast<LotteryDocument *>(subWindow->widget());
         if (document->canonicalName() == canonicalName)
             return subWindow;
     }
@@ -609,10 +609,10 @@ QMdiSubWindow *MainWindow::findDocumentWindow(const QString &canonicalName) cons
 }
 
 
-Document *MainWindow::activeDocument() const
+LotteryDocument *MainWindow::activeDocument() const
 {
     if (auto *subWindow = m_windowArea->activeSubWindow())
-        return qobject_cast<Document *>(subWindow->widget());
+        return qobject_cast<LotteryDocument *>(subWindow->widget());
 
     return nullptr;
 }

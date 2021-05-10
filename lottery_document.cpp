@@ -17,7 +17,7 @@
  * along with Lotrio-Qt.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-#include "document.h"
+#include "lottery_document.h"
 
 #include <QFileInfo>
 #include <QVBoxLayout>
@@ -27,7 +27,7 @@
 #include "lottery_page_plays.h"
 
 
-Document::Document(QWidget *parent)
+LotteryDocument::LotteryDocument(QWidget *parent)
     : QWidget(parent)
 {
     setAttribute(Qt::WA_DeleteOnClose);
@@ -42,31 +42,31 @@ Document::Document(QWidget *parent)
 }
 
 
-void Document::setPreferences(const Preferences &preferences)
+void LotteryDocument::setPreferences(const Preferences &preferences)
 {
     m_preferences = preferences;
 }
 
 
-void Document::setCanonicalName(const QString &canonicalName)
+void LotteryDocument::setCanonicalName(const QString &canonicalName)
 {
     m_canonicalName = canonicalName;
 }
 
 
-QString Document::canonicalName() const
+QString LotteryDocument::canonicalName() const
 {
     return m_canonicalName;
 }
 
 
-QString Document::documentTitle() const
+QString LotteryDocument::documentTitle() const
 {
     return windowTitle();
 }
 
 
-void Document::updateDocumentTitle()
+void LotteryDocument::updateDocumentTitle()
 {
     const auto fileName = !m_canonicalName.isEmpty() ? QFileInfo(m_canonicalName).fileName() : tr("Untitled");
 
@@ -74,19 +74,19 @@ void Document::updateDocumentTitle()
 }
 
 
-void Document::setTabPosition(const QTabWidget::TabPosition tabPosition)
+void LotteryDocument::setTabPosition(const QTabWidget::TabPosition tabPosition)
 {
     m_tabBox->setTabPosition(tabPosition);
 }
 
 
-QTabWidget::TabPosition Document::tabPosition() const
+QTabWidget::TabPosition LotteryDocument::tabPosition() const
 {
     return m_tabBox->tabPosition();
 }
 
 
-void Document::closeEvent(QCloseEvent *event)
+void LotteryDocument::closeEvent(QCloseEvent *event)
 {
     if (true) {
         // Document will be closed
@@ -99,7 +99,7 @@ void Document::closeEvent(QCloseEvent *event)
 }
 
 
-bool Document::load(const QString &canonicalName)
+bool LotteryDocument::load(const QString &canonicalName)
 {
     setCanonicalName(canonicalName);
 

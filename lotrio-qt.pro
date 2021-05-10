@@ -32,9 +32,9 @@ SOURCES += \
     colophon_dialog.cpp \
     colophon_pages.cpp \
     dialog_title_box.cpp \
-    document.cpp \
     keyboard_shortcuts_dialog.cpp \
     keyboard_shortcuts_page.cpp \
+    lottery_document.cpp \
     lottery_page_about.cpp \
     lottery_page_draws.cpp \
     lottery_page_plays.cpp \
@@ -53,9 +53,9 @@ HEADERS += \
     colophon_dialog.h \
     colophon_pages.h \
     dialog_title_box.h \
-    document.h \
     keyboard_shortcuts_dialog.h \
     keyboard_shortcuts_page.h \
+    lottery_document.h \
     lottery_page_about.h \
     lottery_page_draws.h \
     lottery_page_plays.h \

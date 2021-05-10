@@ -30,8 +30,8 @@
 #include <QStatusBar>
 #include <QToolBar>
 
-#include "document.h"
 #include "keyboard_shortcuts_dialog.h"
+#include "lottery_document.h"
 #include "preferences.h"
 #include "window_area.h"
 
@@ -124,9 +124,9 @@ private:
 
     void enableUiElements(const int subWindowCount = 0);
 
-    Document *createDocument();
+    LotteryDocument *createDocument();
     QMdiSubWindow *findDocumentWindow(const QString &canonicalName) const;
-    Document *activeDocument() const;
+    LotteryDocument *activeDocument() const;
     bool loadDocument(const QString &canonicalName);
     bool closeDocument(const QString &canonicalName);
 };
