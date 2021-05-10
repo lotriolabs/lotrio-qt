@@ -74,13 +74,13 @@ void Document::updateDocumentTitle()
 }
 
 
-void Document::setDocumentTabPosition(const QTabWidget::TabPosition tabPosition)
+void Document::setTabPosition(const QTabWidget::TabPosition tabPosition)
 {
     m_tabBox->setTabPosition(tabPosition);
 }
 
 
-QTabWidget::TabPosition Document::documentTabPosition() const
+QTabWidget::TabPosition Document::tabPosition() const
 {
     return m_tabBox->tabPosition();
 }
@@ -102,8 +102,6 @@ void Document::closeEvent(QCloseEvent *event)
 bool Document::load(const QString &canonicalName)
 {
     setCanonicalName(canonicalName);
-
-    m_tabBox->setTabPosition(m_preferences.defaultTabbarSheetsPosition());
 
     // Content
     auto *pageAbout = new LotteryPageAbout(canonicalName);

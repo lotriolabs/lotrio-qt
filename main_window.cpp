@@ -550,7 +550,7 @@ void MainWindow::onActionsTabPositionSheetsTriggered(const QAction *actionTabPos
     auto tabPosition = static_cast<QTabWidget::TabPosition> (actionTabPositionSheets->data().toInt());
 
     if (auto *document = activeDocument())
-        document->setDocumentTabPosition(tabPosition);
+        document->setTabPosition(tabPosition);
 }
 
 
@@ -576,7 +576,7 @@ void MainWindow::onDocumentWindowActivated(const QMdiSubWindow *subWindow)
 
     auto *document = qobject_cast<Document *>(subWindow->widget());
 
-    updateActionsTabPositionSheets(document->documentTabPosition());
+    updateActionsTabPositionSheets(document->tabPosition());
 }
 
 
@@ -607,7 +607,7 @@ Document *MainWindow::createDocument()
 {
     auto *document = new Document;
     document->setPreferences(m_preferences);
-    document->setDocumentTabPosition(m_preferences.defaultTabbarSheetsPosition());
+    document->setTabPosition(m_preferences.defaultTabbarSheetsPosition());
     connect(document, &Document::aboutToClose, this, &MainWindow::onDocumentAboutToClose);
 
     auto *subWindow = m_documentArea->addSubWindow(document);
