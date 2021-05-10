@@ -25,7 +25,6 @@
 #include <QByteArray>
 #include <QCloseEvent>
 #include <QMainWindow>
-#include <QMdiArea>
 #include <QMdiSubWindow>
 #include <QMenu>
 #include <QStatusBar>
@@ -34,6 +33,7 @@
 #include "document.h"
 #include "keyboard_shortcuts_dialog.h"
 #include "preferences.h"
+#include "window_area.h"
 
 
 class MainWindow : public QMainWindow
@@ -72,7 +72,7 @@ private slots:
 private:
     KeyboardShortcutsDialog *m_keyboardShortcutsDialog;
 
-    QMdiArea *m_documentArea;
+    WindowArea *m_windowArea;
     Preferences m_preferences;
 
     void loadSettings();

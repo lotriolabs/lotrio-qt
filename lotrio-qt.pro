@@ -45,7 +45,8 @@ SOURCES += \
     preferences_page_draws.cpp \
     preferences_page_general.cpp \
     preferences_page_lotteries.cpp \
-    preferences_page_plays.cpp
+    preferences_page_plays.cpp \
+    window_area.cpp
 
 HEADERS += \
     about_dialog.h \
@@ -64,7 +65,8 @@ HEADERS += \
     preferences_page_draws.h \
     preferences_page_general.h \
     preferences_page_lotteries.h \
-    preferences_page_plays.h
+    preferences_page_plays.h \
+    window_area.h
 
 TRANSLATIONS += \
     translations/lotrio-qt_de.ts \

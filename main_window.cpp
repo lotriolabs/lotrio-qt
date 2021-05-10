@@ -20,7 +20,6 @@
 #include "main_window.h"
 
 #include <QApplication>
-#include <QDebug>
 #include <QMenuBar>
 #include <QScreen>
 #include <QSettings>
@@ -32,7 +31,7 @@
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
-    , m_documentArea(new QMdiArea)
+    , m_windowArea(new WindowArea)
 {
     setWindowIcon(QIcon(QStringLiteral(":/icons/apps/512/lotrio.svg")));
 
@@ -53,12 +52,12 @@ MainWindow::MainWindow(QWidget *parent)
     enableUiElements();
 
     // Central widget
-    m_documentArea->setViewMode(QMdiArea::TabbedView);
-    m_documentArea->setTabsMovable(true);
-    m_documentArea->setTabsClosable(true);
-    m_documentArea->setTabPosition(m_preferences.defaultTabbarLotteriesPosition());
-    setCentralWidget(m_documentArea);
-    connect(m_documentArea, &QMdiArea::subWindowActivated, this, &MainWindow::onDocumentWindowActivated);
+    m_windowArea->setViewMode(WindowArea::TabbedView);
+    m_windowArea->setTabsMovable(true);
+    m_windowArea->setTabsClosable(true);
+    m_windowArea->setTabPosition(m_preferences.defaultTabbarLotteriesPosition());
+    setCentralWidget(m_windowArea);
+    connect(m_windowArea, &WindowArea::subWindowActivated, this, &MainWindow::onDocumentWindowActivated);
 }
 
 MainWindow::~MainWindow()
@@ -506,15 +505,15 @@ void MainWindow::onActionLotteriesToggled(bool checked, const QString &lottery)
 
 void MainWindow::onActionCloseTriggered()
 {
-    m_documentArea->closeActiveSubWindow();
+    m_windowArea->closeActiveSubWindow();
 }
 
 
 void MainWindow::onActionCloseOtherTriggered()
 {
-    const QList<QMdiSubWindow *> subWindows = m_documentArea->subWindowList();
+    const QList<QMdiSubWindow *> subWindows = m_windowArea->subWindowList();
     for (auto *subWindow : subWindows) {
-        if (subWindow != m_documentArea->activeSubWindow())
+        if (subWindow != m_windowArea->activeSubWindow())
             subWindow->close();
     }
 }
@@ -522,7 +521,7 @@ void MainWindow::onActionCloseOtherTriggered()
 
 void MainWindow::onActionCloseAllTriggered()
 {
-    m_documentArea->closeAllSubWindows();
+    m_windowArea->closeAllSubWindows();
 }
 
 
@@ -541,7 +540,7 @@ void MainWindow::onActionsTabPositionLotteriesTriggered(const QAction *actionTab
 {
     auto tabPosition = static_cast<QTabWidget::TabPosition> (actionTabPositionLotteries->data().toInt());
 
-    m_documentArea->setTabPosition(tabPosition);
+    m_windowArea->setTabPosition(tabPosition);
 }
 
 
@@ -569,7 +568,7 @@ void MainWindow::onDocumentWindowActivated(const QMdiSubWindow *subWindow)
 {
     // Update application window and UI elements
     updateTitleBar();
-    enableUiElements(m_documentArea->subWindowList().count());
+    enableUiElements(m_windowArea->subWindowList().count());
 
     if (!subWindow)
         return;
@@ -583,14 +582,14 @@ void MainWindow::onDocumentWindowActivated(const QMdiSubWindow *subWindow)
 void MainWindow::onDocumentAboutToClose(const QString &canonicalName)
 {
     // Workaround to show subwindows always maximized
-    const QList<QMdiSubWindow *> subWindows = m_documentArea->subWindowList();
+    const QList<QMdiSubWindow *> subWindows = m_windowArea->subWindowList();
     for (auto *subWindow : subWindows) {
         if (!subWindow->isMaximized())
             subWindow->showMaximized();
     }
 
     // Update UI elements without the emitter
-    enableUiElements(m_documentArea->subWindowList().count() - 1);
+    enableUiElements(m_windowArea->subWindowList().count() - 1);
 
     // Disable the Lottery action
     const QList<QAction *> actionLotteries = m_actionLotteries;
@@ -610,7 +609,7 @@ Document *MainWindow::createDocument()
     document->setTabPosition(m_preferences.defaultTabbarSheetsPosition());
     connect(document, &Document::aboutToClose, this, &MainWindow::onDocumentAboutToClose);
 
-    auto *subWindow = m_documentArea->addSubWindow(document);
+    auto *subWindow = m_windowArea->addSubWindow(document);
     subWindow->setWindowIcon(QIcon());
     subWindow->showMaximized();
 
@@ -620,7 +619,7 @@ Document *MainWindow::createDocument()
 
 QMdiSubWindow *MainWindow::findDocumentWindow(const QString &canonicalName) const
 {
-    const QList<QMdiSubWindow *> subWindows = m_documentArea->subWindowList();
+    const QList<QMdiSubWindow *> subWindows = m_windowArea->subWindowList();
     for (auto *subWindow : subWindows) {
 
         auto *document = qobject_cast<Document *>(subWindow->widget());
@@ -634,7 +633,7 @@ QMdiSubWindow *MainWindow::findDocumentWindow(const QString &canonicalName) cons
 
 Document *MainWindow::activeDocument() const
 {
-    if (auto *subWindow = m_documentArea->activeSubWindow())
+    if (auto *subWindow = m_windowArea->activeSubWindow())
         return qobject_cast<Document *>(subWindow->widget());
 
     return nullptr;
@@ -645,7 +644,7 @@ bool MainWindow::openDocument(const QString &canonicalName)
 {
     if (auto *subWindow = findDocumentWindow(canonicalName)) {
         // Given document is already loaded; activate the subwindow
-        m_documentArea->setActiveSubWindow(subWindow);
+        m_windowArea->setActiveSubWindow(subWindow);
         return true;
     }
 
