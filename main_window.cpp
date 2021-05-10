@@ -49,7 +49,6 @@ MainWindow::MainWindow(QWidget *parent)
 
     updateActionFullScreen();
     updateActionsTabPositionLotteries();
-    updateActionTabbarSheetsPosition(m_preferences.defaultTabbarSheetsPosition());
 
     enableUiElements();
 
@@ -212,24 +211,6 @@ void MainWindow::createActions()
     m_actionFullScreen->setShortcuts(QList<QKeySequence>() << QKeySequence(Qt::Key_F11) << QKeySequence::FullScreen);
     connect(m_actionFullScreen, &QAction::triggered, this, &MainWindow::onActionFullScreenTriggered);
 
-    auto *actionTabbarSheetsPositionTop = new QAction(tr("Top"), this);
-    actionTabbarSheetsPositionTop->setObjectName(QStringLiteral("actionTabbarSheetsPositionTop"));
-    actionTabbarSheetsPositionTop->setCheckable(true);
-    actionTabbarSheetsPositionTop->setToolTip(tr("The sheet tabs are displayed above the pages"));
-    actionTabbarSheetsPositionTop->setData((int) QTabWidget::North);
-
-    auto *actionTabbarSheetsPositionBottom = new QAction(tr("Bottom"), this);
-    actionTabbarSheetsPositionBottom->setObjectName(QStringLiteral("actionTabbarSheetsPositionBottom"));
-    actionTabbarSheetsPositionBottom->setCheckable(true);
-    actionTabbarSheetsPositionBottom->setToolTip(tr("The sheet tabs are displayed below the pages"));
-    actionTabbarSheetsPositionBottom->setData((int) QTabWidget::South);
-
-    m_actionTabbarSheetsPosition = new QActionGroup(this);
-    m_actionTabbarSheetsPosition->setObjectName(QStringLiteral("actionTabbarSheetsPosition"));
-    m_actionTabbarSheetsPosition->addAction(actionTabbarSheetsPositionTop);
-    m_actionTabbarSheetsPosition->addAction(actionTabbarSheetsPositionBottom);
-    connect(m_actionTabbarSheetsPosition, &QActionGroup::triggered, this, &MainWindow::onActionTabbarSheetsPositionTriggered);
-
     m_actionToolbarApplication = new QAction(tr("Show Application Toolbar"), this);
     m_actionToolbarApplication->setObjectName(QStringLiteral("actionToolbarApplication"));
     m_actionToolbarApplication->setCheckable(true);
@@ -299,6 +280,28 @@ void MainWindow::createActions()
     m_actionsTabPositionLotteries->addAction(actionTabPositionLotteriesTop);
     m_actionsTabPositionLotteries->addAction(actionTabPositionLotteriesBottom);
     connect(m_actionsTabPositionLotteries, &QActionGroup::triggered, this, &MainWindow::onActionsTabPositionLotteriesTriggered);
+
+
+    //
+    // Tab Position Sheets
+
+    auto *actionTabPositionSheetsTop = new QAction(tr("Top"), this);
+    actionTabPositionSheetsTop->setObjectName(QStringLiteral("actionTabPositionSheetsTop"));
+    actionTabPositionSheetsTop->setCheckable(true);
+    actionTabPositionSheetsTop->setToolTip(tr("The sheet tabs are displayed above the pages"));
+    actionTabPositionSheetsTop->setData((int) QTabWidget::North);
+
+    auto *actionTabPositionSheetsBottom = new QAction(tr("Bottom"), this);
+    actionTabPositionSheetsBottom->setObjectName(QStringLiteral("actionTabPositionSheetsBottom"));
+    actionTabPositionSheetsBottom->setCheckable(true);
+    actionTabPositionSheetsBottom->setToolTip(tr("The sheet tabs are displayed below the pages"));
+    actionTabPositionSheetsBottom->setData((int) QTabWidget::South);
+
+    m_actionsTabPositionSheets = new QActionGroup(this);
+    m_actionsTabPositionSheets->setObjectName(QStringLiteral("actionsTabPositionSheets"));
+    m_actionsTabPositionSheets->addAction(actionTabPositionSheetsTop);
+    m_actionsTabPositionSheets->addAction(actionTabPositionSheetsBottom);
+    connect(m_actionsTabPositionSheets, &QActionGroup::triggered, this, &MainWindow::onActionsTabPositionSheetsTriggered);
 }
 
 
@@ -307,6 +310,10 @@ void MainWindow::createMenus()
     auto *menuLotteryTabs = new QMenu(tr("Show Lottery Tabs…"), this);
     menuLotteryTabs->setObjectName(QStringLiteral("menuLotteryTabs"));
     menuLotteryTabs->addActions(m_actionsTabPositionLotteries->actions());
+
+    m_menuSheetTabs = new QMenu(tr("Show Sheet Tabs…"), this);
+    m_menuSheetTabs->setObjectName(QStringLiteral("menuSheetTabs"));
+    m_menuSheetTabs->addActions(m_actionsTabPositionSheets->actions());
 
 
     // Menu: Application
@@ -332,14 +339,7 @@ void MainWindow::createMenus()
     auto *menuTools = menuBar()->addMenu(tr("Tools"));
     menuTools->setObjectName(QStringLiteral("menuTools"));
 
-
-    //
     // Menu: View
-
-    m_menuSheetTabs = new QMenu(tr("Show Sheet Tabs…"), this);
-    m_menuSheetTabs->setObjectName(QStringLiteral("menuSheetTabs"));
-    m_menuSheetTabs->addActions(m_actionTabbarSheetsPosition->actions());
-
     auto *menuView = menuBar()->addMenu(tr("View"));
     menuView->setObjectName(QStringLiteral("menuView"));
     menuView->addAction(m_actionFullScreen);
@@ -354,7 +354,6 @@ void MainWindow::createMenus()
     menuView->addAction(m_actionToolbarHelp);
     menuView->addSeparator();
     menuView->addAction(m_actionStatusbar);
-
 
     // Menu: Help
     auto *menuHelp = menuBar()->addMenu(tr("Help"));
@@ -434,9 +433,9 @@ void MainWindow::updateActionsTabPositionLotteries()
 }
 
 
-void MainWindow::updateActionTabbarSheetsPosition(const QTabWidget::TabPosition tabPosition)
+void MainWindow::updateActionsTabPositionSheets(const QTabWidget::TabPosition tabPosition)
 {
-    const QList<QAction *> actions = m_actionTabbarSheetsPosition->actions();
+    const QList<QAction *> actions = m_actionsTabPositionSheets->actions();
     for (auto *action : actions) {
         if (action->data() == tabPosition) {
             action->setChecked(true);
@@ -546,9 +545,9 @@ void MainWindow::onActionsTabPositionLotteriesTriggered(const QAction *actionTab
 }
 
 
-void MainWindow::onActionTabbarSheetsPositionTriggered(const QAction *actionTabbarSheetsPosition)
+void MainWindow::onActionsTabPositionSheetsTriggered(const QAction *actionTabPositionSheets)
 {
-    auto tabPosition = static_cast<QTabWidget::TabPosition> (actionTabbarSheetsPosition->data().toInt());
+    auto tabPosition = static_cast<QTabWidget::TabPosition> (actionTabPositionSheets->data().toInt());
 
     if (auto *document = activeDocument())
         document->setDocumentTabPosition(tabPosition);
@@ -577,7 +576,7 @@ void MainWindow::onDocumentWindowActivated(const QMdiSubWindow *subWindow)
 
     auto *document = qobject_cast<Document *>(subWindow->widget());
 
-    updateActionTabbarSheetsPosition(document->documentTabPosition());
+    updateActionsTabPositionSheets(document->documentTabPosition());
 }
 
 
@@ -608,6 +607,7 @@ Document *MainWindow::createDocument()
 {
     auto *document = new Document;
     document->setPreferences(m_preferences);
+    document->setDocumentTabPosition(m_preferences.defaultTabbarSheetsPosition());
     connect(document, &Document::aboutToClose, this, &MainWindow::onDocumentAboutToClose);
 
     auto *subWindow = m_documentArea->addSubWindow(document);
@@ -662,8 +662,7 @@ bool MainWindow::loadDocument(const QString &canonicalName)
         document->updateDocumentTitle();
         document->show();
 
-        // Update the application window
-        updateActionTabbarSheetsPosition(document->documentTabPosition());
+        // Update application window
         updateTitleBar();
     }
     else {
