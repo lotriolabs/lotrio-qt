@@ -47,11 +47,11 @@ MainWindow::MainWindow(QWidget *parent)
 
     loadSettings();
 
-    updateActions();
     updateActionFullScreen();
     updateActionTabbarLotteriesPosition();
     updateActionTabbarSheetsPosition(m_preferences.defaultTabbarSheetsPosition());
-    updateMenus();
+
+    enableUiElements();
 
     // Central widget
     m_documentArea->setViewMode(QMdiArea::TabbedView);
@@ -400,18 +400,6 @@ void MainWindow::createStatusBar()
 }
 
 
-void MainWindow::updateActions(const int subWindowCount)
-{
-    const bool hasDocument = subWindowCount >= 1;
-    const bool hasDocuments = subWindowCount >= 2;
-
-    // Actions: Lotteries
-    m_actionClose->setEnabled(hasDocument);
-    m_actionCloseOther->setEnabled(hasDocuments);
-    m_actionCloseAll->setEnabled(hasDocument);
-}
-
-
 void MainWindow::updateActionFullScreen()
 {
     if (!isFullScreen()) {
@@ -453,15 +441,6 @@ void MainWindow::updateActionTabbarSheetsPosition(const QTabWidget::TabPosition 
 }
 
 
-void MainWindow::updateMenus(const int subWindowCount)
-{
-    const bool hasDocument = subWindowCount >= 1;
-
-    // Menu: View
-    m_menuSheetTabs->setEnabled(hasDocument);
-}
-
-
 void MainWindow::updateTitleBar()
 {
     QString title;
@@ -470,6 +449,21 @@ void MainWindow::updateTitleBar()
         title = document->documentTitle();
 
     setWindowTitle(title);
+}
+
+
+void MainWindow::enableUiElements(const int subWindowCount)
+{
+    const bool hasDocument = subWindowCount >= 1;
+    const bool hasDocuments = subWindowCount >= 2;
+
+    // Actions: Lotteries
+    m_actionClose->setEnabled(hasDocument);
+    m_actionCloseOther->setEnabled(hasDocuments);
+    m_actionCloseAll->setEnabled(hasDocument);
+
+    // Menu: View
+    m_menuSheetTabs->setEnabled(hasDocument);
 }
 
 
@@ -569,10 +563,9 @@ void MainWindow::onActionKeyboardShortcutsTriggered()
 
 void MainWindow::onDocumentWindowActivated(const QMdiSubWindow *subWindow)
 {
-    // Update the application window
-    updateActions(m_documentArea->subWindowList().count());
-    updateMenus(m_documentArea->subWindowList().count());
+    // Update application window and UI elements
     updateTitleBar();
+    enableUiElements(m_documentArea->subWindowList().count());
 
     if (!subWindow)
         return;
@@ -592,9 +585,8 @@ void MainWindow::onDocumentAboutToClose(const QString &canonicalName)
             subWindow->showMaximized();
     }
 
-    // Update menu items without the emitter
-    updateActions(m_documentArea->subWindowList().count() - 1);
-    updateMenus(m_documentArea->subWindowList().count() - 1);
+    // Update UI elements without the emitter
+    enableUiElements(m_documentArea->subWindowList().count() - 1);
 
     // Disable the Lottery action
     const QList<QAction *> actionLotteries = m_actionLotteries;
@@ -666,9 +658,7 @@ bool MainWindow::loadDocument(const QString &canonicalName)
         document->show();
 
         // Update the application window
-        updateActions(m_documentArea->subWindowList().count());
         updateActionTabbarSheetsPosition(document->documentTabPosition());
-        updateMenus(m_documentArea->subWindowList().count());
         updateTitleBar();
     }
     else {

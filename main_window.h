@@ -94,12 +94,12 @@ private:
     void createToolBars();
     void createStatusBar();
 
-    void updateActions(const int subWindowCount = 0);
     void updateActionFullScreen();
     void updateActionTabbarLotteriesPosition();
     void updateActionTabbarSheetsPosition(const QTabWidget::TabPosition tabPosition);
-    void updateMenus(const int subWindowCount = 0);
     void updateTitleBar();
+
+    void enableUiElements(const int subWindowCount = 0);
 
     QAction *m_actionAbout;
     QAction *m_actionColophon;
