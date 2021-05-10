@@ -186,7 +186,7 @@ void MainWindow::createActions()
     m_actionClose->setIcon(QIcon::fromTheme(QStringLiteral("document-close"), QIcon(QStringLiteral(":/icons/actions/16/document-close.svg"))));
     m_actionClose->setShortcut(QKeySequence::Close);
     m_actionClose->setToolTip(tr("Close lottery"));
-    connect(m_actionClose, &QAction::triggered, this, &MainWindow::onActionCloseTriggered);
+    connect(m_actionClose, &QAction::triggered, m_windowArea, &WindowArea::closeActiveSubWindow);
 
     m_actionCloseOther = new QAction(tr("Close Other"), this);
     m_actionCloseOther->setObjectName(QStringLiteral("actionCloseOther"));
@@ -500,12 +500,6 @@ void MainWindow::onActionLotteriesToggled(bool checked, const QString &lottery)
         openDocument(lottery);
     else
         closeDocument(lottery);
-}
-
-
-void MainWindow::onActionCloseTriggered()
-{
-    m_windowArea->closeActiveSubWindow();
 }
 
 
