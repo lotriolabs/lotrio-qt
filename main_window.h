@@ -55,7 +55,6 @@ private slots:
     void onActionPreferencesTriggered();
 
     void onActionLotteriesToggled(bool checked, const QString &lottery);
-    void onActionCloseAllTriggered();
 
     void onActionFullScreenTriggered();
 

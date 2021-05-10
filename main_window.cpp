@@ -197,7 +197,7 @@ void MainWindow::createActions()
     m_actionCloseAll->setObjectName(QStringLiteral("actionCloseAll"));
     m_actionCloseAll->setShortcut(QKeySequence(Qt::CTRL + Qt::SHIFT + Qt::Key_W));
     m_actionCloseAll->setToolTip(tr("Close all lotteries"));
-    connect(m_actionCloseAll, &QAction::triggered, this, &MainWindow::onActionCloseAllTriggered);
+    connect(m_actionCloseAll, &QAction::triggered, m_windowArea, &WindowArea::closeAllSubWindows);
 
 
     //
@@ -500,12 +500,6 @@ void MainWindow::onActionLotteriesToggled(bool checked, const QString &lottery)
         openDocument(lottery);
     else
         closeDocument(lottery);
-}
-
-
-void MainWindow::onActionCloseAllTriggered()
-{
-    m_windowArea->closeAllSubWindows();
 }
 
 
