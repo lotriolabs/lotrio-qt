@@ -48,7 +48,7 @@ MainWindow::MainWindow(QWidget *parent)
     loadSettings();
 
     updateActionFullScreen();
-    updateActionTabbarLotteriesPosition();
+    updateActionsTabPositionLotteries();
     updateActionTabbarSheetsPosition(m_preferences.defaultTabbarSheetsPosition());
 
     enableUiElements();
@@ -212,24 +212,6 @@ void MainWindow::createActions()
     m_actionFullScreen->setShortcuts(QList<QKeySequence>() << QKeySequence(Qt::Key_F11) << QKeySequence::FullScreen);
     connect(m_actionFullScreen, &QAction::triggered, this, &MainWindow::onActionFullScreenTriggered);
 
-    auto *actionTabbarLotteriesPositionTop = new QAction(tr("Top"), this);
-    actionTabbarLotteriesPositionTop->setObjectName(QStringLiteral("actionTabbarLotteriesPositionTop"));
-    actionTabbarLotteriesPositionTop->setCheckable(true);
-    actionTabbarLotteriesPositionTop->setToolTip(tr("The lottery tabs are displayed above the pages"));
-    actionTabbarLotteriesPositionTop->setData((int) QTabWidget::North);
-
-    auto *actionTabbarLotteriesPositionBottom = new QAction(tr("Bottom"), this);
-    actionTabbarLotteriesPositionBottom->setObjectName(QStringLiteral("actionTabbarLotteriesPositionBottom"));
-    actionTabbarLotteriesPositionBottom->setCheckable(true);
-    actionTabbarLotteriesPositionBottom->setToolTip(tr("The lottery tabs are displayed below the pages"));
-    actionTabbarLotteriesPositionBottom->setData((int) QTabWidget::South);
-
-    m_actionTabbarLotteriesPosition = new QActionGroup(this);
-    m_actionTabbarLotteriesPosition->setObjectName(QStringLiteral("actionTabbarLotteriesPosition"));
-    m_actionTabbarLotteriesPosition->addAction(actionTabbarLotteriesPositionTop);
-    m_actionTabbarLotteriesPosition->addAction(actionTabbarLotteriesPositionBottom);
-    connect(m_actionTabbarLotteriesPosition, &QActionGroup::triggered, this, &MainWindow::onActionTabbarLotteriesPositionTriggered);
-
     auto *actionTabbarSheetsPositionTop = new QAction(tr("Top"), this);
     actionTabbarSheetsPositionTop->setObjectName(QStringLiteral("actionTabbarSheetsPositionTop"));
     actionTabbarSheetsPositionTop->setCheckable(true);
@@ -295,11 +277,38 @@ void MainWindow::createActions()
     m_actionKeyboardShortcuts->setIconText(tr("Shortcuts"));
     m_actionKeyboardShortcuts->setToolTip(tr("List of all keyboard shortcuts"));
     connect(m_actionKeyboardShortcuts, &QAction::triggered, this, &MainWindow::onActionKeyboardShortcutsTriggered);
+
+
+    //
+    // Tab Position Lotteries
+
+    auto *actionTabPositionLotteriesTop = new QAction(tr("Top"), this);
+    actionTabPositionLotteriesTop->setObjectName(QStringLiteral("actionTabPositionLotteriesTop"));
+    actionTabPositionLotteriesTop->setCheckable(true);
+    actionTabPositionLotteriesTop->setToolTip(tr("The lottery tabs are displayed above the pages"));
+    actionTabPositionLotteriesTop->setData((int) QTabWidget::North);
+
+    auto *actionTabPositionLotteriesBottom = new QAction(tr("Bottom"), this);
+    actionTabPositionLotteriesBottom->setObjectName(QStringLiteral("actionTabPositionLotteriesBottom"));
+    actionTabPositionLotteriesBottom->setCheckable(true);
+    actionTabPositionLotteriesBottom->setToolTip(tr("The lottery tabs are displayed below the pages"));
+    actionTabPositionLotteriesBottom->setData((int) QTabWidget::South);
+
+    m_actionsTabPositionLotteries = new QActionGroup(this);
+    m_actionsTabPositionLotteries->setObjectName(QStringLiteral("actionsTabPositionLotteries"));
+    m_actionsTabPositionLotteries->addAction(actionTabPositionLotteriesTop);
+    m_actionsTabPositionLotteries->addAction(actionTabPositionLotteriesBottom);
+    connect(m_actionsTabPositionLotteries, &QActionGroup::triggered, this, &MainWindow::onActionsTabPositionLotteriesTriggered);
 }
 
 
 void MainWindow::createMenus()
 {
+    auto *menuLotteryTabs = new QMenu(tr("Show Lottery Tabs…"), this);
+    menuLotteryTabs->setObjectName(QStringLiteral("menuLotteryTabs"));
+    menuLotteryTabs->addActions(m_actionsTabPositionLotteries->actions());
+
+
     // Menu: Application
     auto *menuApplication = menuBar()->addMenu(tr("Application"));
     menuApplication->setObjectName(QStringLiteral("menuApplication"));
@@ -326,10 +335,6 @@ void MainWindow::createMenus()
 
     //
     // Menu: View
-
-    auto *menuLotteryTabs = new QMenu(tr("Show Lottery Tabs…"), this);
-    menuLotteryTabs->setObjectName(QStringLiteral("menuLotteryTabs"));
-    menuLotteryTabs->addActions(m_actionTabbarLotteriesPosition->actions());
 
     m_menuSheetTabs = new QMenu(tr("Show Sheet Tabs…"), this);
     m_menuSheetTabs->setObjectName(QStringLiteral("menuSheetTabs"));
@@ -417,9 +422,9 @@ void MainWindow::updateActionFullScreen()
 }
 
 
-void MainWindow::updateActionTabbarLotteriesPosition()
+void MainWindow::updateActionsTabPositionLotteries()
 {
-    const QList<QAction *> actions = m_actionTabbarLotteriesPosition->actions();
+    const QList<QAction *> actions = m_actionsTabPositionLotteries->actions();
     for (auto *action : actions) {
         if (action->data() == m_preferences.defaultTabbarLotteriesPosition()) {
             action->setChecked(true);
@@ -533,9 +538,9 @@ void MainWindow::onActionFullScreenTriggered()
 }
 
 
-void MainWindow::onActionTabbarLotteriesPositionTriggered(const QAction *actionTabbarLotteriesPosition)
+void MainWindow::onActionsTabPositionLotteriesTriggered(const QAction *actionTabPositionLotteries)
 {
-    auto tabPosition = static_cast<QTabWidget::TabPosition> (actionTabbarLotteriesPosition->data().toInt());
+    auto tabPosition = static_cast<QTabWidget::TabPosition> (actionTabPositionLotteries->data().toInt());
 
     m_documentArea->setTabPosition(tabPosition);
 }

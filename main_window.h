@@ -60,10 +60,11 @@ private slots:
     void onActionCloseAllTriggered();
 
     void onActionFullScreenTriggered();
-    void onActionTabbarLotteriesPositionTriggered(const QAction *actionTabbarLotteriesPosition);
     void onActionTabbarSheetsPositionTriggered(const QAction *actionTabbarSheetsPosition);
 
     void onActionKeyboardShortcutsTriggered();
+
+    void onActionsTabPositionLotteriesTriggered(const QAction *actionTabPositionLotteries);
 
     void onDocumentWindowActivated(const QMdiSubWindow *subWindow);
     void onDocumentAboutToClose(const QString &canonicalName);
@@ -95,11 +96,9 @@ private:
     void createStatusBar();
 
     void updateActionFullScreen();
-    void updateActionTabbarLotteriesPosition();
+    void updateActionsTabPositionLotteries();
     void updateActionTabbarSheetsPosition(const QTabWidget::TabPosition tabPosition);
     void updateTitleBar();
-
-    void enableUiElements(const int subWindowCount = 0);
 
     QAction *m_actionAbout;
     QAction *m_actionColophon;
@@ -112,7 +111,6 @@ private:
     QAction *m_actionCloseAll;
 
     QAction *m_actionFullScreen;
-    QActionGroup *m_actionTabbarLotteriesPosition;
     QActionGroup *m_actionTabbarSheetsPosition;
     QAction *m_actionToolbarApplication;
     QAction *m_actionToolbarLotteries;
@@ -123,7 +121,11 @@ private:
 
     QAction *m_actionKeyboardShortcuts;
 
+    QActionGroup *m_actionsTabPositionLotteries;
+
     QMenu *m_menuSheetTabs;
+
+    void enableUiElements(const int subWindowCount = 0);
 
     Document *createDocument();
     QMdiSubWindow *findDocumentWindow(const QString &canonicalName) const;
