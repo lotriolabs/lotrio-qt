@@ -37,7 +37,7 @@ void WindowArea::closeOtherSubWindows()
         return;
 
     // Remove current subwindow from the list
-    subWindows.removeLast();
+    subWindows.removeAll(activeSubWindow());
 
     // Close all other subwindows
     for (auto *subWindow : subWindows)
