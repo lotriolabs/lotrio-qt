@@ -191,7 +191,7 @@ void MainWindow::createActions()
     m_actionCloseOther = new QAction(tr("Close Other"), this);
     m_actionCloseOther->setObjectName(QStringLiteral("actionCloseOther"));
     m_actionCloseOther->setToolTip(tr("Close all other lotteries"));
-    connect(m_actionCloseOther, &QAction::triggered, this, &MainWindow::onActionCloseOtherTriggered);
+    connect(m_actionCloseOther, &QAction::triggered, m_windowArea, &WindowArea::closeOtherSubWindows);
 
     m_actionCloseAll = new QAction(tr("Close All"), this);
     m_actionCloseAll->setObjectName(QStringLiteral("actionCloseAll"));
@@ -506,16 +506,6 @@ void MainWindow::onActionLotteriesToggled(bool checked, const QString &lottery)
 void MainWindow::onActionCloseTriggered()
 {
     m_windowArea->closeActiveSubWindow();
-}
-
-
-void MainWindow::onActionCloseOtherTriggered()
-{
-    const QList<QMdiSubWindow *> subWindows = m_windowArea->subWindowList();
-    for (auto *subWindow : subWindows) {
-        if (subWindow != m_windowArea->activeSubWindow())
-            subWindow->close();
-    }
 }
 
 

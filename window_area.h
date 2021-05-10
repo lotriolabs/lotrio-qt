@@ -29,6 +29,9 @@ class WindowArea : public QMdiArea
 
 public:
     explicit WindowArea(QWidget *parent = nullptr);
+
+public slots:
+    void closeOtherSubWindows();
 };
 
 #endif // WINDOW_AREA_H

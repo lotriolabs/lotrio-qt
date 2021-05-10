@@ -19,9 +19,27 @@
 
 #include "window_area.h"
 
+#include <QMdiSubWindow>
+
 
 WindowArea::WindowArea(QWidget *parent)
     : QMdiArea(parent)
 {
 
+}
+
+
+void WindowArea::closeOtherSubWindows()
+{
+    QList<QMdiSubWindow *> subWindows = subWindowList(QMdiArea::ActivationHistoryOrder);
+
+    if (subWindows.isEmpty())
+        return;
+
+    // Remove current subwindow from the list
+    subWindows.removeLast();
+
+    // Close all other subwindows
+    for (auto *subWindow : subWindows)
+        subWindow->close();
 }
