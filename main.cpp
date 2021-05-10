@@ -17,7 +17,7 @@
  * along with Lotrio-Qt.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-#include "main_window.h"
+#include "window.h"
 
 #include <QApplication>
 #include <QCommandLineOption>
@@ -120,8 +120,8 @@ int main(int argc, char *argv[])
         app.installTranslator(&translatorQtBase);
 
 
-    MainWindow window;
-    window.show();
+    Window win;
+    win.show();
 
     return app.exec();
 }

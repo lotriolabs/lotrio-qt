@@ -40,13 +40,13 @@ SOURCES += \
     lottery_page_draws.cpp \
     lottery_page_plays.cpp \
     main.cpp \
-    main_window.cpp \
     preferences.cpp \
     preferences_dialog.cpp \
     preferences_page_draws.cpp \
     preferences_page_general.cpp \
     preferences_page_lotteries.cpp \
     preferences_page_plays.cpp \
+    window.cpp \
     window_area.cpp
 
 HEADERS += \
@@ -61,13 +61,13 @@ HEADERS += \
     lottery_page_about.h \
     lottery_page_draws.h \
     lottery_page_plays.h \
-    main_window.h \
     preferences.h \
     preferences_dialog.h \
     preferences_page_draws.h \
     preferences_page_general.h \
     preferences_page_lotteries.h \
     preferences_page_plays.h \
+    window.h \
     window_area.h
 
 TRANSLATIONS += \

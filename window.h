@@ -17,8 +17,8 @@
  * along with Lotrio-Qt.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-#ifndef MAIN_WINDOW_H
-#define MAIN_WINDOW_H
+#ifndef WINDOW_H
+#define WINDOW_H
 
 #include <QAction>
 #include <QActionGroup>
@@ -36,13 +36,13 @@
 #include "window_area.h"
 
 
-class MainWindow : public QMainWindow
+class Window : public QMainWindow
 {
     Q_OBJECT
 
 public:
-    MainWindow(QWidget *parent = nullptr);
-    ~MainWindow();
+    Window(QWidget *parent = nullptr);
+    ~Window();
 
     bool openDocument(const QString &canonicalName);
 
@@ -131,4 +131,4 @@ private:
     bool closeDocument(const QString &canonicalName);
 };
 
-#endif // MAIN_WINDOW_H
+#endif // WINDOW_H

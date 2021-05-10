@@ -17,7 +17,7 @@
  * along with Lotrio-Qt.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-#include "main_window.h"
+#include "window.h"
 
 #include <QApplication>
 #include <QMenuBar>
@@ -29,7 +29,7 @@
 #include "preferences_dialog.h"
 
 
-MainWindow::MainWindow(QWidget *parent)
+Window::Window(QWidget *parent)
     : QMainWindow(parent)
     , m_windowArea(new WindowArea)
 {
@@ -57,15 +57,15 @@ MainWindow::MainWindow(QWidget *parent)
     m_windowArea->setTabsClosable(true);
     m_windowArea->setTabPosition(m_preferences.defaultTabbarLotteriesPosition());
     setCentralWidget(m_windowArea);
-    connect(m_windowArea, &WindowArea::subWindowActivated, this, &MainWindow::onDocumentWindowActivated);
+    connect(m_windowArea, &WindowArea::subWindowActivated, this, &Window::onDocumentWindowActivated);
 }
 
-MainWindow::~MainWindow()
+Window::~Window()
 {
 }
 
 
-void MainWindow::closeEvent(QCloseEvent *event)
+void Window::closeEvent(QCloseEvent *event)
 {
     if (true) {
         // Store application properties and preferences
@@ -80,7 +80,7 @@ void MainWindow::closeEvent(QCloseEvent *event)
 }
 
 
-void MainWindow::loadSettings()
+void Window::loadSettings()
 {
     QSettings settings;
 
@@ -110,7 +110,7 @@ void MainWindow::loadSettings()
 }
 
 
-void MainWindow::saveSettings()
+void Window::saveSettings()
 {
     QSettings settings;
 
@@ -124,7 +124,7 @@ void MainWindow::saveSettings()
 }
 
 
-void MainWindow::createLotteries()
+void Window::createLotteries()
 {
     m_listLotteries[QStringLiteral("eurojackpot")] = QStringList() << QStringLiteral("euEurojackpot") << tr("Eurojackpot") << tr("Eurojackpot is a transnational European lottery");
     m_listLotteries[QStringLiteral("euromillions")] = QStringList() << QStringLiteral("euEuroMillions") << tr("EuroMillions") << tr("EuroMillions is a transnational European lottery");
@@ -132,7 +132,7 @@ void MainWindow::createLotteries()
 }
 
 
-void MainWindow::createActions()
+void Window::createActions()
 {
     //
     // Actions: Application
@@ -142,25 +142,25 @@ void MainWindow::createActions()
     m_actionAbout->setIcon(QIcon(QStringLiteral(":/icons/apps/512/lotrio.svg")));
     m_actionAbout->setIconText(tr("About"));
     m_actionAbout->setToolTip(tr("Brief description of the application"));
-    connect(m_actionAbout, &QAction::triggered, this, &MainWindow::onActionAboutTriggered);
+    connect(m_actionAbout, &QAction::triggered, this, &Window::onActionAboutTriggered);
 
     m_actionColophon = new QAction(tr("Colophon"), this);
     m_actionColophon->setObjectName(QStringLiteral("actionColophon"));
     m_actionColophon->setToolTip(tr("Lengthy description of the application"));
-    connect(m_actionColophon, &QAction::triggered, this, &MainWindow::onActionColophonTriggered);
+    connect(m_actionColophon, &QAction::triggered, this, &Window::onActionColophonTriggered);
 
     m_actionPreferences = new QAction(tr("Preferences…"), this);
     m_actionPreferences->setObjectName(QStringLiteral("actionPreferences"));
     m_actionPreferences->setIcon(QIcon::fromTheme(QStringLiteral("configure"), QIcon(QStringLiteral(":/icons/actions/16/application-configure.svg"))));
     m_actionPreferences->setToolTip(tr("Customize the appearance and behavior of the application"));
-    connect(m_actionPreferences, &QAction::triggered, this, &MainWindow::onActionPreferencesTriggered);
+    connect(m_actionPreferences, &QAction::triggered, this, &Window::onActionPreferencesTriggered);
 
     m_actionQuit = new QAction(tr("Quit"), this);
     m_actionQuit->setObjectName(QStringLiteral("actionQuit"));
     m_actionQuit->setIcon(QIcon::fromTheme(QStringLiteral("application-exit"), QIcon(QStringLiteral(":/icons/actions/16/application-exit.svg"))));
     m_actionQuit->setShortcut(QKeySequence::Quit);
     m_actionQuit->setToolTip(tr("Quit the application"));
-    connect(m_actionQuit, &QAction::triggered, this, &MainWindow::close);
+    connect(m_actionQuit, &QAction::triggered, this, &Window::close);
 
 
     //
@@ -208,7 +208,7 @@ void MainWindow::createActions()
     m_actionFullScreen->setIconText(tr("Full Screen"));
     m_actionFullScreen->setCheckable(true);
     m_actionFullScreen->setShortcuts(QList<QKeySequence>() << QKeySequence(Qt::Key_F11) << QKeySequence::FullScreen);
-    connect(m_actionFullScreen, &QAction::triggered, this, &MainWindow::onActionFullScreenTriggered);
+    connect(m_actionFullScreen, &QAction::triggered, this, &Window::onActionFullScreenTriggered);
 
     m_actionToolbarApplication = new QAction(tr("Show Application Toolbar"), this);
     m_actionToolbarApplication->setObjectName(QStringLiteral("actionToolbarApplication"));
@@ -256,7 +256,7 @@ void MainWindow::createActions()
     m_actionKeyboardShortcuts->setIcon(QIcon::fromTheme(QStringLiteral("help-keyboard-shortcuts"), QIcon(QStringLiteral(":/icons/actions/16/help-keyboard-shortcuts.svg"))));
     m_actionKeyboardShortcuts->setIconText(tr("Shortcuts"));
     m_actionKeyboardShortcuts->setToolTip(tr("List of all keyboard shortcuts"));
-    connect(m_actionKeyboardShortcuts, &QAction::triggered, this, &MainWindow::onActionKeyboardShortcutsTriggered);
+    connect(m_actionKeyboardShortcuts, &QAction::triggered, this, &Window::onActionKeyboardShortcutsTriggered);
 
 
     //
@@ -278,7 +278,7 @@ void MainWindow::createActions()
     m_actionsTabPositionLotteries->setObjectName(QStringLiteral("actionsTabPositionLotteries"));
     m_actionsTabPositionLotteries->addAction(actionTabPositionLotteriesTop);
     m_actionsTabPositionLotteries->addAction(actionTabPositionLotteriesBottom);
-    connect(m_actionsTabPositionLotteries, &QActionGroup::triggered, this, &MainWindow::onActionsTabPositionLotteriesTriggered);
+    connect(m_actionsTabPositionLotteries, &QActionGroup::triggered, this, &Window::onActionsTabPositionLotteriesTriggered);
 
 
     //
@@ -300,11 +300,11 @@ void MainWindow::createActions()
     m_actionsTabPositionSheets->setObjectName(QStringLiteral("actionsTabPositionSheets"));
     m_actionsTabPositionSheets->addAction(actionTabPositionSheetsTop);
     m_actionsTabPositionSheets->addAction(actionTabPositionSheetsBottom);
-    connect(m_actionsTabPositionSheets, &QActionGroup::triggered, this, &MainWindow::onActionsTabPositionSheetsTriggered);
+    connect(m_actionsTabPositionSheets, &QActionGroup::triggered, this, &Window::onActionsTabPositionSheetsTriggered);
 }
 
 
-void MainWindow::createMenus()
+void Window::createMenus()
 {
     auto *menuLotteryTabs = new QMenu(tr("Show Lottery Tabs…"), this);
     menuLotteryTabs->setObjectName(QStringLiteral("menuLotteryTabs"));
@@ -361,7 +361,7 @@ void MainWindow::createMenus()
 }
 
 
-void MainWindow::createToolBars()
+void Window::createToolBars()
 {
     // Toolbar: Application
     m_toolbarApplication = addToolBar(tr("Application Toolbar"));
@@ -397,13 +397,13 @@ void MainWindow::createToolBars()
 }
 
 
-void MainWindow::createStatusBar()
+void Window::createStatusBar()
 {
     m_statusbar = statusBar();
 }
 
 
-void MainWindow::updateActionFullScreen()
+void Window::updateActionFullScreen()
 {
     if (!isFullScreen()) {
         m_actionFullScreen->setText(tr("Full Screen Mode"));
@@ -420,7 +420,7 @@ void MainWindow::updateActionFullScreen()
 }
 
 
-void MainWindow::updateActionsTabPositionLotteries()
+void Window::updateActionsTabPositionLotteries()
 {
     const QList<QAction *> actions = m_actionsTabPositionLotteries->actions();
     for (auto *action : actions) {
@@ -432,7 +432,7 @@ void MainWindow::updateActionsTabPositionLotteries()
 }
 
 
-void MainWindow::updateActionsTabPositionSheets(const QTabWidget::TabPosition tabPosition)
+void Window::updateActionsTabPositionSheets(const QTabWidget::TabPosition tabPosition)
 {
     const QList<QAction *> actions = m_actionsTabPositionSheets->actions();
     for (auto *action : actions) {
@@ -444,7 +444,7 @@ void MainWindow::updateActionsTabPositionSheets(const QTabWidget::TabPosition ta
 }
 
 
-void MainWindow::updateTitleBar()
+void Window::updateTitleBar()
 {
     QString title;
 
@@ -455,7 +455,7 @@ void MainWindow::updateTitleBar()
 }
 
 
-void MainWindow::enableUiElements(const int subWindowCount)
+void Window::enableUiElements(const int subWindowCount)
 {
     const bool hasDocument = subWindowCount >= 1;
     const bool hasDocuments = subWindowCount >= 2;
@@ -470,21 +470,21 @@ void MainWindow::enableUiElements(const int subWindowCount)
 }
 
 
-void MainWindow::onActionAboutTriggered()
+void Window::onActionAboutTriggered()
 {
     AboutDialog dialog(this);
     dialog.exec();
 }
 
 
-void MainWindow::onActionColophonTriggered()
+void Window::onActionColophonTriggered()
 {
     ColophonDialog dialog(this);
     dialog.exec();
 }
 
 
-void MainWindow::onActionPreferencesTriggered()
+void Window::onActionPreferencesTriggered()
 {
     PreferencesDialog dialog(this);
     dialog.setPreferences(m_preferences);
@@ -494,7 +494,7 @@ void MainWindow::onActionPreferencesTriggered()
 }
 
 
-void MainWindow::onActionLotteriesToggled(bool checked, const QString &lottery)
+void Window::onActionLotteriesToggled(bool checked, const QString &lottery)
 {
     if (checked)
         openDocument(lottery);
@@ -503,7 +503,7 @@ void MainWindow::onActionLotteriesToggled(bool checked, const QString &lottery)
 }
 
 
-void MainWindow::onActionFullScreenTriggered()
+void Window::onActionFullScreenTriggered()
 {
     if (!isFullScreen())
         setWindowState(windowState() | Qt::WindowFullScreen);
@@ -514,7 +514,7 @@ void MainWindow::onActionFullScreenTriggered()
 }
 
 
-void MainWindow::onActionsTabPositionLotteriesTriggered(const QAction *actionTabPositionLotteries)
+void Window::onActionsTabPositionLotteriesTriggered(const QAction *actionTabPositionLotteries)
 {
     auto tabPosition = static_cast<QTabWidget::TabPosition> (actionTabPositionLotteries->data().toInt());
 
@@ -522,7 +522,7 @@ void MainWindow::onActionsTabPositionLotteriesTriggered(const QAction *actionTab
 }
 
 
-void MainWindow::onActionsTabPositionSheetsTriggered(const QAction *actionTabPositionSheets)
+void Window::onActionsTabPositionSheetsTriggered(const QAction *actionTabPositionSheets)
 {
     auto tabPosition = static_cast<QTabWidget::TabPosition> (actionTabPositionSheets->data().toInt());
 
@@ -531,7 +531,7 @@ void MainWindow::onActionsTabPositionSheetsTriggered(const QAction *actionTabPos
 }
 
 
-void MainWindow::onActionKeyboardShortcutsTriggered()
+void Window::onActionKeyboardShortcutsTriggered()
 {
     if (!m_keyboardShortcutsDialog)
         m_keyboardShortcutsDialog = new KeyboardShortcutsDialog(this);
@@ -542,7 +542,7 @@ void MainWindow::onActionKeyboardShortcutsTriggered()
 }
 
 
-void MainWindow::onDocumentWindowActivated(const QMdiSubWindow *subWindow)
+void Window::onDocumentWindowActivated(const QMdiSubWindow *subWindow)
 {
     // Update application window and UI elements
     updateTitleBar();
@@ -557,7 +557,7 @@ void MainWindow::onDocumentWindowActivated(const QMdiSubWindow *subWindow)
 }
 
 
-void MainWindow::onDocumentAboutToClose(const QString &canonicalName)
+void Window::onDocumentAboutToClose(const QString &canonicalName)
 {
     // Workaround to show subwindows always maximized
     const QList<QMdiSubWindow *> subWindows = m_windowArea->subWindowList();
@@ -580,12 +580,12 @@ void MainWindow::onDocumentAboutToClose(const QString &canonicalName)
 }
 
 
-LotteryDocument *MainWindow::createDocument()
+LotteryDocument *Window::createDocument()
 {
     auto *document = new LotteryDocument;
     document->setPreferences(m_preferences);
     document->setTabPosition(m_preferences.defaultTabbarSheetsPosition());
-    connect(document, &LotteryDocument::aboutToClose, this, &MainWindow::onDocumentAboutToClose);
+    connect(document, &LotteryDocument::aboutToClose, this, &Window::onDocumentAboutToClose);
 
     auto *subWindow = m_windowArea->addSubWindow(document);
     subWindow->setWindowIcon(QIcon());
@@ -595,7 +595,7 @@ LotteryDocument *MainWindow::createDocument()
 }
 
 
-QMdiSubWindow *MainWindow::findDocumentWindow(const QString &canonicalName) const
+QMdiSubWindow *Window::findDocumentWindow(const QString &canonicalName) const
 {
     const QList<QMdiSubWindow *> subWindows = m_windowArea->subWindowList();
     for (auto *subWindow : subWindows) {
@@ -609,7 +609,7 @@ QMdiSubWindow *MainWindow::findDocumentWindow(const QString &canonicalName) cons
 }
 
 
-LotteryDocument *MainWindow::activeDocument() const
+LotteryDocument *Window::activeDocument() const
 {
     if (auto *subWindow = m_windowArea->activeSubWindow())
         return qobject_cast<LotteryDocument *>(subWindow->widget());
@@ -618,7 +618,7 @@ LotteryDocument *MainWindow::activeDocument() const
 }
 
 
-bool MainWindow::openDocument(const QString &canonicalName)
+bool Window::openDocument(const QString &canonicalName)
 {
     if (auto *subWindow = findDocumentWindow(canonicalName)) {
         // Given document is already loaded; activate the subwindow
@@ -630,7 +630,7 @@ bool MainWindow::openDocument(const QString &canonicalName)
 }
 
 
-bool MainWindow::loadDocument(const QString &canonicalName)
+bool Window::loadDocument(const QString &canonicalName)
 {
     auto *document = createDocument();
 
@@ -650,7 +650,7 @@ bool MainWindow::loadDocument(const QString &canonicalName)
 }
 
 
-bool MainWindow::closeDocument(const QString &canonicalName)
+bool Window::closeDocument(const QString &canonicalName)
 {
     bool succeeded{ false };
 
