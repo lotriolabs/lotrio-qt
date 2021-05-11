@@ -37,6 +37,12 @@ Window::Window(QWidget *parent)
 
     m_preferences.loadSettings();
 
+    m_windowArea->setViewMode(WindowArea::TabbedView);
+    m_windowArea->setTabsMovable(true);
+    m_windowArea->setTabsClosable(true);
+    m_windowArea->setTabPosition(m_preferences.defaultTabbarLotteriesPosition());
+    connect(m_windowArea, &WindowArea::subWindowActivated, this, &Window::onDocumentWindowActivated);
+
     createLotteries();
 
     createActions();
@@ -52,12 +58,7 @@ Window::Window(QWidget *parent)
     enableUiElements();
 
     // Central widget
-    m_windowArea->setViewMode(WindowArea::TabbedView);
-    m_windowArea->setTabsMovable(true);
-    m_windowArea->setTabsClosable(true);
-    m_windowArea->setTabPosition(m_preferences.defaultTabbarLotteriesPosition());
     setCentralWidget(m_windowArea);
-    connect(m_windowArea, &WindowArea::subWindowActivated, this, &Window::onDocumentWindowActivated);
 }
 
 Window::~Window()

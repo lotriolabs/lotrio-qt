@@ -31,7 +31,7 @@ WindowArea::WindowArea(QWidget *parent)
 
 void WindowArea::closeOtherSubWindows()
 {
-    QList<QMdiSubWindow *> subWindows = subWindowList(QMdiArea::ActivationHistoryOrder);
+    QList<QMdiSubWindow *> subWindows = subWindowList();
 
     if (subWindows.isEmpty())
         return;
